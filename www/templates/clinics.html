@@ -1,0 +1,50 @@
+<div class="bar-stable">
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
+      <span class="back-text"><span class="default-title">Poisk Uchrejdeniy</span><span class="previous-title hide"></span></span></button>
+        
+        <button class="button header-right-button-1 buttons button-clear header-item"><i class="fa fa-filter"></i> 
+        </button>
+        
+        <button class="button header-right-button buttons button-clear header-item"><i class="ion-ios-cart"></i> 
+        </button>
+            
+        
+    </ion-header-bar>
+</div>
+<ion-view view-title="Search" animation="no-animation">
+    <ion-content class="no-header">
+
+        <div class="ma-results">
+            <div class="result-header-wrapper">
+                <i class="ion-ios-search-strong"></i>
+                <div class="ma-search-name">
+                    <span>{{selectedClinic}}</span>
+                </div>
+            </div>
+            
+           <!-- <pre>{{medicines | json}}</pre>-->
+            
+            <div class="ma-results-wrapper">
+                <div class="medicine-result" ng-repeat="cli in clinics">
+                    <div class="mr-top">
+                        <img width="60" height="60" class="product-photo" src="{{cli.photo}}" />
+                        <div class="product-info">
+                            <div>Naimenovanie: <span>{{cli.name}} </span></div>
+                            <div>Adres: <span>{{cli.address}} </span></div>
+                            <div>Orientir: <span>{{cli.reference_point}}</span></div>
+                            <div>Spetsializatsii: <span>{{cli.description}}</span></div>
+                        </div>
+                    </div>
+                    <div class="mr-bottom">
+                        <ul>
+                            <li class="button button-light"><i class="ion-ios-location-outline"></i> Karta</li>
+                            <li class="button button-positive"><a href="tel:{{cli.contacts}}" style="color: #fff;text-decoration:none;"><i class="ion-ios-telephone"></i> Pozvonit</a> </li>
+                            <li class="button button-energized" ng-click="go(cli.id)">Podrobnee</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,49 @@
+<div class="bar-stable">
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
+      <span class="back-text"><span class="default-title">Poisk Preparatov</span><span class="previous-title hide"></span></span></button>
+        
+        <button class="button header-right-button-1 buttons button-clear header-item"><i class="fa fa-filter"></i> 
+        </button>
+        
+        <button class="button header-right-button buttons button-clear header-item"><i class="ion-ios-cart"></i> 
+        </button>
+            
+        
+    </ion-header-bar>
+</div>
+<ion-view view-title="Search" animation="no-animation">
+    <ion-content class="no-header">
+        
+        <div class="ma-results">
+            <div class="result-header-wrapper">
+                <i class="ion-ios-search-strong"></i>
+                <div class="ma-search-name">
+                    <span>{{medicines.name}}</span>
+                </div>
+            </div>
+            
+           <!-- <pre>{{medicines | json}}</pre>-->
+            
+            <div class="ma-results-wrapper">
+                <div class="medicine-result">
+                    <div class="mr-top">
+                        <img width="60" height="60" class="product-photo" src="{{pharmacymedicines.image}}" />
+                        <div class="product-info">
+                            <div>Proizvoditel: <span>{{medicines.manufacturer}} </span></div>
+                            <div>Adres: <span>{{medicines.pharmacy.address}} </span></div>
+                            <div>Orientir: <span>{{medicines.pharmacy.districtName}}</span></div>
+                        </div>
+                    </div>
+                    <div class="mr-bottom">
+                        <ul>
+                            <li class="button button-light"><i class="ion-ios-location-outline"></i> Karta</li>
+                            <li class="button button-positive"> <i class="ion-ios-telephone"></i> Pozvonit</li>
+                            <li class="button button-energized"><i class="ion-ios-cart"></i> {{medicines.price}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

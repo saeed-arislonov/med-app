@@ -1,5 +1,55 @@
-<ion-view view-title="Playlist">
-  <ion-content>
-    <h1>Playlist</h1>
-  </ion-content>
+<div class="bar-stable">
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <button ui-sref="app.clinics" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
+      <span class="back-text"><span class="previous-title hide"></span></span></button>
+
+        <div class="title title-center header-item"> Klinika {{singleClinic.name}}
+        </div>
+
+    </ion-header-bar>
+</div>
+
+<ion-view view-title="Search" animation="no-animation">
+    <ion-content class="no-header">
+
+        <div class="ma-results single-clinic">
+
+            <!-- <pre>{{medicines | json}}</pre>-->
+
+            <div class="ma-results-wrapper single-clinic-wrapper" >
+                <div class="single-clinic-back">
+                    <img src="http://yangiliklar.net/wp-content/uploads/2016/01/Toshkent-shahrida-eng-zamonaviy-diagnostika-markazi-ish-boshladi-foto-uz-yangiliklar.jpg" style="max-width:100%;" />
+                </div>
+                <div class="singleClinic-result">
+                    <div class="mr-top">
+                        <img width="80" height="80" class="singleClinic-photo" src="https://vitamed.uz/ru/includes/logo.png" />
+                        <div class="product-info">
+                            <div class="singleClinic-info">Naimenovanie: <span>{{singleClinic.name}} </span></div>
+                            <div class="singleClinic-info">Adres: <span>{{singleClinic.address}} </span></div>
+                            <div class="singleClinic-info">Orientir: <span>{{singleClinic.reference_point}}</span></div> <br/>
+                            <div class="singleClinic-info">Spetsializatsii: <span>{{singleClinic.description}}</span></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="singleClinic-about">
+                    <h2>About Center</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a commodo risus. Donec maximus risus augue, eu finibus ante semper sit amet. Quisque facilisis massa massa. Aenean tincidunt pretium cursus. Nulla tincidunt malesuada metus id dapibus. Nunc mollis est velit, at lacinia turpis fringilla ut. Nullam ut sapien ut nibh aliquam tincidunt. Etiam volutpat dui eu sem ultricies, sit amet suscipit metus pulvinar. Phasellus semper libero erat. Integer eget est quis orci venenatis rutrum in ac eros. Pellentesque gravida maximus nibh, nec mattis odio condimentum nec. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque mattis velit ut metus sagittis semper. Mauris id arcu ultrices, ornare dui in, iaculis felis. Vivamus dignissim facilisis eleifend. Donec sit amet eros sed metus finibus laoreet.</p>
+                </div>
+                <div>
+                    <div class="mr-bottom">
+                        <div class="see-all-contacts">
+                            <button class="button button-stable">See all contacts</button>
+                        </div>
+                        <ul style="padding:0; background-color:#f7f7f7 ">
+                            <li class="first-button">Segondya, {{todaysDate}}.<i ng-if="todaysMonth<10">0</i>{{todaysMonth}} <br /> {{singleClinic.working_hours}}</li>
+                            <li class="button button-light second-button"
+                                ><i class="ion-ios-location-outline"></i> Karta</li>
+                            <li class="button button-positive second-button"><a href="tel:{{cli.contacts}}"><i class="ion-ios-telephone"></i> Pozvonit</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>

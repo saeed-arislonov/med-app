@@ -1,0 +1,215 @@
+/* Empty. Add your own CSS if you like */
+
+$primary-blue: #59acff;
+$primary-green: #44e03e;
+$primary-orange: #f7b551;
+$secondary-green: #28ba23;
+$primary-grey: #e3e0e5;
+$secondary-grey: #878787;
+
+.pull-right {
+    float: right;
+}
+
+ion-content {
+    top: 44px !important;
+}
+
+.bar-header.bar-stable {
+    // styling for header
+    background-color: $primary-blue;
+    .title {
+        color: #fff;
+    }
+    .button.button-icon {
+        color: #fff;
+    }
+    
+    .header-right-button-1 {
+        position: absolute;
+        top: 5px;
+        right: 35px;
+        bottom: 5px;
+         i {
+            color: #fff;
+             font-size: 24px;
+        }
+    } 
+    .header-right-button {
+        i {
+            color: #fff;
+            font-size: 24px;
+        }
+    }
+}
+
+.ma-main-title {
+    font-size: 28px;
+    color: $primary-blue;
+    text-align: center;
+    padding: 15px;
+    margin: 15px;
+}
+
+.ma-search-where {
+    margin: 10px;
+    .input-item {
+        margin-bottom: 10px;
+        margin-top: -15px;
+        .item-input.item {
+            border: none;
+            border-bottom: 1px solid $primary-blue;
+            margin: 0 30px;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-left: 5px;
+        }
+    }
+    .item-input .checkbox input:before,
+    .checkbox-icon:before {
+        border-radius: 3px;
+        border-color: $primary-blue !important;
+    }
+    .checkbox-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .item-checkbox {
+        border: none;
+        margin: 0 30px;
+        padding-top: 8px;
+    }
+    legend {
+        border: none;
+        font-weight: bold;
+        text-align: center;
+        width: inherit;
+        padding: 0 10px;
+    }
+    fieldset {
+        border: 1px solid $primary-blue;
+        border-radius: 5px;
+    }
+}
+
+.ma-search-what {
+    margin: 10px;
+    input {
+        width: 100%;
+    }
+    legend {
+        border: none;
+        font-weight: bold;
+        text-align: center;
+        width: inherit;
+        padding: 0 10px;
+    }
+    fieldset {
+        border: 1px solid $primary-green;
+        border-radius: 5px;
+    }
+    .button-bar {
+        margin: 0 30px;
+        width: inherit;
+        border: 1px solid $primary-blue;
+        border-radius: 5px;
+        padding: 1px;
+        margin-bottom: 10px;
+        .button {
+            min-width: auto;
+            min-height: auto;
+            line-height: 100%;
+            border-radius: 5px;
+            padding: 4px 16px;
+            background-color: #fff;
+        }
+        .button-positive {
+            background-color: $primary-blue;
+        }
+    }
+    .item-input.item {
+        border: none;
+        border-bottom: 1px solid $primary-green;
+        margin: 0 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 5px;
+        margin-bottom: 10px;
+    }
+}
+
+.ma-search-button {
+    width: inherit;
+    text-align: center;
+    margin: 30px 10px;
+    .search-button {
+        background-color: $primary-orange;
+        padding: 15px;
+        border-radius: 5px;
+        a {
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    }
+    .contact-info {
+        margin: 25px 0;
+        .contact-num {
+            font-size: 28px;
+            font-weight: bold;
+            padding-bottom: 5px;
+            color: $secondary-green;
+        }
+    }
+}
+
+.dropdown-menu {
+     position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175)
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color:$primary-blue;
+    outline: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333 !important;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.ma-typeahead-input {
+    border: none;
+    border-bottom: 1px solid $primary-green;
+    margin: 0 30px;
+    margin-bottom: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 5px;
+}

@@ -1,0 +1,80 @@
+<div class="bar-stable">
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <div class="buttons buttons-left header-item">
+            <span class="left-buttons">
+        <button class="button button-icon button-clear ion-navicon" ui-sref="app.profile">
+        </button>
+      </span>
+        </div>
+        <div class="title title-center header-item"> Поисковик лекарств
+        </div>
+    </ion-header-bar>
+</div>
+<ion-view view-title="Поисковик лекарств" animation="no-animation">
+    <ion-content>
+
+        <div class="ma-main-title">MEDAPTEKA</div>
+        <form >
+
+            <ion-toolbar>
+                <div class="ma-search-where">
+                    <div></div>
+
+                    <fieldset>
+                        <legend class="ma-search-title">Where to look for?</legend>
+                        <div class="list input-item">
+                            <label class="item item-input">
+                                <input type="text" placeholder="Name Of Region" ng-model="searchPlace" />
+                            </label>
+                           <!-- <pre>{{medicines}}</pre>-->
+                            <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
+                            
+                        </div>
+                        <div class="list">
+                            <ion-checkbox ng-model="filter.red">Search nearby me</ion-checkbox>
+                            <label></label>
+                        </div>
+                    </fieldset>
+                </div>
+                <!--<ion-list>
+      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+        {{playlist.title}}
+      </ion-item>
+    </ion-list> -->
+
+
+                <div class="ma-search-what">
+
+                    <fieldset>
+                        <legend class="ma-search-title">What to look for?</legend>
+
+                        <div class="button-bar">
+                            <a class="button button-positive" ng-class="{'button-positive': isActive('medicine')}" ng-click="setActive('medicine')">лекарство</a>
+                            <a class="button" ng-class="{'button-positive': isActive('clinic')}" ng-click="setActive('clinic')">Uchrejdeniya</a>
+                        </div>
+
+                        <div class="list input-item">
+                            <div class="ma-typeahead-input">
+                            <input type="text" ng-if="isActive('medicine')" placeholder="{{productPlaceholder}}" required ng-model="selectedMedicine" uib-typeahead="state as state.name for state in medicines | filter:$viewValue" typeahead-focus-first="true" ng-blur="setMedicine(selectedMedicine.id);"/>
+                                
+                            <input type="text" ng-if="isActive('clinic')" placeholder="{{productPlaceholder}}" required ng-model="selectedClinic" ng-blur="setClinic(selectedClinic)"/>
+                            </div>
+                            
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="ma-search-button">
+                    <div class="search-button">
+                        <a class="search-button" ng-click="submitSearch()">SEARCH</a>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-num">203 7 203</div>
+                        <span>Spracovhnaya slujba</span>
+                    </div>
+                </div>
+            </ion-toolbar>
+        </form>
+
+    </ion-content>
+</ion-view>

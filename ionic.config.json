@@ -1,6 +1,6 @@
 {
-  "name": "med-app-2",
-  "app_id": "",
+  "name": "medapp",
+  "app_id": "733ef45a",
   "type": "ionic1",
   "integrations": {
     "gulp": {},

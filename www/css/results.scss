@@ -1,0 +1,120 @@
+.back-text,
+.ion-ios-arrow-back {
+    color: #fff;
+}
+
+.back-text {
+    padding-left: 10px;
+}
+
+.ma-results {
+    .result-header-wrapper {
+        margin: 0;
+        padding: 15px;
+        border-bottom: 1px solid $primary-grey;
+        .ion-ios-search-strong {
+            float: left;
+            font-size: 24px;
+        }
+        .ma-search-name {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+    .ma-results-wrapper {
+        margin: 0 10px;
+        .medicine-result {
+            border: 1px solid $primary-grey;
+            border-radius: 5px;
+            margin: 10px 0;
+            .product-photo {
+                float: left;
+                margin: 5px;
+            }
+            .product-info {
+                margin: 5px;
+                //float: left;
+                div {
+                    color: $secondary-grey;
+                    span {
+                        color: #000;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .mr-bottom {
+            clear: both;
+            margin: 5px;
+            padding-top: 10px;
+            ul {
+                width: 100%;
+                display: flex;
+            }
+            li {
+                display: inline;
+                min-width: 23.3%;
+                flex-grow: 1;
+                margin: 0 3px;
+            }
+            .button {
+                min-width: auto;
+                min-height: auto;
+                line-height: 100%;
+                border-radius: 5px;
+                padding: 4px 16px;
+            }
+            .button-light {
+                border: 1px solid $primary-grey;
+            }
+        }
+    }
+}
+
+.single-clinic {
+    margin-bottom: 15px;
+    .single-clinic-wrapper {
+        border: .1px solid #e3e0e5;
+        margin-top: 5px;
+        border-radius: 3px;
+    }
+    .singleClinic-result {
+        background-color: #f7f7f7;
+        top: -10px;
+        position: relative;
+        padding: 15px;
+        .singleClinic-photo {
+            float: left;
+            margin-right: 20px;
+        }
+    }
+    .singleClinic-info {
+        padding: 3px;
+    }
+    .singleClinic-about {
+        padding: 15px;
+    }
+    .see-all-contacts {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .first-button {
+        background-color: $primary-orange;
+        padding: 3px;
+        margin-left: 0 !important;
+        border-bottom-left-radius: 5px;
+    }
+    .second-button {
+        height:26px;
+        transform:translateY(42%);
+        position: relative;
+        a {
+            color: #fff;
+            text-decoration:none;
+        }
+    }
+    .mr-bottom {
+        margin: 0 !important;
+    }
+}

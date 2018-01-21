@@ -1,0 +1,42 @@
+.ma-menu {
+    padding: 20px;
+    img {
+        border-radius: 50px;
+        float: left;
+    }
+    .ma-profile-info {
+        float: left;
+        margin: 10px;
+        margin-left: 20px;
+        .profile-name {
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .fa-sign-out {
+            font-size: 24px;
+            margin-top: 5px;
+            padding: 5px;
+            position: relative;
+            top: 5px;
+        }
+    }
+    .ma-menu-list {
+        clear: both;
+        border-top: 1px solid $primary-grey;
+        text-align: left; 
+        padding: 15px;
+        li {
+            padding: 15px 0;
+            i {
+                font-size: 24px;
+                //float: left;
+            }
+            .menu-li {
+                font-size: 20px;
+                color: #000;
+                margin-left: 15px;
+            }
+        }
+    }
+}

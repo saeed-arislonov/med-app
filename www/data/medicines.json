@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Aspirin",
+        "manufacturer": "Россия",
+        "shelf_life": 25,
+        "price": 400
+}, {
+        "id": 3,
+        "name": "Parasetamol",
+        "manufacturer": "Индия",
+        "shelf_life": 15,
+        "price": 1200
+}, {
+        "id": 12,
+        "name": "Trimol",
+        "manufacturer": "Индия",
+        "shelf_life": 25,
+        "price": 3200
+}, {
+        "id": 13,
+        "name": "Aspirin",
+        "manufacturer": "Россия",
+        "shelf_life": 13,
+        "price": 2500
+}]
