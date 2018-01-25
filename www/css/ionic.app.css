@@ -9897,7 +9897,10 @@ a.button {
   font-weight: 300;
   src: url("/fonts/gotham/300/GothamProLight.ttf") format("truetype"); }
 
-body, input {
+body,
+input,
+button,
+select {
   font-family: 'Gotham' !important; }
 
 .pull-right {
@@ -10062,7 +10065,26 @@ ion-content {
     border: 1px solid #2da5e1;
     border-radius: 5px;
     padding: 1px;
-    margin-bottom: 25px; }
+    margin-bottom: 25px;
+    position: relative; }
+    .ma-search-what .button-bar .button-blue-active {
+      color: #ffffff;
+      position: absolute;
+      top: 2px;
+      bottom: 2px;
+      left: 0.8%;
+      width: 41%;
+      background-color: #2da5e1;
+      -webkit-transition: 300ms linear;
+      transition: 300ms linear;
+      border-radius: 5px;
+      z-index: -2; }
+    .ma-search-what .button-bar .button-blue-clinic {
+      left: 0.3%;
+      margin-left: 43%;
+      -webkit-animation: institution linear;
+      animation: institution linear;
+      width: 56%; }
     .ma-search-what .button-bar .button-first {
       padding: 6px 0;
       max-width: 130px; }
@@ -10073,15 +10095,17 @@ ion-content {
       border-radius: 5px;
       padding: 2px;
       padding-bottom: 4px;
-      background-color: #fff;
+      background-color: transparent;
       font-size: 17px;
       line-height: 22px;
       font-weight: 400;
       color: #2da5e1; }
+      .ma-search-what .button-bar .button:focus {
+        border: none; }
     .ma-search-what .button-bar .button-positive {
-      background-color: #2da5e1;
-      color: #fff !important;
-      transition: 1s; }
+      color: #fff !important; }
+    .ma-search-what .button-bar .activated {
+      border: none !important; }
   .ma-search-what .item-input.item {
     border: none;
     border-bottom: 1px solid #44e03e;

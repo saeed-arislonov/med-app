@@ -52,11 +52,11 @@
                         <legend class="ma-search-title">что искать?</legend>
 
                         <div class="button-bar">
-                            <input type="button" value="лекарство" class="button button-first" ng-class="{'button-positive': isActive('medicine')}" ng-click="setActive('medicine')" />
-                            <input type="button" class="button" ng-class="{'button-positive': isActive('clinic')}" 
-                            ng-click="setActive('clinic')" value="учреждение" />
+                            <div class="button-blue-active"  ng-class="{'button-blue-clinic': isActive('clinic')}"></div>
+                            <button type="button" ng-class="{'button-positive': isActive('medicine')}" class="button button-first" ng-click="setActive('medicine')">лекарство </button>
+                            <button type="button" ng-class="{'button-positive': isActive('clinic')}" class="button" ng-click="setActive('clinic')">учреждение </button>
                         </div>
-
+<!--ng-class="{'button-positive': isActive('clinic')}" -->
                         <div class="list input-item">
                             <div class="ma-typeahead-input" ng-style="isActive('clinic') ? { 'margin':'0 10px'} : { 'margin':'0 30px'}">
                                 <div ng-if="isActive('medicine')" class="what-to-search">

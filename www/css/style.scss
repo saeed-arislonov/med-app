@@ -34,7 +34,10 @@ $secondary-grey: #878787;
     src: url('/fonts/gotham/300/GothamProLight.ttf') format('truetype');
 }
 
-body, input {
+body,
+input,
+button,
+select {
     font-family: 'Gotham' !important;
 }
 
@@ -144,8 +147,7 @@ ion-content {
             font-size: 15px;
             line-height: 21px;
             color: rgb(48, 48, 48);
-            margin-top: 8px
-            //font-family: "Gotham Pro";
+            margin-top: 8px //font-family: "Gotham Pro";
         }
         .item-input.item {
             border: none;
@@ -241,6 +243,27 @@ ion-content {
         border-radius: 5px;
         padding: 1px;
         margin-bottom: 25px;
+        position: relative;
+        .button-blue-active {
+            color: #ffffff;
+            position: absolute;
+            top: 2px;
+            bottom: 2px;
+            left: 0.8%;
+            width: 41%;
+            background-color: #2da5e1;
+            -webkit-transition: 300ms linear;
+            transition: 300ms linear;
+            border-radius: 5px;
+            z-index: -2;
+        }
+        .button-blue-clinic {
+            left: 0.3%;
+            margin-left: 43%;
+            -webkit-animation: institution linear;
+            animation: institution linear;
+            width: 56%;
+        }
         .button-first {
             padding: 6px 0;
             max-width: 130px;
@@ -252,18 +275,22 @@ ion-content {
             border-radius: 5px;
             padding: 2px;
             padding-bottom: 4px;
-            background-color: #fff;
+            background-color: transparent;
             font-size: 17px;
             line-height: 22px;
             //color: rgb(255,255,255);
             //font-family: "Gotham";
             font-weight: 400;
             color: $primary-blue;
+            &:focus {
+                border: none;
+            }
         }
         .button-positive {
-            background-color: $primary-blue;
             color: #fff !important;
-            transition: 1s;
+        }
+        .activated {
+            border: none !important;
         }
     }
     .item-input.item {

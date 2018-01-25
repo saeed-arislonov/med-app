@@ -314,7 +314,7 @@ angular.module('starter.controllers', [])
         $scope.submitPayment = function () {
             $scope.confirming = true;
             setTimeout(function () {
-                $state.go('app.mainPage')
+                $state.go('app.accepted')
             }, 2000)
         }
 
