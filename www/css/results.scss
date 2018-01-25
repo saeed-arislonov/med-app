@@ -429,8 +429,8 @@
                     background-color: transparent;
                     outline: 0;
                     padding: 0;
-                    position: relative;
-                    top: 3px;
+                    //position: relative;
+                    //top: 3px;
                 }
                 input[type="radio"]:checked {
                     background-color: $primary-blue;
@@ -440,8 +440,10 @@
                     border: 1px solid $primary-blue;
                     border-radius: 50%;
                     position: relative;
-                    width: 18px;
+                    width: 22px;
                     margin-right: 10px;
+                    height: 23px;
+                    float: left;
                 }
                 .del-radio-wrapper {
                     margin: 15px 0;
