@@ -60,22 +60,21 @@
                         <div class="list input-item">
                             <div class="ma-typeahead-input" ng-style="isActive('clinic') ? { 'margin':'0 10px'} : { 'margin':'0 30px'}">
                                 <div ng-if="isActive('medicine')" class="what-to-search">
-                                    <input type="text" placeholder="{{productPlaceholder}}" required ng-model="selectedMedicine" uib-typeahead="med as med.name for med in medicines | filter:$viewValue" typeahead-focus-first="true" typeahead-on-select="setMedicine(selectedMedicine);" /> <i class="ion-android-close" ng-click="selectedMedicine=''"></i>
+                                    <input type="text" placeholder="{{productPlaceholder}}" required ng-model="selectedMedicine" uib-typeahead="med as med.name for med in medicines | filter:$viewValue" typeahead-focus-first="true" typeahead-on-select="setMedicine(selectedMedicine);" ng-required="isActive('medicine')" /> <i class="ion-android-close" ng-click="selectedMedicine='';setMedicine('')"></i>
                                 </div>
 
                                 <div ng-if="isActive('clinic')" class="what-to-search">
-                                    <input type="text" placeholder="{{productPlaceholder}}" required ng-model="selectedClinic" ng-blur="setClinic(selectedClinic)" /> <i class="ion-android-close" ng-click="selectedClinic=''"></i>
+                                    <input type="text" placeholder="{{productPlaceholder}}" required ng-model="selectedClinic" ng-blur="setClinic(selectedClinic)" ng-required="isActive('clinic')" /> <i class="ion-android-close" ng-click="selectedClinic='';setClinic('')"></i>
                                 </div>
                             </div>
 
                         </div>
                     </fieldset>
                 </div>
-
                 <div class="ma-search-button">
-                    <div class="search-button">
-                        <a class="search-button" ng-click="submitSearch()">SEARCH</a>
-                    </div>
+                    <button class="search-button" ng-click="submitSearch()" ng-disabled="!selectedMedicine && !selectedClinic">
+                        <a class="search-button">SEARCH</a>
+                    </button>
                     <div class="contact-info">
                         <div class="contact-num">203 7 203</div>
                         <span>Spracovhnaya slujba</span>

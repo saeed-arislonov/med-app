@@ -95,7 +95,7 @@ ion-content {
     .button.button-clear {
         font-size: 22px;
         letter-spacing: 0;
-        line-height: 30px;
+        line-height: 34px;
         color: rgb(255, 255, 255);
         //font-family: "Gotham Pro";
         text-align: center;
@@ -256,6 +256,9 @@ ion-content {
             transition: 300ms linear;
             border-radius: 5px;
             z-index: -2;
+            @media (max-width: 400px) {
+                width: 46%;
+            }
         }
         .button-blue-clinic {
             left: 0.3%;
@@ -263,6 +266,11 @@ ion-content {
             -webkit-animation: institution linear;
             animation: institution linear;
             width: 56%;
+            @media (max-width:400px){
+                width: 56%;
+                margin-left: 46%;
+                width: 53%;
+            }
         }
         .button-first {
             padding: 6px 0;
@@ -315,6 +323,8 @@ ion-content {
         background-color: $primary-orange;
         padding: 15px;
         border-radius: 5px;
+        width: 100%;
+        border: none;
         a {
             color: #000;
             font-weight: bold;

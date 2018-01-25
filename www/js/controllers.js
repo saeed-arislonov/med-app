@@ -114,6 +114,10 @@ angular.module('starter.controllers', [])
                 "price": med.price,
                 "cart_count": "1"
             });
+        };
+    
+        $scope.callTel = function(med){
+             window.location.href = 'tel:'+ med.ph_phone;
         }
 
         $scope.removeFromCart = function (index, med) {
@@ -123,7 +127,7 @@ angular.module('starter.controllers', [])
             })
         }
 
-        orderCount.updateCount().success(handleSuccess)
+        $http.get('../data/cart.json').success(handleSuccess)
 
         var medicine_id;
 
@@ -249,7 +253,7 @@ angular.module('starter.controllers', [])
         }
     })
 
-    .controller('ClinicCtrl', function ($scope, $state, $stateParams, $ionicLoading, $rootScope, $http, $ionicModal, $cordovaGeolocation) {
+    .controller('ClinicCtrl', function ($scope, $state, $stateParams, $ionicLoading, $rootScope, $http, $ionicModal, $cordovaGeolocation, $rootScope) {
 
         $http.get("http://medappteka.uz/api/inst").success(function (data) {
             $scope.clinics = data.data;
@@ -263,8 +267,8 @@ angular.module('starter.controllers', [])
                 id: param
             })
         }
-        
-         $ionicModal.fromTemplateUrl('templates/map.html', {
+
+        $ionicModal.fromTemplateUrl('templates/map.html', {
             scope: $scope,
             animation: 'slide-in-up'
         }).then(function (modal) {
@@ -306,9 +310,9 @@ angular.module('starter.controllers', [])
         $scope.$on('$destroy', function () {
             $scope.mapModal.remove();
         });
-        
 
-    }).controller('CartCtrl', function ($scope, $rootScope, orderCount, $state) {
+
+    }).controller('CheckOut', function ($scope, $rootScope, orderCount, $state, $http) {
 
         $scope.confirming = false;
         $scope.submitPayment = function () {
@@ -318,7 +322,7 @@ angular.module('starter.controllers', [])
             }, 2000)
         }
 
-        $scope.checkoutTotal = orderCount.total;
+        $scope.checkoutTotal = $rootScope.total;
 
         $scope.showPayment = true;
         $scope.showDelivery = true;
@@ -372,4 +376,36 @@ angular.module('starter.controllers', [])
             // $('.del-checkboxes').children().find('input').attr('checked', false);
              //$(this).find('input').attr('checked', true);
          })*/
+    })
+    .controller("CartCtrl", function ($http, $scope, $rootScope, orderCount) {
+        if ($rootScope.cartData == undefined) {
+            $http.get('../data/cart.json').success(function (data, status) {
+                $rootScope.cartData = data;
+                $rootScope.cartCount = data.length;
+                $scope.getTotal = function () {
+                    var total = 0;
+                    for (var i = 0; i < $rootScope.cartData.length; i++) {
+                        var product = $rootScope.cartData[i];
+                        total += (product.price * product.cart_count);
+                    }
+                    orderCount.total = total
+                    return total;
+                }
+            })
+        } else {
+            $scope.getTotal = function () {
+                var total = 0;
+                for (var i = 0; i < $rootScope.cartData.length; i++) {
+                    var product = $rootScope.cartData[i];
+                    total += (product.price * product.cart_count);
+                }
+                $rootScope.total = total
+                return total;
+            }
+        }
+
+        $scope.removeFromCart = function (cart) {
+            var index = $rootScope.cartData.indexOf(cart);
+            $rootScope.cartData.splice(index, 1);
+        }
     });

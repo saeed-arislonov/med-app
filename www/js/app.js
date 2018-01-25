@@ -72,38 +72,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/cart.html',
-                        controller: function ($scope, $rootScope, orderCount) {
-                            if ($rootScope.cartData == undefined) {
-                                orderCount.updateCount().success(function (data, status) {
-                                    $rootScope.cartData = data;
-                                    $rootScope.cartCount = data.length;
-                                    $scope.getTotal = function () {
-                                        var total = 0;
-                                        for (var i = 0; i < $rootScope.cartData.length; i++) {
-                                            var product = $rootScope.cartData[i];
-                                            total += (product.price * product.cart_count);
-                                        }
-                                        orderCount.total = total
-                                        return total;
-                                    }
-                                })
-                            } else {
-                                $scope.getTotal = function () {
-                                    var total = 0;
-                                    for (var i = 0; i < $rootScope.cartData.length; i++) {
-                                        var product = $rootScope.cartData[i];
-                                        total += (product.price * product.cart_count);
-                                    }
-                                    orderCount.total = total
-                                    return total;
-                                }
-                            }
-                            
-                            $scope.removeFromCart = function(cart){
-                                var index = $rootScope.cartData.indexOf(cart);
-                                $rootScope.cartData.splice(index, 1); 
-                            }
-                        }
+                        controller: 'CartCtrl'
                     }
                 }
             })
@@ -112,7 +81,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/checkout.html',
-                        controller: 'CartCtrl'
+                        controller: 'CheckOut'
                     }
                 }
             })

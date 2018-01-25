@@ -9945,7 +9945,7 @@ ion-content {
   .bar-header.bar-stable .button.button-clear {
     font-size: 22px;
     letter-spacing: 0;
-    line-height: 30px;
+    line-height: 34px;
     color: white;
     text-align: center;
     font-weight: 300; }
@@ -10079,12 +10079,20 @@ ion-content {
       transition: 300ms linear;
       border-radius: 5px;
       z-index: -2; }
+      @media (max-width: 400px) {
+        .ma-search-what .button-bar .button-blue-active {
+          width: 46%; } }
     .ma-search-what .button-bar .button-blue-clinic {
       left: 0.3%;
       margin-left: 43%;
       -webkit-animation: institution linear;
       animation: institution linear;
       width: 56%; }
+      @media (max-width: 400px) {
+        .ma-search-what .button-bar .button-blue-clinic {
+          width: 56%;
+          margin-left: 46%;
+          width: 53%; } }
     .ma-search-what .button-bar .button-first {
       padding: 6px 0;
       max-width: 130px; }
@@ -10124,7 +10132,9 @@ ion-content {
   .ma-search-button .search-button {
     background-color: #ffc12f;
     padding: 15px;
-    border-radius: 5px; }
+    border-radius: 5px;
+    width: 100%;
+    border: none; }
     .ma-search-button .search-button a {
       color: #000;
       font-weight: bold;
@@ -10337,7 +10347,9 @@ ion-content {
           text-decoration: none; }
       .ma-results .ma-results-wrapper .mr-bottom .button.price-button {
         font-weight: 600;
-        font-size: 15px; }
+        font-size: 14px;
+        text-align: right;
+        padding-right: 4px; }
         .ma-results .ma-results-wrapper .mr-bottom .button.price-button .sum {
           font-weight: 300;
           font-size: 12px;
@@ -10440,6 +10452,10 @@ ion-content {
     bottom: 12px;
     font-weight: 200; }
 
+.ma-my-checkout input[type="text"] {
+  color: #444;
+  min-height: 36px; }
+
 .ma-my-checkout .ma-checkout-wrapper {
   margin: 10px; }
 
@@ -10471,7 +10487,8 @@ ion-content {
       margin: 1px 5px;
       background-color: #fafbfd; }
       .ma-my-checkout .buyer-info .list .item-input input {
-        color: #444; }
+        color: #444;
+        min-height: 36px; }
 
 .ma-my-checkout .buyer-info-address,
 .ma-my-checkout .buyer-info-payment-type,
@@ -10531,10 +10548,10 @@ ion-content {
         flex-grow: 1;
         color: #fff;
         border: 1px solid #fff;
-        padding: 5px 8px;
+        padding: 5px 6px;
         border-radius: 5px;
         margin: 0 5px;
-        font-size: 22px;
+        font-size: 20px;
         text-align: center; }
   .ma-my-checkout .buyer-info-address .buyer-info-detail-delivery .list .item-content,
   .ma-my-checkout .buyer-info-address .buyer-info-payment .list .item-content,
@@ -10586,7 +10603,7 @@ ion-content {
     outline: 0;
     padding: 0;
     position: relative;
-    top: 3px; }
+    top: 5px; }
   .ma-my-checkout .buyer-info-address .buyer-info-detail-delivery .list input[type="radio"]:checked,
   .ma-my-checkout .buyer-info-address .buyer-info-payment .list input[type="radio"]:checked,
   .ma-my-checkout .buyer-info-payment-type .buyer-info-detail-delivery .list input[type="radio"]:checked,
@@ -10725,3 +10742,6 @@ ion-content {
       display: inline-block;
       position: relative;
       color: #27ae60; }
+
+.ma-my-cart .price-button {
+  text-align: center !important; }
