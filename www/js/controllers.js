@@ -127,7 +127,7 @@ angular.module('starter.controllers', [])
             })
         }
 
-        $http.get('../data/cart.json').success(handleSuccess)
+        $http.get('data/cart.json').success(handleSuccess)
 
         var medicine_id;
 
@@ -381,7 +381,7 @@ angular.module('starter.controllers', [])
     })
     .controller("CartCtrl", function ($http, $scope, $rootScope, orderCount) {
         if ($rootScope.cartData == undefined) {
-            $http.get('../data/cart.json').success(function (data, status) {
+            $http.get('data/cart.json').success(function (data, status) {
                 $rootScope.cartData = data;
                 $rootScope.cartCount = data.length;
                 $scope.getTotal = function () {
