@@ -293,7 +293,7 @@
         border-radius: 5px;
         position: relative;
         margin-bottom: 25px;
-            i {
+        i {
             font-size: 26px;
             position: absolute;
             right: 10px;
@@ -305,9 +305,9 @@
 
 .ma-my-checkout {
     input[type="text"] {
-                    color: #444;
-                    min-height: 36px;
-                }
+        color: #444;
+        min-height: 36px;
+    }
     .ma-checkout-wrapper {
         margin: 10px;
     }
@@ -429,8 +429,8 @@
                     background-color: transparent;
                     outline: 0;
                     padding: 0;
-                    position: relative;
-                    top: 3px;
+                    //position: relative;
+                    //top: 3px;
                 }
                 input[type="radio"]:checked {
                     background-color: $primary-blue;
@@ -440,8 +440,10 @@
                     border: 1px solid $primary-blue;
                     border-radius: 50%;
                     position: relative;
-                    width: 18px;
+                    width: 22px;
                     margin-right: 10px;
+                    height: 23px;
+                    float: left;
                 }
                 .del-radio-wrapper {
                     margin: 15px 0;

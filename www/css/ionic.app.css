@@ -9901,7 +9901,7 @@ body,
 input,
 button,
 select {
-  font-family: 'Gotham' !important; }
+  font-family: 'Gotham'; }
 
 .pull-right {
   float: right; }
@@ -9915,7 +9915,7 @@ ion-content {
 .bar-header.bar-stable {
   background-color: #2da5e1; }
   .bar-header.bar-stable .filterOpen {
-    border-radius: 50px;
+    border-radius: 50%;
     background-color: #fff; }
     .bar-header.bar-stable .filterOpen i {
       color: #2da5e1 !important; }
@@ -9973,14 +9973,15 @@ ion-content {
   color: #2da5e1;
   text-align: center;
   padding: 15px;
-  margin: 15px;
+  margin: 0;
   margin-bottom: 0;
   padding-bottom: 3px; }
   .ma-main-title img {
-    width: 70%; }
+    width: 80%; }
 
 .ma-search-where {
-  margin: 10px; }
+  margin: 10px;
+  margin-top: 0; }
   .ma-search-where .input-item {
     margin-bottom: 10px;
     margin-top: -15px; }
@@ -10601,9 +10602,7 @@ ion-content {
     border-radius: 50%;
     background-color: transparent;
     outline: 0;
-    padding: 0;
-    position: relative;
-    top: 5px; }
+    padding: 0; }
   .ma-my-checkout .buyer-info-address .buyer-info-detail-delivery .list input[type="radio"]:checked,
   .ma-my-checkout .buyer-info-address .buyer-info-payment .list input[type="radio"]:checked,
   .ma-my-checkout .buyer-info-payment-type .buyer-info-detail-delivery .list input[type="radio"]:checked,
@@ -10621,8 +10620,10 @@ ion-content {
     border: 1px solid #2da5e1;
     border-radius: 50%;
     position: relative;
-    width: 18px;
-    margin-right: 10px; }
+    width: 22px;
+    margin-right: 10px;
+    height: 23px;
+    float: left; }
   .ma-my-checkout .buyer-info-address .buyer-info-detail-delivery .list .del-radio-wrapper,
   .ma-my-checkout .buyer-info-address .buyer-info-payment .list .del-radio-wrapper,
   .ma-my-checkout .buyer-info-payment-type .buyer-info-detail-delivery .list .del-radio-wrapper,
