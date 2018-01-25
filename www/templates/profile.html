@@ -3,10 +3,10 @@
         <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
       <span class="back-text"><span class="default-title"></span><span class="previous-title hide"></span></span></button>
 
-        <div class="title title-center header-item"> MENU
-        </div>
+        <div class="title title-center header-item">МЕНЮ</div>
 
-        <button class="button header-right-button buttons button-clear header-item"><i class="ion-ios-cart"></i> 
+        <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i>
+            <span class="order-count"><span>2</span></span>
         </button>
 
 
@@ -14,25 +14,30 @@
 </div>
 
 <ion-view view-title="Browse">
-    <ion-content>
+    <ion-content class="profile-content">
         <div class="ma-menu">
             <div class="ma-menu-profile">
                 <img width="70" height="70" src="https://lumiere-a.akamaihd.net/v1/images/open-uri20150422-20810-enmr1e_871e8eac.jpeg?region=0,0,450,450" />
                 <div class="ma-profile-info">
                     <div class="profile-name">Mr Potato Head</div>
-                    <div class="profile-info">67 let, g Toy Story <br /> Sign Out <a><i class="fa fa-sign-out"></i></a>
+                    <div class="profile-info button button-light">67 let, g Toy Story </div>
+                    <div class="sign-out-btn">
+                         <a>Sign Out <i class="flaticon-logout"></i></a>
                     </div>
                 </div>
             </div>
             <div class="ma-menu-list">
                <ul>
-                   <li><a><i class="fa fa-search"></i><span class="menu-li">Poisk Lekarstv</span></a></li>
-                    <li><a><i class="fa fa-medkit"></i><span class="menu-li">Medical places</span></a></li>
-                    <li><a><i class="fa fa-refresh"></i><span class="menu-li">Analogi</span></a></li>
-                    <li><a><i class="fa fa-list-alt"></i><span class="menu-li">Moi pokupki</span></a></li>
-                    <li><a><i class="fa fa-gear"></i><span class="menu-li">Nastroyki Prilojeniya</span></a></li>
+                   <li><a ui-sref="app.mainPage"><i class="flaticon-search"></i><span class="menu-li">Medicine Search</span></a></li>
+                    <li><a ui-sref="app.mainPage"><i class="flaticon-medical"></i><span class="menu-li">Institution Search</span></a></li>
+                    <li><a><i class="flaticon-reuse"></i><span class="menu-li">Analogs</span></a></li>
+                    <li><a><i class="flaticon-list"></i><span class="menu-li">My Purchases</span></a></li>
+                    <li><a><i class="flaticon-settings"></i><span class="menu-li">Application Settings</span></a></li>
                 </ul>
             </div>
+        </div>
+        <div class="about-app">
+            информация о приложении
         </div>
     </ion-content>
 </ion-view>

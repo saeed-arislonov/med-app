@@ -1,0 +1,119 @@
+<div class="bar-stable">
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <button ui-sref="app.myCart" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
+      <span class="back-text"><div class="default-title medicine-search-title">Back To Cart</div><span class="previous-title hide"></span></span></button>
+
+        <!-- <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="fa fa-filter"></i> 
+        </button>
+
+        <button class="button header-right-button buttons button-clear header-item"><i class="ion-ios-cart"></i> <span class="order-count"><span>{{cartData.length}}</span></span>
+        </button>-->
+
+
+    </ion-header-bar>
+</div>
+<ion-view view-title="Search">
+    <ion-content class="no-header">
+        <div class="ma-results ma-my-checkout">
+            <div class="result-header-wrapper">
+                <div class="ma-search-name">
+                    <span>Checkout</span>
+                </div>
+            </div>
+            <div class="ma-checkout-wrapper">
+                <div class="buyer-info">
+                    <div class="buyer-info-header" ng-click="toggleInfo()">Buyer Information 
+                        <i ng-class="showInfo ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
+                    <div class="buyer-info-detail">
+                        <div class="list">
+                            <label class="item item-input">
+                                <input type="text" placeholder="First Name" value="Anthony">
+                            </label>
+                            <label class="item item-input">
+                                <input type="text" placeholder="Last Name" value="Bowen">
+                            </label>
+                            <label class="item item-input">
+                                <input type="text" placeholder="Phone Number" value="+998977777777">
+                            </label>
+                            <label class="item item-input">
+                                <input type="text" placeholder="Email" value="anowen@gmail.com">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buyer-info-address">
+                    <div class="buyer-info-header" ng-click="toggleAddress()">Delivery Address
+                        <i ng-class="showAddress ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
+                    <div class="buyer-info-detail-address">
+                        <div class="list">
+                            <label class="item item-input">
+                                <input type="text" placeholder="First Name" value="Buyuk Ipak Yuli, 67 uy">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buyer-info-delivery">
+                    <div class="buyer-info-header" ng-click="toggleDelivery()">Delivery Type
+                        <i ng-class="showDelivery ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
+                    <div class="buyer-info-detail-delivery">
+                        <ion-list class="del-checkboxes item-input">
+                            <label class="del-radio-wrapper" for="f1">
+                                <span class="delivery-radio"><input type="radio" id="f1" name="f1" ng-model="filter" /></span>Regular Delivery during a Day <span class="bolder-text"> 5.000 sum</span>
+                            </label>
+                            <label class="del-radio-wrapper" for="f2">
+                                <span class="delivery-radio"><input type="radio" id="f2" name="f1" ng-model="filter" /></span>Express Delivery in next 1 hour <span class="bolder-text"> 15.000 sum</span>
+                            </label>
+                            <label class="del-radio-wrapper" for="f3">
+                                <span class="delivery-radio"><input type="radio" id="f3" name="f1" ng-model="filter" /></span>Pick Up. Free
+                            </label>
+                        </ion-list>
+                    </div>
+                </div>
+
+                <div class="buyer-info-payment-type">
+                    <div class="buyer-info-header-payment" ng-click="togglePayment()">Payment Type
+                        <i ng-class="showPayment ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
+                    <div class="buyer-info-payment">
+                        <ion-list class="del-checkboxes item-input">
+                            <label class="del-radio-wrapper" for="p1">
+                                <span class="delivery-radio"><input type="radio" id="p1" name="p1" ng-model="filterPayment" /></span>
+                                Online payment via UzCard
+                            </label>
+                            <div class="debit-card">
+                                <div class="debit-card-top">
+                                    <div class="debit-num">8907</div>
+                                    <div class="debit-num">3486</div>
+                                    <div class="debit-num">1249</div>
+                                    <div class="debit-num">0010</div>
+                                </div>
+                                <div class="debit-card-top">
+                                    <div class="debit-num">07</div>
+                                    <div class="debit-num">11</div>
+                                    <div class="debit-num">+998976671121</div>
+                                </div>
+                            </div>
+                            <label class="del-radio-wrapper" for="p2">
+                                <span class="delivery-radio"><input type="radio" id="p2" name="p1" ng-model="filterPayment" /></span>
+                                Pay Cash on Delivery
+                            </label>
+                            <label class="del-radio-wrapper" for="p3">
+                                <span class="delivery-radio"><input type="radio" id="p3" name="p1" ng-model="filterPayment" /></span>
+                                Pay via Card on Delivery
+                            </label>
+                        </ion-list>
+                    </div>
+                </div>
+                <div class="cart-total">Your Total is: <span>{{checkoutTotal}} sum</span></div>
+                <div class="proceed-checkout" ng-show="!confirming" ng-click="submitPayment()">Confirm
+                    <i class="flaticon-right-arrow"></i>
+                </div>
+                
+                <div class="proceed-checkout" ng-show="confirming">Confirm
+                    <i class="fa fa-spinner fa-spin"></i>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

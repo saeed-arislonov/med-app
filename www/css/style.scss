@@ -1,12 +1,44 @@
 /* Empty. Add your own CSS if you like */
 
-$primary-blue: #59acff;
+$primary-blue: #2da5e1;
 $primary-green: #44e03e;
-$primary-orange: #f7b551;
+$primary-orange: #ffc12f;
 $secondary-green: #28ba23;
 $primary-grey: #e3e0e5;
 $secondary-grey: #878787;
+@font-face {
+    font-family: 'Gotham';
+    font-style: normal;
+    font-weight: 700;
+    src: url('fonts/gotham/black/GothamProBlack.ttf') format('truetype');
+}
 
+@font-face {
+    font-family: 'Gotham';
+    font-style: normal;
+    font-weight: 600;
+    src: url('fonts/gotham/600/GothamPro-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Gotham';
+    font-style: normal;
+    font-weight: 500;
+    src: url('fonts/gotham/500/GothamProRegular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Gotham';
+    font-style: normal;
+    font-weight: 300;
+    src: url('/fonts/gotham/300/GothamProLight.ttf') format('truetype');
+}
+
+body, input {
+    font-family: 'Gotham' !important;
+}
+
+$font-family-base: "Gotham";
 .pull-right {
     float: right;
 }
@@ -15,30 +47,77 @@ ion-content {
     top: 44px !important;
 }
 
+.bar {
+    height: 50px;
+}
+
 .bar-header.bar-stable {
     // styling for header
     background-color: $primary-blue;
+    .filterOpen {
+        border-radius: 50px;
+        background-color: #fff;
+        i {
+            color: $primary-blue !important;
+        }
+    }
+    .order-count {
+        height: 15px;
+        width: 15px;
+        position: absolute;
+        font-size: 14px;
+        color: #000;
+        top: 3px;
+        right: 3px;
+        border-radius: 10px;
+        background-color: $primary-orange;
+        span {
+            position: relative;
+            top: -8px;
+        }
+    }
     .title {
         color: #fff;
+        font-size: 20px;
+        line-height: 34px;
+        color: rgb(255, 255, 255);
+        //font-family: 'Gotham';
+        font-weight: 400;
+        text-align: center;
+        padding: 6px;
     }
     .button.button-icon {
         color: #fff;
     }
-    
+    .button.button-clear {
+        font-size: 22px;
+        letter-spacing: 0;
+        line-height: 30px;
+        color: rgb(255, 255, 255);
+        //font-family: "Gotham Pro";
+        text-align: center;
+        font-weight: 300;
+    }
     .header-right-button-1 {
         position: absolute;
         top: 5px;
-        right: 35px;
+        right: 45px;
         bottom: 5px;
-         i {
-            color: #fff;
-             font-size: 24px;
-        }
-    } 
-    .header-right-button {
+        padding: 11px;
         i {
             color: #fff;
             font-size: 24px;
+            position: relative;
+            top: -6px;
+        }
+    }
+    .header-right-button {
+        padding: 11px;
+        i {
+            color: #fff;
+            font-size: 24px;
+            position: relative;
+            top: -6px;
         }
     }
 }
@@ -49,6 +128,11 @@ ion-content {
     text-align: center;
     padding: 15px;
     margin: 15px;
+    margin-bottom: 0;
+    padding-bottom: 3px;
+    img {
+        width: 70%
+    }
 }
 
 .ma-search-where {
@@ -56,6 +140,13 @@ ion-content {
     .input-item {
         margin-bottom: 10px;
         margin-top: -15px;
+        input {
+            font-size: 15px;
+            line-height: 21px;
+            color: rgb(48, 48, 48);
+            margin-top: 8px
+            //font-family: "Gotham Pro";
+        }
         .item-input.item {
             border: none;
             border-bottom: 1px solid $primary-blue;
@@ -71,20 +162,27 @@ ion-content {
         border-color: $primary-blue !important;
     }
     .checkbox-icon {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
+        bottom: 3px;
     }
     .item-checkbox {
         border: none;
         margin: 0 30px;
         padding-top: 8px;
+        padding-left: 55px;
     }
     legend {
         border: none;
+        //font-family: "Gotham";
         font-weight: bold;
         text-align: center;
         width: inherit;
         padding: 0 10px;
+        background: #fff;
+        top: -3px;
+        position: relative;
+        font-size: 18px;
     }
     fieldset {
         border: 1px solid $primary-blue;
@@ -92,21 +190,49 @@ ion-content {
     }
 }
 
+.ion-android-close {
+    padding: 0 5px;
+    font-size: 26px;
+    position: absolute;
+    right: 0;
+    color: $secondary-grey;
+}
+
 .ma-search-what {
     margin: 10px;
     input {
         width: 100%;
+        font-size: 15px;
+        line-height: 21px;
+        color: rgb(48, 48, 48);
+        //font-family: "Gotham Pro";
     }
     legend {
         border: none;
-        font-weight: bold;
+        //font-family: "Gotham";
+        font-weight: 700;
         text-align: center;
         width: inherit;
         padding: 0 10px;
+        background: #fff;
+        top: -3px;
+        position: relative;
+        font-size: 18px;
     }
     fieldset {
         border: 1px solid $primary-green;
         border-radius: 5px;
+    }
+    .what-to-search {
+        position: relative;
+        .ion-android-close {
+            padding: 0 5px;
+            font-size: 26px;
+            position: absolute;
+            right: 0;
+            top: 5px;
+            color: $secondary-grey;
+        }
     }
     .button-bar {
         margin: 0 30px;
@@ -114,17 +240,30 @@ ion-content {
         border: 1px solid $primary-blue;
         border-radius: 5px;
         padding: 1px;
-        margin-bottom: 10px;
+        margin-bottom: 25px;
+        .button-first {
+            padding: 6px 0;
+            max-width: 130px;
+        }
         .button {
             min-width: auto;
             min-height: auto;
             line-height: 100%;
             border-radius: 5px;
-            padding: 4px 16px;
+            padding: 2px;
+            padding-bottom: 4px;
             background-color: #fff;
+            font-size: 17px;
+            line-height: 22px;
+            //color: rgb(255,255,255);
+            //font-family: "Gotham";
+            font-weight: 400;
+            color: $primary-blue;
         }
         .button-positive {
             background-color: $primary-blue;
+            color: #fff !important;
+            transition: 1s;
         }
     }
     .item-input.item {
@@ -134,6 +273,9 @@ ion-content {
         padding-top: 0;
         padding-bottom: 0;
         padding-left: 5px;
+        margin-bottom: 10px;
+    }
+    .input-item {
         margin-bottom: 10px;
     }
 }
@@ -150,6 +292,12 @@ ion-content {
             color: #000;
             font-weight: bold;
             text-decoration: none;
+            font-size: 18px;
+            line-height: 21px;
+            color: rgb(48, 48, 48);
+            //font-family: "Gotham";
+            text-align: center;
+            padding: 0;
         }
     }
     .contact-info {
@@ -164,7 +312,7 @@ ion-content {
 }
 
 .dropdown-menu {
-     position: absolute;
+    position: absolute;
     top: 100%;
     left: 0;
     z-index: 1000;
@@ -180,16 +328,18 @@ ion-content {
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,.15);
+    border: 1px solid rgba(0, 0, 0, .15);
     border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175)
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175)
 }
 
-.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:focus,
+.dropdown-menu>.active>a:hover {
     color: #fff;
     text-decoration: none;
-    background-color:$primary-blue;
+    background-color: $primary-blue;
     outline: 0;
 }
 
@@ -208,8 +358,21 @@ ion-content {
     border: none;
     border-bottom: 1px solid $primary-green;
     margin: 0 30px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding-top: 0;
     padding-bottom: 0;
     padding-left: 5px;
+}
+
+.scroll {
+    height: 100%;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-backdrop {
+    background-color: transparent;
 }

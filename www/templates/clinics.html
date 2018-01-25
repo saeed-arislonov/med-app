@@ -1,7 +1,7 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
         <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
-      <span class="back-text"><span class="default-title">Poisk Uchrejdeniy</span><span class="previous-title hide"></span></span></button>
+      <span class="back-text"><span class="default-title">Search Institution</span><span class="previous-title hide"></span></span></button>
         
         <button class="button header-right-button-1 buttons button-clear header-item"><i class="fa fa-filter"></i> 
         </button>
@@ -30,17 +30,17 @@
                     <div class="mr-top">
                         <img width="60" height="60" class="product-photo" src="{{cli.photo}}" />
                         <div class="product-info">
-                            <div>Naimenovanie: <span>{{cli.name}} </span></div>
-                            <div>Adres: <span>{{cli.address}} </span></div>
+                            <div>Name: <span>{{cli.name}} </span></div>
+                            <div>Addrres: <span>{{cli.address}} </span></div>
                             <div>Orientir: <span>{{cli.reference_point}}</span></div>
-                            <div>Spetsializatsii: <span>{{cli.description}}</span></div>
+                            <div>Specialties: <span>{{cli.description}}</span></div>
                         </div>
                     </div>
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-light"><i class="ion-ios-location-outline"></i> Karta</li>
-                            <li class="button button-positive"><a href="tel:{{cli.contacts}}" style="color: #fff;text-decoration:none;"><i class="ion-ios-telephone"></i> Pozvonit</a> </li>
-                            <li class="button button-energized" ng-click="go(cli.id)">Podrobnee</li>
+                            <li class="button button-light" ng-click="openModal()" ><i class="flaticon-placeholder"></i> Map</li>
+                            <li class="button button-positive"><a href="tel:{{cli.contacts}}" style="color: #fff;text-decoration:none;"><i class="flaticon-call-answer"></i> Call</a> </li>
+                            <li class="button button-energized" ng-click="go(cli.id)">More...</li>
                         </ul>
                     </div>
                 </div>

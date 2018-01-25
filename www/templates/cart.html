@@ -1,0 +1,77 @@
+<div class="bar-stable">
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
+      <span class="back-text"><div class="default-title medicine-search-title">Medicine search</div><span class="previous-title hide"></span></span></button>
+
+        <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="flaticon-filter"></i> 
+        </button>
+
+        <button class="button header-right-button buttons button-clear header-item"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{cartData.length}}</span></span>
+        </button>
+
+
+    </ion-header-bar>
+</div>
+<ion-view view-title="Search" animation="no-animation">
+    <ion-content class="no-header">
+        <div class="ma-results ma-my-cart">
+            <div class="result-header-wrapper">
+                <div class="ma-search-name">
+                    <span>My Cart</span>
+                </div>
+            </div>
+
+            <div class="ma-results-wrapper">
+                <div class="medicine-result" ng-repeat="cart in cartData">
+                    <div class="mr-top">
+                        <img width="60" height="60" class="product-photo" src="{{cart.ph_image}}" />
+                        <div class="product-info">
+                            <div>Medicine: <span>{{cart.med_name}} </span></div>
+                            <div>Manufacturer: <span>{{cart.manufacturer}}</span></div>
+                            <div>Address: <span>{{cart.address}} </span></div>
+                        </div>
+                    </div>
+                    <div class="mr-bottom">
+                        <ul>
+                            <li class="button button-light map-button" ng-click="openModal()"><i class="ion-ios-location-outline"></i> Kарта</li>
+                            <li class="button button-positive call-button"><a href="tel:{{cart.ph_phone}}"><i class="ion-ios-telephone"></i> Позвонить</a> </li>
+                            <li class="button button-energized price-button">
+                                {{cart.price}} <span class="sum">сум</span></li>
+                        </ul>
+                    </div>
+                    <div class="list med-quantity">
+                        <ion-item>
+                            <div class="list">
+                                <label class="item item-input item-select">
+                                    <div class="input-label"> Please choose quantity</div>
+                                    <select ng-model="cart.cart_count">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                    </select>
+                                </label>
+                                <div class="cart-subtotal">
+                                   <span>Subtotal : </span> {{cart.price*cart.cart_count}}
+                                    <div class="remove-order" ng-click="removeFromCart(cart)">Remove</div>
+                                </div>
+                            </div>
+                        </ion-item>
+                    </div>
+                </div>
+                
+                <div class="cart-total">Your Total is: <span>{{getTotal()}} sum</span></div>
+                <div class="proceed-checkout" ui-sref="app.checkout">Proceed to checkout 
+                    <i class="flaticon-right-arrow"></i>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'ngTouch', 'ui.bootstrap'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'ngTouch', 'ui.bootstrap', 'ngCordova', 'starter.factories'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -27,7 +27,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
     })
 
     .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-        $ionicConfigProvider.views.transition('none')
+        //$ionicConfigProvider.views.transition('none')
         // rest of the config    
     })
 
@@ -67,11 +67,72 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                                } */
             })
 
+            .state('app.myCart', {
+                url: '/my-cart',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/cart.html',
+                        controller: function ($scope, $rootScope, orderCount) {
+                            if ($rootScope.cartData == undefined) {
+                                orderCount.updateCount().success(function (data, status) {
+                                    $rootScope.cartData = data;
+                                    $rootScope.cartCount = data.length;
+                                    $scope.getTotal = function () {
+                                        var total = 0;
+                                        for (var i = 0; i < $rootScope.cartData.length; i++) {
+                                            var product = $rootScope.cartData[i];
+                                            total += (product.price * product.cart_count);
+                                        }
+                                        orderCount.total = total
+                                        return total;
+                                    }
+                                })
+                            } else {
+                                $scope.getTotal = function () {
+                                    var total = 0;
+                                    for (var i = 0; i < $rootScope.cartData.length; i++) {
+                                        var product = $rootScope.cartData[i];
+                                        total += (product.price * product.cart_count);
+                                    }
+                                    orderCount.total = total
+                                    return total;
+                                }
+                            }
+                            
+                            $scope.removeFromCart = function(cart){
+                                var index = $rootScope.cartData.indexOf(cart);
+                                $rootScope.cartData.splice(index, 1); 
+                            }
+                        }
+                    }
+                }
+            })
+            .state('app.checkout', {
+                url: '/checkout',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/checkout.html',
+                        controller: 'CartCtrl'
+                    }
+                }
+            })
+            .state('app.accepted', {
+                url: '/accepted',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/accepted.html',
+                        controller: function(){}
+                    }
+                }
+            })
             .state('app.profile', {
                 url: '/menu',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/profile.html'
+                        templateUrl: 'templates/profile.html',
+                        controller: function(orderCount, $rootScope){
+                            
+                        }
                     }
                 }
             })
@@ -99,7 +160,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/playlist.html',
-                        controller: function ($stateParams, $scope, $http) {
+                        controller: function ($stateParams, $scope, $http, orderCount, $ionicModal, $cordovaGeolocation) {
                             console.log($stateParams.id);
                             $http.get("http://medappteka.uz/api/inst/view?id=" + $stateParams.id).success(function (data) {
                                 $scope.singleClinic = data;
@@ -107,10 +168,53 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                             }).error(function (err) {
                                 return err;
                             });
-                            
+
                             var d = new Date();
                             $scope.todaysDate = d.getDate();
                             $scope.todaysMonth = d.getMonth() + 1;
+
+                             $ionicModal.fromTemplateUrl('templates/map.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            $scope.mapModal = modal;
+        });
+        $scope.openModal = function (lang, long) {
+            var options = {
+                timeout: 10000,
+                enableHighAccuracy: true
+            };
+
+            $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+
+                var latLng = new google.maps.LatLng(41.311335, 69.2257173);
+
+                var mapOptions = {
+                    center: latLng,
+                    zoom: 12,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                $scope.marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(41.311335, 69.2257173),
+                    map: $scope.map,
+                    title: 'Holas!'
+                }, function (err) {
+                    console.err(err);
+                });
+            }, function (error) {
+                console.log("Could not get location");
+            });
+            $scope.mapModal.show();
+        };
+        $scope.closeModal = function () {
+            $scope.mapModal.hide();
+        };
+        // Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function () {
+            $scope.mapModal.remove();
+        });
                             
                         }
                     }

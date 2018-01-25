@@ -1,13 +1,13 @@
 [
     {
         "id": 1,
-        "name": "Aspirin",
+        "name": "Аспирин (Aspirin)",
         "manufacturer": "Россия",
         "shelf_life": 25,
         "price": 400
 }, {
         "id": 3,
-        "name": "Parasetamol",
+        "name": "Парацетамол (Paracetamol)",
         "manufacturer": "Индия",
         "shelf_life": 15,
         "price": 1200
@@ -19,7 +19,7 @@
         "price": 3200
 }, {
         "id": 13,
-        "name": "Aspirin",
+        "name": "Доктор МОМ (Doktor MOM)",
         "manufacturer": "Россия",
         "shelf_life": 13,
         "price": 2500

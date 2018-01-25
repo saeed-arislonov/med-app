@@ -1,0 +1,14 @@
+<ion-modal-view style="top:80px">
+    <ion-content class="padding">
+       <ion-list>
+                <div>
+                    <ion-item class="item-stable" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
+                        <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Group {{group.name}}
+                    </ion-item>
+                    <ion-item class="item-accordion" ng-repeat="item in group.items" ng-show="isGroupShown(group)">
+                        {{item}}
+                    </ion-item>
+                </div>
+            </ion-list>
+    </ion-content>
+</ion-modal-view>
