@@ -34,7 +34,7 @@
                     <div class="mr-bottom">
                         <ul>
                             <li class="button button-light map-button" ng-click="openModal()"><i class="ion-ios-location-outline"></i> Kарта</li>
-                            <li class="button button-positive call-button"><a href="tel:{{cart.ph_phone}}"><i class="ion-ios-telephone"></i> Позвонить</a> </li>
+                            <li class="button button-positive call-button" ng-click="callFromCart(cart)"><i class="ion-ios-telephone"></i> Позвонить </li>
                             <li class="button button-energized price-button">
                                 {{cart.price}} <span class="sum">сум</span></li>
                         </ul>

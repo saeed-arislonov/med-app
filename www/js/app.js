@@ -90,7 +90,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/accepted.html',
-                        controller: function(){}
+                        controller: function () {}
                     }
                 }
             })
@@ -99,8 +99,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/profile.html',
-                        controller: function(orderCount, $rootScope){
-                            
+                        controller: function (orderCount, $rootScope) {
+
+                        }
+                    }
+                }
+            })
+            .state('app.orders', {
+                url: '/orders',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/orders.html',
+                        controller: function (orderCount, $rootScope) {
+
                         }
                     }
                 }
@@ -130,61 +141,65 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                     'menuContent': {
                         templateUrl: 'templates/playlist.html',
                         controller: function ($stateParams, $scope, $http, orderCount, $ionicModal, $cordovaGeolocation) {
-                            console.log($stateParams.id);
                             $http.get("http://medappteka.uz/api/inst/view?id=" + $stateParams.id).success(function (data) {
                                 $scope.singleClinic = data;
                                 console.log($scope.singleClinic)
                             }).error(function (err) {
                                 return err;
                             });
+                            
+                            $scope.callTel = function(cli){
+                                console.log(cli)
+                                window.location.href = 'tel:'+ cli.contacts;
+                            }
 
                             var d = new Date();
                             $scope.todaysDate = d.getDate();
                             $scope.todaysMonth = d.getMonth() + 1;
 
-                             $ionicModal.fromTemplateUrl('templates/map.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function (modal) {
-            $scope.mapModal = modal;
-        });
-        $scope.openModal = function (lang, long) {
-            var options = {
-                timeout: 10000,
-                enableHighAccuracy: true
-            };
+                            $ionicModal.fromTemplateUrl('templates/map.html', {
+                                scope: $scope,
+                                animation: 'slide-in-up'
+                            }).then(function (modal) {
+                                $scope.mapModal = modal;
+                            });
+                            $scope.openModal = function (lang, long) {
+                                var options = {
+                                    timeout: 10000,
+                                    enableHighAccuracy: true
+                                };
 
-            $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+                                $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
 
-                var latLng = new google.maps.LatLng(41.311335, 69.2257173);
+                                    var latLng = new google.maps.LatLng(41.311335, 69.2257173);
 
-                var mapOptions = {
-                    center: latLng,
-                    zoom: 12,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
+                                    var mapOptions = {
+                                        center: latLng,
+                                        zoom: 12,
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    };
 
-                $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                $scope.marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(41.311335, 69.2257173),
-                    map: $scope.map,
-                    title: 'Holas!'
-                }, function (err) {
-                    console.err(err);
-                });
-            }, function (error) {
-                console.log("Could not get location");
-            });
-            $scope.mapModal.show();
-        };
-        $scope.closeModal = function () {
-            $scope.mapModal.hide();
-        };
-        // Cleanup the modal when we're done with it!
-        $scope.$on('$destroy', function () {
-            $scope.mapModal.remove();
-        });
-                            
+                                    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                                    $scope.marker = new google.maps.Marker({
+                                        position: new google.maps.LatLng(41.311335, 69.2257173),
+                                        map: $scope.map,
+                                        title: 'Holas!'
+                                    }, function (err) {
+                                        console.err(err);
+                                    });
+                                }, function (error) {
+                                    console.log("Could not get location");
+                                });
+                                $scope.mapModal.show();
+                            };
+                            $scope.closeModal = function () {
+                                $scope.mapModal.hide();
+                            };
+                            // Cleanup the modal when we're done with it!
+                            $scope.$on('$destroy', function () {
+                                $scope.mapModal.remove();
+                            });
+
                         }
                     }
                 }

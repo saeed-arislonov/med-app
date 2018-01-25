@@ -315,9 +315,11 @@ angular.module('starter.controllers', [])
     }).controller('CheckOut', function ($scope, $rootScope, orderCount, $state, $http) {
 
         $scope.confirming = false;
+    console.log($scope.confirming)
         $scope.submitPayment = function () {
             $scope.confirming = true;
             setTimeout(function () {
+                $scope.confirming = false;
                 $state.go('app.accepted')
             }, 2000)
         }
@@ -407,5 +409,9 @@ angular.module('starter.controllers', [])
         $scope.removeFromCart = function (cart) {
             var index = $rootScope.cartData.indexOf(cart);
             $rootScope.cartData.splice(index, 1);
+        }
+        
+        $scope.callFromCart = function(cart){
+            window.location.href = 'tel:'+ cart.phone;
         }
     });

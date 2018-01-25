@@ -45,7 +45,7 @@
                             <li class="first-button">Today, {{todaysDate}}.<i ng-if="todaysMonth<10">0</i>{{todaysMonth}} <br /> {{singleClinic.working_hours}}</li>
                             <li class="button button-light second-button" ng-click="openModal()"
                                 ><i class="flaticon-placeholder" ></i> Map</li>
-                            <li class="button button-positive second-button"><a href="tel:{{cli.contacts}}"><i class="flaticon-call-answer"></i> Call</a> </li>
+                            <li class="button button-positive second-button" ng-click="callTel(singleClinic)"><i class="flaticon-call-answer"></i> Call </li>
                         </ul>
                     </div>
                 </div>
