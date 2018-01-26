@@ -55,7 +55,6 @@ angular.module('starter.controllers', [])
          });*/
         $http.get('data/medicines.json').success(function (data) {
             $scope.medicines = data;
-            console.log($scope.medicines)
         }).error(function (err) {
             return err;
         });
@@ -70,14 +69,14 @@ angular.module('starter.controllers', [])
         }
 
         $scope.active = 'medicine';
-        $scope.productPlaceholder = 'вводите название продукта'
+        $scope.productPlaceholder = 'введите название товара'
         $scope.setActive = function (type) {
             $scope.active = type;
             if (type == 'medicine') {
-                $scope.productPlaceholder = ' вводите название продукта'
+                $scope.productPlaceholder = ' введите название товара'
                 $scope.active = 'medicine'
             } else {
-                $scope.productPlaceholder = 'вводите название учреждения'
+                $scope.productPlaceholder = 'введите название или профиль'
                 $scope.active = 'clinic';
             }
         };
@@ -115,9 +114,9 @@ angular.module('starter.controllers', [])
                 "cart_count": "1"
             });
         };
-    
-        $scope.callTel = function(med){
-             window.location.href = 'tel:'+ med.ph_phone;
+
+        $scope.callTel = function (med) {
+            window.location.href = 'tel:' + med.ph_phone;
         }
 
         $scope.removeFromCart = function (index, med) {
@@ -257,7 +256,6 @@ angular.module('starter.controllers', [])
 
         $http.get("http://medappteka.uz/api/inst").success(function (data) {
             $scope.clinics = data.data;
-            console.log($scope.clinics)
         }).error(function (err) {
             return err;
         });
@@ -315,7 +313,6 @@ angular.module('starter.controllers', [])
     }).controller('CheckOut', function ($scope, $rootScope, orderCount, $state, $http) {
 
         $scope.confirming = false;
-    console.log($scope.confirming)
         $scope.submitPayment = function () {
             $scope.confirming = true;
             setTimeout(function () {
@@ -323,7 +320,7 @@ angular.module('starter.controllers', [])
                 $state.go('app.accepted')
             }, 2000)
         }
-
+        
         $scope.checkoutTotal = $rootScope.total;
 
         $scope.showPayment = true;
@@ -379,7 +376,7 @@ angular.module('starter.controllers', [])
              //$(this).find('input').attr('checked', true);
          })*/
     })
-    .controller("CartCtrl", function ($http, $scope, $rootScope, orderCount) {
+    .controller("CartCtrl", function ($http, $scope, $rootScope, orderCount, $filter, $ionicModal, $cordovaGeolocation) {
         if ($rootScope.cartData == undefined) {
             $http.get('data/cart.json').success(function (data, status) {
                 $rootScope.cartData = data;
@@ -390,8 +387,8 @@ angular.module('starter.controllers', [])
                         var product = $rootScope.cartData[i];
                         total += (product.price * product.cart_count);
                     }
-                    orderCount.total = total
-                    return total;
+                    $rootScope.total = total
+                    return $filter('formatPrice')(total);
                 }
             })
         } else {
@@ -402,16 +399,66 @@ angular.module('starter.controllers', [])
                     total += (product.price * product.cart_count);
                 }
                 $rootScope.total = total
-                return total;
+                return $filter('formatPrice')(total);;
             }
         }
 
-        $scope.removeFromCart = function (cart) {
-            var index = $rootScope.cartData.indexOf(cart);
-            $rootScope.cartData.splice(index, 1);
+        $scope.removeFromCart = function (index) {
+            //$($event.currentTarget).closest('.medicine-result').slideUp();
+            //setTimeout(function () {
+                //var index = $rootScope.cartData.indexOf(cart);
+                $rootScope.cartData.splice(index, 1);
+            //}, 100)
+            //$(this).closest('.medicine-result').slideUp();
+
+        }
+
+        $scope.callFromCart = function (cart) {
+            window.location.href = 'tel:' + cart.phone;
         }
         
-        $scope.callFromCart = function(cart){
-            window.location.href = 'tel:'+ cart.phone;
-        }
+        $ionicModal.fromTemplateUrl('templates/map.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            $scope.mapModal = modal;
+        });
+        
+         $scope.openModal = function (lang, long) {
+            var options = {
+                timeout: 10000,
+                enableHighAccuracy: true
+            };
+
+            $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+
+                var latLng = new google.maps.LatLng(41.311335, 69.2257173);
+
+                var mapOptions = {
+                    center: latLng,
+                    zoom: 12,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                $scope.marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(41.311335, 69.2257173),
+                    map: $scope.map,
+                    title: 'Holas!'
+                }, function (err) {
+                    console.err(err);
+                });
+            }, function (error) {
+                console.log("Could not get location");
+            });
+            $scope.mapModal.show();
+        };
+        $scope.closeModal = function () {
+            $scope.mapModal.hide();
+        };
+        // Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function () {
+            $scope.mapModal.remove();
+        });
+        
     });

@@ -1,7 +1,7 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
         <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="flaticon-left-arrow"></i> 
-      <span class="back-text"><div class="default-title medicine-search-title">Medicine search</div><span class="previous-title hide"></span></span></button>
+      <span class="back-text"><div class="default-title medicine-search-title">Поиск препаратов</div><span class="previous-title hide"></span></span></button>
 
         <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="flaticon-filter"></i> 
         </button>
@@ -25,15 +25,15 @@
             <div class="list list-inset ma-filters">
                 <div class="filter-panes">
                     <ion-item class="item filter-titles" ng-click="toggleFilterPharmacy()">
-                        &nbsp; Choose Pharmacy <i class="icon" ng-class="isDisplayPharmacy ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
+                        &nbsp; Выбор аптеки <i class="icon" ng-class="isDisplayPharmacy ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
                     </ion-item>
                     <ion-item class="item-accordion-filter-pharmacy">
                         <ion-list>
-                            <ion-checkbox ng-model="phoxymed">Pharmacy line OxyMed</ion-checkbox>
-                            <ion-checkbox ng-model="phddarmon">Pharmacy Dori Darmon</ion-checkbox>
-                            <ion-checkbox ng-model="ph999">Pharmacy 999</ion-checkbox>
-                            <ion-checkbox ng-model="phdavo">Pharmacy line DAVO</ion-checkbox>
-                            <ion-checkbox ng-model="phedelves">Pharmacy line Edelves</ion-checkbox>
+                            <ion-checkbox ng-model="phoxymed">Сеть аптек Таблека</ion-checkbox>
+                            <ion-checkbox ng-model="phddarmon">Сеть аптек OXYmed</ion-checkbox>
+                            <ion-checkbox ng-model="ph999">Аптека 999</ion-checkbox>
+                            <ion-checkbox ng-model="phdavo">Сеть аптек DAVO</ion-checkbox>
+                            <ion-checkbox ng-model="phedelves">Сеть аптек Edelves</ion-checkbox>
                         </ion-list>
                     </ion-item>
 
@@ -41,7 +41,7 @@
 
                 <div class="filter-panes">
                     <ion-item class="item filter-titles" ng-click="toggleFilterPrice()">
-                        &nbsp; Price Range <i class="icon" ng-class="isDisplayPrice ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
+                        &nbsp; Сортировка по цене <i class="icon" ng-class="isDisplayPrice ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
                     </ion-item>
                     <ion-item class="item-accordion-filter-price" style="display:none">
                         <ion-list>
@@ -56,14 +56,14 @@
 
                 <div class="filter-panes">
                     <ion-item class="item filter-titles" ng-click="toggleFilterPlace()">
-                        &nbsp; Destination <i class="icon" ng-class="isDisplayPlace ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
+                        &nbsp; Сортировка по удаленности <i class="icon" ng-class="isDisplayPlace ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
                     </ion-item>
                     <ion-item class="item-accordion-filter-place" style="display:none">
                         {{item}}
                     </ion-item>
                 </div>
                 <div class="apply-filter-button" ng-click="applyFilters()">
-                    ACCEPT
+                    ПРИМЕНИТЬ
                 </div>
             </div>
 
@@ -75,9 +75,9 @@
                     <div class="mr-top">
                         <img width="60" height="60" class="product-photo" src="{{med.ph_image}}" />
                         <div class="product-info">
-                            <div>Manufacturer: <span>{{med.manufacturer}} </span></div>
-                            <div>Address: <span>{{med.address}} </span></div>
-                            <div>Orientir: <span>{{med.orientir}}</span></div>
+                            <div>Производитель: <span>{{med.manufacturer}} </span></div>
+                            <div>Адрес: <span>{{med.address}} </span></div>
+                            <div>Ориентир: <span>{{med.orientir}}</span></div>
                         </div>
                     </div>
                     <div class="mr-bottom">
@@ -86,12 +86,12 @@
                             <li class="button button-positive call-button" ng-click="callTel(med)"><i class="flaticon-call-answer"></i> Позвонить </li>
                             <li class="button button-energized price-button" ng-if="!med.added_to_cart" ng-click="addToCart($index, med)" >
                                 <i class="flaticon-shopping-cart" ></i> 
-                                {{med.price}} <span class="sum">сум</span>
+                                {{med.price | formatPrice}} <span class="sum">сум</span>
                             </li> 
                             
                             <li class="button button-energized price-button" ng-if="med.added_to_cart" ng-click="removeFromCart($index, med)" >
                                 <i class="flaticon-success-1" ng-if="med.added_to_cart" style="color:forestgreen"></i>
-                                {{med.price}} <span class="sum">сум</span>
+                                {{med.price | formatPrice}} <span class="sum">сум</span>
                             </li>
                         </ul>
                     </div>

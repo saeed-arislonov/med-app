@@ -1,7 +1,7 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
         <button ui-sref="app.myCart" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
-      <span class="back-text"><div class="default-title medicine-search-title">Back To Cart</div><span class="previous-title hide"></span></span></button>
+      <span class="back-text"><div class="default-title medicine-search-title">Назад в Корзину</div><span class="previous-title hide"></span></span></button>
 
         <!-- <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="fa fa-filter"></i> 
         </button>
@@ -17,12 +17,12 @@
         <div class="ma-results ma-my-checkout">
             <div class="result-header-wrapper">
                 <div class="ma-search-name">
-                    <span>Checkout</span>
+                    <span>Оформление заказа</span>
                 </div>
             </div>
             <div class="ma-checkout-wrapper">
                 <div class="buyer-info">
-                    <div class="buyer-info-header" ng-click="toggleInfo()">Buyer Information 
+                    <div class="buyer-info-header" ng-click="toggleInfo()">Информатция о покупателе 
                         <i ng-class="showInfo ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-detail">
                         <div class="list">
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="buyer-info-address">
-                    <div class="buyer-info-header" ng-click="toggleAddress()">Delivery Address
+                    <div class="buyer-info-header" ng-click="toggleAddress()">Адрес доставки
                         <i ng-class="showAddress ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-detail-address">
                         <div class="list">
@@ -55,31 +55,31 @@
                 </div>
 
                 <div class="buyer-info-delivery">
-                    <div class="buyer-info-header" ng-click="toggleDelivery()">Delivery Type
+                    <div class="buyer-info-header" ng-click="toggleDelivery()">Выбор сбособа доставки
                         <i ng-class="showDelivery ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-detail-delivery">
                         <ion-list class="del-checkboxes item-input">
                             <label class="del-radio-wrapper" for="f1">
-                                <div class="delivery-radio"><input type="radio" id="f1" name="f1" ng-model="filter" /></div>Regular Delivery during a Day <span class="bolder-text"> 5.000 sum</span>
+                                <div class="delivery-radio"><input type="radio" id="f1" name="f1" ng-model="filter" /></div>Обычная доставка в течении дня <span class="bolder-text"> 5.000 sum</span>
                             </label>
                             <label class="del-radio-wrapper" for="f2">
-                                <div class="delivery-radio"><input type="radio" id="f2" name="f1" ng-model="filter" /></div>Express Delivery in next 1 hour <span class="bolder-text"> 15.000 sum</span>
+                                <div class="delivery-radio"><input type="radio" id="f2" name="f1" ng-model="filter" /></div>Быстрая доставка в течении часа <span class="bolder-text"> 15.000 sum</span>
                             </label>
                             <label class="del-radio-wrapper" for="f3">
-                                <div class="delivery-radio"><input type="radio" id="f3" name="f1" ng-model="filter" /></div>Pick Up. Free
+                                <div class="delivery-radio"><input type="radio" id="f3" name="f1" ng-model="filter" /></div>Самовызов. Бесплатно
                             </label>
                         </ion-list>
                     </div>
                 </div>
 
                 <div class="buyer-info-payment-type">
-                    <div class="buyer-info-header-payment" ng-click="togglePayment()">Payment Type
+                    <div class="buyer-info-header-payment" ng-click="togglePayment()">Выбор типа оплаты
                         <i ng-class="showPayment ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-payment">
                         <ion-list class="del-checkboxes item-input">
                             <label class="del-radio-wrapper" for="p1">
                                 <span class="delivery-radio"><input type="radio" id="p1" name="p1" ng-model="filterPayment" /></span>
-                                Online payment via UzCard
+                                Онлайн оплата по UzCard
                             </label>
                             <div class="debit-card">
                                 <div class="debit-card-top">
@@ -96,21 +96,21 @@
                             </div>
                             <label class="del-radio-wrapper" for="p2">
                                 <span class="delivery-radio"><input type="radio" id="p2" name="p1" ng-model="filterPayment" /></span>
-                                Pay Cash on Delivery
+                                Оплата наличными при получении
                             </label>
                             <label class="del-radio-wrapper" for="p3">
                                 <span class="delivery-radio"><input type="radio" id="p3" name="p1" ng-model="filterPayment" /></span>
-                                Pay via Card on Delivery
+                                Оплата при получении картой
                             </label>
                         </ion-list>
                     </div>
                 </div>
-                <div class="cart-total">Your Total is: <span>{{checkoutTotal}} sum</span></div>
-                <div class="proceed-checkout" ng-show="!confirming" ng-click="submitPayment()">Confirm
+                <div class="cart-total">Итого заказ на сумму: <span>{{checkoutTotal | formatPrice}} sum</span></div>
+                <div class="proceed-checkout" ng-show="!confirming" ng-click="submitPayment()">Подтверждаю
                     <i class="flaticon-right-arrow"></i>
                 </div>
                 
-                <div class="proceed-checkout" ng-show="confirming">Confirm
+                <div class="proceed-checkout" ng-show="confirming">Подтверждаю
                     <i class="fa fa-spinner fa-spin"></i>
                 </div>
             </div>

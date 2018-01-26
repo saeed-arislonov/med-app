@@ -9895,7 +9895,7 @@ a.button {
   font-family: 'Gotham';
   font-style: normal;
   font-weight: 300;
-  src: url("/fonts/gotham/300/GothamProLight.ttf") format("truetype"); }
+  src: url("fonts/gotham/300/GothamProLight.ttf") format("truetype"); }
 
 body,
 input,
@@ -9915,7 +9915,7 @@ ion-content {
 .bar-header.bar-stable {
   background-color: #2da5e1; }
   .bar-header.bar-stable .filterOpen {
-    border-radius: 50px;
+    border-radius: 50%;
     background-color: #fff; }
     .bar-header.bar-stable .filterOpen i {
       color: #2da5e1 !important; }
@@ -9973,14 +9973,15 @@ ion-content {
   color: #2da5e1;
   text-align: center;
   padding: 15px;
-  margin: 15px;
+  margin: 0;
   margin-bottom: 0;
   padding-bottom: 3px; }
   .ma-main-title img {
-    width: 70%; }
+    width: 80%; }
 
 .ma-search-where {
-  margin: 10px; }
+  margin: 10px;
+  margin-top: 0; }
   .ma-search-where .input-item {
     margin-bottom: 10px;
     margin-top: -15px; }
@@ -10231,8 +10232,10 @@ ion-content {
 .list .item.item-accordion.ng-hide-remove {
   display: block !important; }
 
-.medicine-search-title {
-  font-weight: 300; }
+.medicine-search-title,
+.default-title {
+  font-weight: 400;
+  font-size: 20px; }
 
 .ma-results .result-header-wrapper {
   margin: 0;
@@ -10243,9 +10246,8 @@ ion-content {
     font-size: 24px; }
   .ma-results .result-header-wrapper .ma-search-name {
     text-align: center;
-    font-size: 18px;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 20px;
     color: #303030; }
 
@@ -10402,23 +10404,32 @@ ion-content {
   color: #000 !important; }
 
 .ma-my-cart .med-quantity .list {
-  padding: 5px; }
+  padding: 2px; }
   .ma-my-cart .med-quantity .list .item-input {
     border: none;
     padding: 0; }
     .ma-my-cart .med-quantity .list .item-input .input-label {
-      font-weight: 500; }
+      font-weight: 600;
+      font-size: 14px; }
   .ma-my-cart .med-quantity .list .cart-subtotal {
-    font-weight: 500; }
+    font-weight: 500;
+    font-size: 14px; }
     .ma-my-cart .med-quantity .list .cart-subtotal span {
-      font-weight: 700; }
+      font-weight: 700;
+      font-size: 14px; }
+  .ma-my-cart .med-quantity .list .quantity-select {
+    padding-left: 0;
+    padding-right: 32px;
+    border: 1px solid #e3e0e5;
+    border-radius: 5px; }
 
 .ma-my-cart .med-quantity .item {
   padding: 5px; }
 
 .ma-my-cart .remove-order {
   float: right;
-  margin: 5px;
+  margin: 10px;
+  margin-right: 0;
   padding: 8px;
   border-radius: 5px;
   background-color: red;
@@ -10429,8 +10440,8 @@ ion-content {
   text-align: center;
   padding: 10px;
   font-weight: 700;
-  font-size: 18px;
-  margin: 20px; }
+  font-size: 16px;
+  margin: 20px 8px; }
   .ma-my-cart .cart-total span {
     font-weight: 400;
     color: #444; }
@@ -10439,17 +10450,17 @@ ion-content {
   background-color: #27ae60;
   text-align: center;
   color: #fff;
-  font-size: 20px;
-  padding: 14px;
+  font-size: 18px;
+  padding: 12px;
   font-weight: 600;
   border-radius: 5px;
   position: relative;
   margin-bottom: 25px; }
   .ma-my-cart .proceed-checkout i {
-    font-size: 26px;
+    font-size: 22px;
     position: absolute;
     right: 10px;
-    bottom: 12px;
+    bottom: 10px;
     font-weight: 200; }
 
 .ma-my-checkout input[type="text"] {
@@ -10601,9 +10612,7 @@ ion-content {
     border-radius: 50%;
     background-color: transparent;
     outline: 0;
-    padding: 0;
-    position: relative;
-    top: 5px; }
+    padding: 0; }
   .ma-my-checkout .buyer-info-address .buyer-info-detail-delivery .list input[type="radio"]:checked,
   .ma-my-checkout .buyer-info-address .buyer-info-payment .list input[type="radio"]:checked,
   .ma-my-checkout .buyer-info-payment-type .buyer-info-detail-delivery .list input[type="radio"]:checked,
@@ -10621,8 +10630,10 @@ ion-content {
     border: 1px solid #2da5e1;
     border-radius: 50%;
     position: relative;
-    width: 18px;
-    margin-right: 10px; }
+    width: 22px;
+    margin-right: 10px;
+    height: 23px;
+    float: left; }
   .ma-my-checkout .buyer-info-address .buyer-info-detail-delivery .list .del-radio-wrapper,
   .ma-my-checkout .buyer-info-address .buyer-info-payment .list .del-radio-wrapper,
   .ma-my-checkout .buyer-info-payment-type .buyer-info-detail-delivery .list .del-radio-wrapper,
@@ -10637,17 +10648,17 @@ ion-content {
   background-color: #27ae60;
   text-align: center;
   color: #fff;
-  font-size: 20px;
-  padding: 14px;
+  font-size: 18px;
+  padding: 12px;
   font-weight: 600;
   border-radius: 5px;
   position: relative;
   margin-bottom: 25px; }
   .ma-my-checkout .proceed-checkout i {
-    font-size: 26px;
+    font-size: 22px;
     position: absolute;
     right: 10px;
-    bottom: 12px;
+    bottom: 10px;
     font-weight: 200; }
 
 .ma-my-checkout .cart-total {
@@ -10657,7 +10668,7 @@ ion-content {
   font-size: 18px;
   margin: 20px; }
   .ma-my-checkout .cart-total span {
-    font-weight: 400;
+    font-weight: 600;
     color: #444; }
 
 .bolder-text {

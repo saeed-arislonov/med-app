@@ -23,8 +23,10 @@
     display: block !important;
 }
 
-.medicine-search-title {
-    font-weight: 300;
+.medicine-search-title,
+.default-title {
+    font-weight: 400;
+    font-size: 20px;
 }
 
 .ma-results {
@@ -38,9 +40,9 @@
         }
         .ma-search-name {
             text-align: center;
-            font-size: 18px;
+            //font-size: 18px;
             font-weight: bold;
-            font-size: 25px;
+            font-size: 20px;
             line-height: 20px;
             color: rgb(48, 48, 48);
             //font-family: "Gotham Pro";
@@ -242,19 +244,28 @@
 .ma-my-cart {
     .med-quantity {
         .list {
-            padding: 5px;
+            padding: 2px;
             .item-input {
                 border: none;
                 padding: 0;
                 .input-label {
-                    font-weight: 500;
+                    font-weight: 600;
+                    font-size: 14px;
                 }
             }
             .cart-subtotal {
                 font-weight: 500;
+                font-size: 14px;
                 span {
                     font-weight: 700;
+                    font-size: 14px;
                 }
+            }
+            .quantity-select {
+                padding-left: 0;
+                padding-right: 32px;
+                border: 1px solid $primary-grey;
+                border-radius: 5px;
             }
         }
         .item {
@@ -263,7 +274,8 @@
     }
     .remove-order {
         float: right;
-        margin: 5px;
+        margin: 10px;
+        margin-right: 0;
         padding: 8px;
         border-radius: 5px;
         background-color: red;
@@ -274,9 +286,9 @@
         text-align: center;
         padding: 10px;
         font-weight: 700;
-        font-size: 18px;
+        font-size: 16px;
         //font-family: "Gotham";
-        margin: 20px;
+        margin: 20px 8px;
         span {
             font-weight: 400;
             color: #444;
@@ -286,18 +298,18 @@
         background-color: #27ae60;
         text-align: center;
         color: #fff;
-        font-size: 20px;
-        padding: 14px;
+        font-size: 18px;
+        padding: 12px;
         //font-family: "Gotham";
         font-weight: 600;
         border-radius: 5px;
         position: relative;
         margin-bottom: 25px;
-            i {
-            font-size: 26px;
+        i {
+            font-size: 22px;
             position: absolute;
             right: 10px;
-            bottom: 12px;
+            bottom: 10px;
             font-weight: 200;
         }
     }
@@ -305,9 +317,9 @@
 
 .ma-my-checkout {
     input[type="text"] {
-                    color: #444;
-                    min-height: 36px;
-                }
+        color: #444;
+        min-height: 36px;
+    }
     .ma-checkout-wrapper {
         margin: 10px;
     }
@@ -457,18 +469,18 @@
         background-color: #27ae60;
         text-align: center;
         color: #fff;
-        font-size: 20px;
-        padding: 14px;
+        font-size: 18px;
+        padding: 12px;
         //font-family: "Gotham";
         font-weight: 600;
         border-radius: 5px;
         position: relative;
         margin-bottom: 25px;
         i {
-            font-size: 26px;
+            font-size: 22px;
             position: absolute;
             right: 10px;
-            bottom: 12px;
+            bottom: 10px;
             font-weight: 200;
         }
     }
@@ -480,7 +492,7 @@
         //font-family: "Gotham";
         margin: 20px;
         span {
-            font-weight: 400;
+            font-weight: 600;
             color: #444;
         }
     }

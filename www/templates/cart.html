@@ -1,7 +1,7 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
-        <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
-      <span class="back-text"><div class="default-title medicine-search-title">Medicine search</div><span class="previous-title hide"></span></span></button>
+        <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="flaticon-left-arrow"></i> 
+      <span class="back-text"><div class="default-title medicine-search-title">Поиск препаратов</div><span class="previous-title hide"></span></span></button>
 
         <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="flaticon-filter"></i> 
         </button>
@@ -17,7 +17,7 @@
         <div class="ma-results ma-my-cart">
             <div class="result-header-wrapper">
                 <div class="ma-search-name">
-                    <span>My Cart</span>
+                    <span>Корзина покупок</span>
                 </div>
             </div>
 
@@ -26,9 +26,9 @@
                     <div class="mr-top">
                         <img width="60" height="60" class="product-photo" src="{{cart.ph_image}}" />
                         <div class="product-info">
-                            <div>Medicine: <span>{{cart.med_name}} </span></div>
-                            <div>Manufacturer: <span>{{cart.manufacturer}}</span></div>
-                            <div>Address: <span>{{cart.address}} </span></div>
+                            <div>Препарат: <span>{{cart.med_name}} </span></div>
+                            <div>Производитель: <span>{{cart.manufacturer}}</span></div>
+                            <div>Адрес: <span>{{cart.address}} </span></div>
                         </div>
                     </div>
                     <div class="mr-bottom">
@@ -36,15 +36,15 @@
                             <li class="button button-light map-button" ng-click="openModal()"><i class="ion-ios-location-outline"></i> Kарта</li>
                             <li class="button button-positive call-button" ng-click="callFromCart(cart)"><i class="ion-ios-telephone"></i> Позвонить </li>
                             <li class="button button-energized price-button">
-                                {{cart.price}} <span class="sum">сум</span></li>
+                                {{cart.price | formatPrice}} <span class="sum">сум</span></li>
                         </ul>
                     </div>
                     <div class="list med-quantity">
                         <ion-item>
                             <div class="list">
                                 <label class="item item-input item-select">
-                                    <div class="input-label"> Please choose quantity :</div>
-                                    <select ng-model="cart.cart_count">
+                                    <div class="input-label"> Выберите необходимое количество</div>
+                                    <select ng-model="cart.cart_count" class="quantity-select">
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -59,16 +59,16 @@
                                     </select>
                                 </label>
                                 <div class="cart-subtotal">
-                                   <span>Subtotal : </span> {{cart.price*cart.cart_count}}
-                                    <div class="remove-order" ng-click="removeFromCart(cart)">Remove</div>
+                                   <span>Под итог : </span> {{cart.price*cart.cart_count | formatPrice}}
+                                    <div class="remove-order" ng-click="removeFromCart($index)">Убрать</div>
                                 </div>
                             </div>
                         </ion-item>
                     </div>
                 </div>
                 
-                <div class="cart-total">Your Total is: <span>{{getTotal()}} sum</span></div>
-                <div class="proceed-checkout" ui-sref="app.checkout">Proceed to checkout 
+                <div class="cart-total">Итого заказ на сумму: <span> {{getTotal()}} сум</span></div>
+                <div class="proceed-checkout" ui-sref="app.checkout">Перейти к оформлению 
                     <i class="flaticon-right-arrow"></i>
                 </div>
             </div>
