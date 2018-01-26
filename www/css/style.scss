@@ -133,6 +133,7 @@ ion-content {
     margin: 0;
     margin-bottom: 0;
     padding-bottom: 3px;
+    padding-top: 0;
     img {
         width: 80%
     }
@@ -140,7 +141,7 @@ ion-content {
 
 .ma-search-where {
     margin: 10px;
-    margin-top: 0;
+    margin-top: -10px;
     .input-item {
         margin-bottom: 10px;
         margin-top: -15px;
@@ -190,6 +191,7 @@ ion-content {
     fieldset {
         border: 1px solid $primary-blue;
         border-radius: 5px;
+        padding-bottom: 0;
     }
 }
 
@@ -225,6 +227,7 @@ ion-content {
     fieldset {
         border: 1px solid $primary-green;
         border-radius: 5px;
+        padding-bottom: 0;
     }
     .what-to-search {
         position: relative;
@@ -283,7 +286,7 @@ ion-content {
             line-height: 100%;
             border-radius: 5px;
             padding: 2px;
-            padding-bottom: 4px;
+            //padding-bottom: 4px;
             background-color: transparent;
             font-size: 17px;
             line-height: 22px;

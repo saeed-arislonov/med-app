@@ -148,8 +148,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                                 return err;
                             });
                             
-                            $scope.callTel = function(cli){
-                                console.log(cli)
+                            $scope.callClinic = function(cli){
                                 window.location.href = 'tel:'+ cli.contacts;
                             }
 

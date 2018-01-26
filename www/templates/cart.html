@@ -1,8 +1,8 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
-        <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="flaticon-left-arrow"></i> 
+        <button ui-sref="app.medicines" class="button back-button buttons button-clear header-item"><i class="flaticon-left-arrow"></i> 
       <span class="back-text"><div class="default-title medicine-search-title">Поиск препаратов</div><span class="previous-title hide"></span></span></button>
-
+ style="bottom:3px"
         <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="flaticon-filter"></i> 
         </button>
 
@@ -33,8 +33,8 @@
                     </div>
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-light map-button" ng-click="openModal()"><i class="ion-ios-location-outline"></i> Kарта</li>
-                            <li class="button button-positive call-button" ng-click="callFromCart(cart)"><i class="ion-ios-telephone"></i> Позвонить </li>
+                            <li class="button button-light map-button" ng-click="openModal()"><i class="flaticon-placeholder" style="bottom:3px"></i> Kарта</li>
+                            <li class="button button-positive call-button" ng-click="callFromCart(cart)"><i class="flaticon-call-answer" style="bottom:3px"></i> Позвонить </li>
                             <li class="button button-energized price-button">
                                 {{cart.price | formatPrice}} <span class="sum">сум</span></li>
                         </ul>

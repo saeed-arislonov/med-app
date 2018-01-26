@@ -9975,13 +9975,14 @@ ion-content {
   padding: 15px;
   margin: 0;
   margin-bottom: 0;
-  padding-bottom: 3px; }
+  padding-bottom: 3px;
+  padding-top: 0; }
   .ma-main-title img {
     width: 80%; }
 
 .ma-search-where {
   margin: 10px;
-  margin-top: 0; }
+  margin-top: -10px; }
   .ma-search-where .input-item {
     margin-bottom: 10px;
     margin-top: -15px; }
@@ -10022,7 +10023,8 @@ ion-content {
     font-size: 18px; }
   .ma-search-where fieldset {
     border: 1px solid #2da5e1;
-    border-radius: 5px; }
+    border-radius: 5px;
+    padding-bottom: 0; }
 
 .ion-android-close {
   padding: 0 5px;
@@ -10050,7 +10052,8 @@ ion-content {
     font-size: 18px; }
   .ma-search-what fieldset {
     border: 1px solid #44e03e;
-    border-radius: 5px; }
+    border-radius: 5px;
+    padding-bottom: 0; }
   .ma-search-what .what-to-search {
     position: relative; }
     .ma-search-what .what-to-search .ion-android-close {
@@ -10103,7 +10106,6 @@ ion-content {
       line-height: 100%;
       border-radius: 5px;
       padding: 2px;
-      padding-bottom: 4px;
       background-color: transparent;
       font-size: 17px;
       line-height: 22px;

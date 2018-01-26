@@ -1,12 +1,12 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
         <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
-      <span class="back-text"><span class="default-title">Search Institution</span><span class="previous-title hide"></span></span></button>
+      <span class="back-text"><span class="default-title">Поиск учреждений</span><span class="previous-title hide"></span></span></button>
         
-        <button class="button header-right-button-1 buttons button-clear header-item"><i class="fa fa-filter"></i> 
+        <button class="button header-right-button-1 buttons button-clear header-item"><i class="flaticon-filter"></i> 
         </button>
         
-        <button class="button header-right-button buttons button-clear header-item"><i class="ion-ios-cart"></i> 
+        <button class="button header-right-button buttons button-clear header-item"><i class="flaticon-shopping-cart"></i> 
         </button>
             
         
@@ -30,17 +30,17 @@
                     <div class="mr-top">
                         <img width="60" height="60" class="product-photo" src="{{cli.photo}}" />
                         <div class="product-info">
-                            <div>Name: <span>{{cli.name}} </span></div>
-                            <div>Addrres: <span>{{cli.address}} </span></div>
-                            <div>Orientir: <span>{{cli.reference_point}}</span></div>
-                            <div>Specialties: <span>{{cli.description}}</span></div>
+                            <div>Наименование: <span>{{cli.name}} </span></div>
+                            <div>Адрес: <span>{{cli.address}} </span></div>
+                            <div>Ориентир: <span>{{cli.reference_point}}</span></div>
+                            <div>Специализации: <span>{{cli.description}}</span></div>
                         </div>
                     </div>
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-light" ng-click="openModal()" ><i class="flaticon-placeholder"></i> Map</li>
-                            <li class="button button-positive"><a href="tel:{{cli.contacts}}" style="color: #fff;text-decoration:none;"><i class="flaticon-call-answer"></i> Call</a> </li>
-                            <li class="button button-energized" ng-click="go(cli.id)">More...</li>
+                            <li class="button button-light" ng-click="openModal()" ><i class="flaticon-placeholder" style="bottom:3px"></i> Карта</li>
+                            <li class="button button-positive" ng-click="callClinic(cli)"><i class="flaticon-call-answer" style="bottom:3px"></i> Позвонить </li>
+                            <li class="button button-energized" ng-click="go(cli.id)">Подробнее</li>
                         </ul>
                     </div>
                 </div>

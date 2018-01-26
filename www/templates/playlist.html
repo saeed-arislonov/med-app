@@ -3,7 +3,7 @@
         <button ui-sref="app.clinics" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
       <span class="back-text"><span class="previous-title hide"></span></span></button>
 
-        <div class="title title-center header-item"> Institution {{singleClinic.name}}
+        <div class="title title-center header-item"> Клиника {{singleClinic.name}}
         </div>
 
     </ion-header-bar>
@@ -24,28 +24,28 @@
                     <div class="mr-top">
                         <img width="80" height="80" class="singleClinic-photo" src="https://vitamed.uz/ru/includes/logo.png" />
                         <div class="product-info">
-                            <div class="singleClinic-info">Name: <span>{{singleClinic.name}} </span></div>
-                            <div class="singleClinic-info">Addrres: <span>{{singleClinic.address}} </span></div>
-                            <div class="singleClinic-info">Orientir: <span>{{singleClinic.reference_point}}</span></div> <br/>
-                            <div class="singleClinic-info">Specialties: <span>{{singleClinic.description}}</span></div>
+                            <div class="singleClinic-info">Наименование: <span>{{singleClinic.name}} </span></div>
+                            <div class="singleClinic-info">Адрес: <span>{{singleClinic.address}} </span></div>
+                            <div class="singleClinic-info">Ориентир: <span>{{singleClinic.reference_point}}</span></div> <br/>
+                            <div class="singleClinic-info">Специализации: <span>{{singleClinic.description}}</span></div>
                         </div>
                     </div>
 
                 </div>
                 <div class="singleClinic-about">
-                    <h2>About Center</h2>
+                    <h2>О центре</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a commodo risus. Donec maximus risus augue, eu finibus ante semper sit amet. Quisque facilisis massa massa. Aenean tincidunt pretium cursus. Nulla tincidunt malesuada metus id dapibus. Nunc mollis est velit, at lacinia turpis fringilla ut. Nullam ut sapien ut nibh aliquam tincidunt. Etiam volutpat dui eu sem ultricies, sit amet suscipit metus pulvinar. Phasellus semper libero erat. Integer eget est quis orci venenatis rutrum in ac eros. Pellentesque gravida maximus nibh, nec mattis odio condimentum nec. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque mattis velit ut metus sagittis semper. Mauris id arcu ultrices, ornare dui in, iaculis felis. Vivamus dignissim facilisis eleifend. Donec sit amet eros sed metus finibus laoreet.</p>
                 </div>
                 <div>
                     <div class="mr-bottom">
                         <div class="see-all-contacts">
-                            <button class="button button-stable">See all contacts</button>
+                            <button class="button button-stable">Посмотрет все контакты</button>
                         </div>
                         <ul style="padding:0; background-color:#f7f7f7 ">
-                            <li class="first-button">Today, {{todaysDate}}.<i ng-if="todaysMonth<10">0</i>{{todaysMonth}} <br /> {{singleClinic.working_hours}}</li>
+                            <li class="first-button">Сегодня, {{todaysDate}}.<i ng-if="todaysMonth<10">0</i>{{todaysMonth}} <br /> {{singleClinic.working_hours}}</li>
                             <li class="button button-light second-button" ng-click="openModal()"
-                                ><i class="flaticon-placeholder" ></i> Map</li>
-                            <li class="button button-positive second-button" ng-click="callTel(singleClinic)"><i class="flaticon-call-answer"></i> Call </li>
+                                ><i class="flaticon-placeholder" ></i> Карта</li>
+                            <li class="button button-positive second-button" ng-click="callTel(singleClinic)"><i class="flaticon-call-answer"></i> Позвонить </li>
                         </ul>
                     </div>
                 </div>
