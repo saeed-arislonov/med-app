@@ -6,7 +6,7 @@
         <button class="button header-right-button-1 buttons button-clear header-item"><i class="flaticon-filter"></i> 
         </button>
         
-        <button class="button header-right-button buttons button-clear header-item"><i class="flaticon-shopping-cart"></i> 
+        <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{cartData.length}}</span></span>
         </button>
             
         
@@ -15,7 +15,7 @@
 <ion-view view-title="Search" animation="no-animation">
     <ion-content class="no-header">
 
-        <div class="ma-results">
+        <div class="ma-results clinic-results">
             <div class="result-header-wrapper">
                 <i class="ion-ios-search-strong"></i>
                 <div class="ma-search-name">
@@ -24,7 +24,7 @@
             </div>
             
            <!-- <pre>{{medicines | json}}</pre>-->
-            
+            <div class="loading-spin" ng-if="clinicLoading"><i class="fa fa-spinner fa-spin"></i></div>
             <div class="ma-results-wrapper">
                 <div class="medicine-result" ng-repeat="cli in clinics">
                     <div class="mr-top">
@@ -38,9 +38,9 @@
                     </div>
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-light" ng-click="openModal()" ><i class="flaticon-placeholder" style="bottom:3px"></i> Карта</li>
-                            <li class="button button-positive" ng-click="callClinic(cli)"><i class="flaticon-call-answer" style="bottom:3px"></i> Позвонить </li>
-                            <li class="button button-energized" ng-click="go(cli.id)">Подробнее</li>
+                            <li class="button button-light map-button" ng-click="openModal()" ><i class="flaticon-placeholder" style="bottom:3px"></i> Карта</li>
+                            <li class="button button-positive call-button" ng-click="callClinic(cli)"><i class="flaticon-call-answer" style="bottom:3px"></i> Позвонить </li>
+                            <li class="button button-energized more-button" ng-click="go(cli.id)">Подробнее</li>
                         </ul>
                     </div>
                 </div>

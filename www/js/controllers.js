@@ -253,9 +253,10 @@ angular.module('starter.controllers', [])
     })
 
     .controller('ClinicCtrl', function ($scope, $state, $stateParams, $ionicLoading, $rootScope, $http, $ionicModal, $cordovaGeolocation, $rootScope) {
-
+        $scope.clinicLoading = true;
         $http.get("http://medappteka.uz/api/inst").success(function (data) {
             $scope.clinics = data.data;
+            $scope.clinicLoading = false;
         }).error(function (err) {
             return err;
         });

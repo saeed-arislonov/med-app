@@ -2,11 +2,10 @@
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
         <button ui-sref="app.medicines" class="button back-button buttons button-clear header-item"><i class="flaticon-left-arrow"></i> 
       <span class="back-text"><div class="default-title medicine-search-title">Поиск препаратов</div><span class="previous-title hide"></span></span></button>
- style="bottom:3px"
         <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="flaticon-filter"></i> 
         </button>
 
-        <button class="button header-right-button buttons button-clear header-item"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{cartData.length}}</span></span>
+        <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{cartData.length}}</span></span>
         </button>
 
 
@@ -68,9 +67,9 @@
                 </div>
                 
                 <div class="cart-total">Итого заказ на сумму: <span> {{getTotal()}} сум</span></div>
-                <div class="proceed-checkout" ui-sref="app.checkout">Перейти к оформлению 
+                <button class="proceed-checkout" ui-sref="app.checkout">Перейти к оформлению 
                     <i class="flaticon-right-arrow"></i>
-                </div>
+                </button>
             </div>
         </div>
     </ion-content>

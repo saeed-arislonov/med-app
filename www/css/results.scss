@@ -170,6 +170,7 @@
                     font-size: 14px;
                     text-align: right;
                     padding-right: 4px;
+                    margin-right: 0;
                     .sum {
                         font-weight: 300;
                         font-size: 12px;
@@ -305,6 +306,8 @@
         border-radius: 5px;
         position: relative;
         margin-bottom: 25px;
+        width: 100%;
+        border: none;
         i {
             font-size: 22px;
             position: absolute;
@@ -312,6 +315,21 @@
             bottom: 10px;
             font-weight: 200;
         }
+    }
+}
+
+.clinic-results {
+    .loading-spin {
+        text-align: center;
+        font-size: 20px;
+        margin-top: 15px;
+    }
+    .mr-bottom ul i {
+        left: 4px !important;
+    }
+    .more-button {
+        padding: 4px !important;
+        margin-right: 0 !important;
     }
 }
 
@@ -476,6 +494,8 @@
         border-radius: 5px;
         position: relative;
         margin-bottom: 25px;
+        width: 100%;
+        border: none;
         i {
             font-size: 22px;
             position: absolute;
