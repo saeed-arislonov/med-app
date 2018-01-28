@@ -113,6 +113,8 @@ angular.module('starter.controllers', [])
                 "price": med.price,
                 "cart_count": "1"
             });
+            
+            $ionicLoading.show({ template: 'Добавлено в корзину', noBackdrop: true, duration: 1000 });
         };
 
         $scope.callTel = function (med) {
@@ -123,7 +125,8 @@ angular.module('starter.controllers', [])
             med.added_to_cart = false;
             $rootScope.cartData = $rootScope.cartData.filter(function (item) {
                 return item.id !== parseInt(med.id);
-            })
+            });
+            $ionicLoading.show({ template: 'Удалено из корзины', noBackdrop: true, duration: 1000 });
         }
 
         $http.get('data/cart.json').success(handleSuccess)
@@ -147,25 +150,56 @@ angular.module('starter.controllers', [])
         }).then(function (modal) {
             $scope.mapModal = modal;
         });
+    
         $scope.openModal = function (lang, long) {
+            
+        /*var currentPosMarker;
+
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $cordovaGeolocation
+        .getCurrentPosition(posOptions)
+        .then(function(position) {
+          var lat         = position.coords.latitude,
+          long            = position.coords.longitude,
+          initialLocation = new google.maps.LatLng(lat, long);
+
+         $scope.map = new google.maps.Map(document.getElementById("map"), initialLocation);
+
+          currentPosMarker = new google.maps.Marker({
+            position: initialLocation,
+            animation: google.maps.Animation.DROP,
+            optimized: false,
+            icon: 'https://image.flaticon.com/icons/svg/33/33622.svg',
+            map: $scope.map
+          });
+        })*/
+            
             var options = {
-                timeout: 10000,
+                timeout: 1000,
                 enableHighAccuracy: true
             };
 
             $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
 
-                var latLng = new google.maps.LatLng(41.311335, 69.2257173);
+                var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
                 var mapOptions = {
                     center: latLng,
-                    zoom: 12,
+                    zoom: 14,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
                 $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
                 $scope.marker = new google.maps.Marker({
                     position: new google.maps.LatLng(41.311335, 69.2257173),
+                    map: $scope.map,
+                    title: 'Holas!'
+                }, function (err) {
+                    console.err(err);
+                });
+                
+                $scope.markerr = new google.maps.Marker({
+                    position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                     map: $scope.map,
                     title: 'Holas!'
                 }, function (err) {
