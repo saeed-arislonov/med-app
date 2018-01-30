@@ -1,5 +1,6 @@
-angular.module('starter.controllers', [])
+var controllers = angular.module('starter.controllers', []);
 
+controllers
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
 
         // With the new view caching in Ionic, Controllers are only called
@@ -93,7 +94,48 @@ angular.module('starter.controllers', [])
         }
     })
 
-    .controller('ResultCtrl', function ($scope, $stateParams, $ionicLoading, $rootScope, $http, $ionicPopover, $ionicModal, $cordovaGeolocation, orderCount, $filter) {
+    .controller('ResultCtrl', function ($scope, $stateParams, $ionicLoading, $rootScope, $http, $ionicPopover, $ionicModal, $cordovaGeolocation, orderCount, $filter, NgMap, $ionicPlatform) {
+
+        NgMap.getMap().then(function (map) {
+            $rootScope.map = map;
+        });
+
+        $scope.medMapPresent = false;
+
+        $scope.showMapMed = function (med) {
+            $scope.singleView = true;
+            if ($scope.medMapPresent) {
+                $scope.medMapPresent = false;
+                $('.medicineMapView').removeClass('medicineMapPresent');
+            } else {
+                $scope.singlePosition = med.lang + ',' + med.long;
+                $scope.medMapPresent = true;
+                $('.medicineMapView').addClass('medicineMapPresent');
+            }
+        }
+
+        $scope.showMapAll = function () {
+            $scope.singleView = false;
+            if ($scope.medMapPresent) {
+                $scope.medMapPresent = false;
+                $('.medicineMapView').removeClass('medicineMapPresent');
+            } else {
+                //$scope.singlePosition = med.lang + ',' + med.long;
+                $scope.medMapPresent = true;
+                $('.medicineMapView').addClass('medicineMapPresent');
+                //console.log($scope.singlePosition);
+            }
+        }
+
+        $ionicPlatform.registerBackButtonAction(function (event) {
+            if ($('.medicineMapView').hasClass('medicineMapPresent')) {
+                $scope.medMapPresent = false;
+                $scope.singleView = false;
+                $('.medicineMapView').removeClass('medicineMapPresent');
+            } else {
+                navigator.app.backHistory();
+            }
+        }, 100);
 
         var handleSuccess = function (data, status) {
             $rootScope.cartData = data;
@@ -113,8 +155,12 @@ angular.module('starter.controllers', [])
                 "price": med.price,
                 "cart_count": "1"
             });
-            
-            $ionicLoading.show({ template: 'Добавлено в корзину', noBackdrop: true, duration: 1000 });
+
+            $ionicLoading.show({
+                template: 'Добавлено в корзину',
+                noBackdrop: true,
+                duration: 1000
+            });
         };
 
         $scope.callTel = function (med) {
@@ -126,16 +172,19 @@ angular.module('starter.controllers', [])
             $rootScope.cartData = $rootScope.cartData.filter(function (item) {
                 return item.id !== parseInt(med.id);
             });
-            $ionicLoading.show({ template: 'Удалено из корзины', noBackdrop: true, duration: 1000 });
+            $ionicLoading.show({
+                template: 'Удалено из корзины',
+                noBackdrop: true,
+                duration: 1000
+            });
         }
 
         $http.get('data/cart.json').success(handleSuccess)
 
         var medicine_id;
-
+        $scope.positions = [];
         $http.get("data/pharmacies.json" /*+ $rootScope.selectedMedicine*/ ).success(function (data) {
             $scope.medicines = data;
-            console.log($scope.medicines);
             $scope.medicines.forEach(function (p) {
                 p.med_name = $rootScope.selectedMedicine.name;
                 p.added_to_cart = false;
@@ -144,36 +193,60 @@ angular.module('starter.controllers', [])
             return err;
         });
 
+        /*  var vm=this;
+         vm.data =[
+           {foo:1, bar:1},
+           {foo:2, bar:2},
+           {foo:3, bar:3},
+           {foo:4, bar:4},
+           {foo:5, bar:5},
+           {foo:6, bar:6},
+           {foo:7, bar:7}
+         ];
+         vm.positions =[
+           {pos:[40.71, -74.21]},
+           {pos:[40.72, -74.20]},
+           {pos:[40.73, -74.19]},
+           {pos:[40.74, -74.18]},
+           {pos:[40.75, -74.17]},
+           {pos:[40.76, -74.16]},
+           {pos:[40.77, -74.15]}
+         ];
+         vm.showData = function() {
+           alert(this.data.foo);
+         }*/
+
+
         $ionicModal.fromTemplateUrl('templates/map.html', {
             scope: $scope,
             animation: 'slide-in-up'
         }).then(function (modal) {
             $scope.mapModal = modal;
         });
-    
+
         $scope.openModal = function (lang, long) {
-            
-        /*var currentPosMarker;
 
-        var posOptions = {timeout: 10000, enableHighAccuracy: false};
-        $cordovaGeolocation
-        .getCurrentPosition(posOptions)
-        .then(function(position) {
-          var lat         = position.coords.latitude,
-          long            = position.coords.longitude,
-          initialLocation = new google.maps.LatLng(lat, long);
+            /*var currentPosMarker;
 
-         $scope.map = new google.maps.Map(document.getElementById("map"), initialLocation);
+            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+            $cordovaGeolocation
+            .getCurrentPosition(posOptions)
+            .then(function(position) {
+              var lat         = position.coords.latitude,
+              long            = position.coords.longitude,
+              initialLocation = new google.maps.LatLng(lat, long);
 
-          currentPosMarker = new google.maps.Marker({
-            position: initialLocation,
-            animation: google.maps.Animation.DROP,
-            optimized: false,
-            icon: 'https://image.flaticon.com/icons/svg/33/33622.svg',
-            map: $scope.map
-          });
-        })*/
-            
+             $scope.map = new google.maps.Map(document.getElementById("map"), initialLocation);
+
+              currentPosMarker = new google.maps.Marker({
+                position: initialLocation,
+                animation: google.maps.Animation.DROP,
+                optimized: false,
+                icon: 'https://image.flaticon.com/icons/svg/33/33622.svg',
+                map: $scope.map
+              });
+            })*/
+
             var options = {
                 timeout: 1000,
                 enableHighAccuracy: true
@@ -197,7 +270,7 @@ angular.module('starter.controllers', [])
                 }, function (err) {
                     console.err(err);
                 });
-                
+
                 $scope.markerr = new google.maps.Marker({
                     position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                     map: $scope.map,
@@ -286,7 +359,8 @@ angular.module('starter.controllers', [])
         }
     })
 
-    .controller('ClinicCtrl', function ($scope, $state, $stateParams, $ionicLoading, $rootScope, $http, $ionicModal, $cordovaGeolocation, $rootScope) {
+    .controller('ClinicCtrl', function ($scope, $state, $stateParams, $ionicLoading, $rootScope, $http, $ionicModal, $cordovaGeolocation, $rootScope, $ionicPlatform) {
+
         $scope.clinicLoading = true;
         $http.get("http://medappteka.uz/api/inst").success(function (data) {
             $scope.clinics = data.data;
@@ -300,6 +374,85 @@ angular.module('starter.controllers', [])
                 id: param
             })
         }
+
+        $scope.filterOpen = false;
+    $scope.isDisplayPharmacy = true;
+        $scope.openFilter = function () {
+            if ($scope.filterOpen) {
+                $scope.filterOpen = false;
+                $('.ma-filters').slideUp();
+                $('.ma-results-wrapper').fadeIn(100);
+            } else {
+                $scope.filterOpen = true;
+                $('.ma-filters').slideDown();
+                $('.ma-results-wrapper').fadeOut(100);
+            }
+        }
+
+        $scope.toggleFilterPharmacy = function () {
+            if ($scope.isDisplayPharmacy) {
+                $('.item-accordion-filter-pharmacy').slideUp();
+                $scope.isDisplayPharmacy = false;
+            } else {
+                $('.item-accordion-filter-pharmacy').slideDown();
+                $scope.isDisplayPharmacy = true;
+            }
+        }
+        $scope.toggleFilterPlace = function () {
+            if ($scope.isDisplayPlace) {
+                $('.item-accordion-filter-place').slideUp();
+                $scope.isDisplayPlace = false;
+            } else {
+                $('.item-accordion-filter-place').slideDown();
+                $scope.isDisplayPlace = true;
+            }
+        }
+
+        $scope.applyFilters = function () {
+            $scope.filterOpen = false;
+            $('.ma-filters').slideUp();
+            $('.ma-results-wrapper').fadeIn(100);
+        }
+
+
+        $scope.cliMapPresent = false;
+
+        $scope.showMapMed = function (cli) {
+            $scope.singleView = true;
+            if ($scope.cliMapPresent) {
+                $scope.cliMapPresent = false;
+                $('.medicineMapView').removeClass('medicineMapPresent');
+            } else {
+                $scope.singlePosition = cli.lat + ',' + cli.lng;
+                $scope.cliMapPresent = true;
+                $('.medicineMapView').addClass('medicineMapPresent');
+            }
+        }
+
+        $scope.showMapAll = function () {
+            $scope.singleView = false;
+            if ($scope.cliMapPresent) {
+                $scope.cliMapPresent = false;
+                $('.medicineMapView').removeClass('medicineMapPresent');
+            } else {
+                //$scope.singlePosition = med.lang + ',' + med.long;
+                $scope.cliMapPresent = true;
+                $('.medicineMapView').addClass('medicineMapPresent');
+                //console.log($scope.singlePosition);
+            }
+        }
+
+        $ionicPlatform.registerBackButtonAction(function (event) {
+            if ($('.medicineMapView').hasClass('medicineMapPresent')) {
+                $scope.medMapPresent = false;
+                $scope.singleView = false;
+                $('.medicineMapView').removeClass('medicineMapPresent');
+            } else {
+                navigator.app.backHistory();
+            }
+        }, 100);
+
+
 
         $ionicModal.fromTemplateUrl('templates/map.html', {
             scope: $scope,
@@ -355,7 +508,7 @@ angular.module('starter.controllers', [])
                 $state.go('app.accepted')
             }, 2000)
         }
-        
+
         $scope.checkoutTotal = $rootScope.total;
 
         $scope.showPayment = true;
@@ -411,7 +564,7 @@ angular.module('starter.controllers', [])
              //$(this).find('input').attr('checked', true);
          })*/
     })
-    .controller("CartCtrl", function ($http, $scope, $rootScope, orderCount, $filter, $ionicModal, $cordovaGeolocation) {
+    .controller("CartCtrl", function ($http, $scope, $rootScope, orderCount, $filter, $ionicModal, $cordovaGeolocation, $ionicPlatform) {
         if ($rootScope.cartData == undefined) {
             $http.get('data/cart.json').success(function (data, status) {
                 $rootScope.cartData = data;
@@ -441,25 +594,44 @@ angular.module('starter.controllers', [])
         $scope.removeFromCart = function (index) {
             //$($event.currentTarget).closest('.medicine-result').slideUp();
             //setTimeout(function () {
-                //var index = $rootScope.cartData.indexOf(cart);
-                $rootScope.cartData.splice(index, 1);
+            //var index = $rootScope.cartData.indexOf(cart);
+            $rootScope.cartData.splice(index, 1);
             //}, 100)
             //$(this).closest('.medicine-result').slideUp();
 
         }
 
+        $scope.showMapMed = function () {
+            if ($scope.medMapPresent) {
+                $scope.medMapPresent = false;
+                $('.medicineMapView').removeClass('medicineMapPresent');
+            } else {
+                $scope.medMapPresent = true;
+                $('.medicineMapView').addClass('medicineMapPresent');
+            }
+        }
+
+        $ionicPlatform.registerBackButtonAction(function (event) {
+            if ($('.medicineMapView').hasClass('medicineMapPresent')) {
+                $scope.medMapPresent = false;
+                $('.medicineMapView').removeClass('medicineMapPresent');
+            } else {
+                navigator.app.backHistory();
+            }
+        }, 100);
+
         $scope.callFromCart = function (cart) {
             window.location.href = 'tel:' + cart.phone;
         }
-        
+
         $ionicModal.fromTemplateUrl('templates/map.html', {
             scope: $scope,
             animation: 'slide-in-up'
         }).then(function (modal) {
             $scope.mapModal = modal;
         });
-        
-         $scope.openModal = function (lang, long) {
+
+        $scope.openModal = function (lang, long) {
             var options = {
                 timeout: 10000,
                 enableHighAccuracy: true
@@ -495,5 +667,5 @@ angular.module('starter.controllers', [])
         $scope.$on('$destroy', function () {
             $scope.mapModal.remove();
         });
-        
+
     });

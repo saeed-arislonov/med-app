@@ -32,7 +32,7 @@
 .ma-results {
     .result-header-wrapper {
         margin: 0;
-        padding: 15px;
+        padding: 20px 15px;
         border-bottom: 1px solid $primary-grey;
         .ion-ios-search-strong {
             float: left;
@@ -41,11 +41,25 @@
         .ma-search-name {
             text-align: center;
             //font-size: 18px;
+            //display: inline-block;
             font-weight: bold;
             font-size: 20px;
             line-height: 20px;
             color: rgb(48, 48, 48);
             //font-family: "Gotham Pro";
+            &.ma-search-name-left {
+                text-align: left;
+                display: inline-block;
+            }
+        }
+        .search-by-map {
+            display: inline-block;
+            border: 1px solid #e3e0e5;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 6px;
         }
     }
     .ma-filters {
@@ -168,7 +182,7 @@
                 &.price-button {
                     font-weight: 600;
                     font-size: 14px;
-                    text-align: right;
+                    text-align: center;
                     padding-right: 4px;
                     margin-right: 0;
                     .sum {
@@ -191,58 +205,26 @@
     }
 }
 
-.single-clinic {
-    margin-bottom: 15px;
-    .single-clinic-wrapper {
-        border: .1px solid #e3e0e5;
-        margin-top: 5px;
-        border-radius: 3px;
-    }
-    .singleClinic-result {
-        background-color: #f7f7f7;
-        top: -10px;
-        position: relative;
-        padding: 15px;
-        .singleClinic-photo {
-            float: left;
-            margin-right: 20px;
-        }
-    }
-    .singleClinic-info {
-        padding: 3px;
-    }
-    .singleClinic-about {
-        padding: 15px;
-    }
-    .see-all-contacts {
-        text-align: center;
-        margin-bottom: 15px;
-    }
-    .first-button {
-        background-color: $primary-orange;
-        padding: 3px;
-        margin-left: 0 !important;
-        border-bottom-left-radius: 5px;
-    }
-    .second-button {
-        height: 26px;
-        transform: translateY(42%);
-        position: relative;
-        a {
-            color: #fff;
-            text-decoration: none;
-        }
-    }
-    .mr-bottom {
-        margin: 0 !important;
-    }
-}
-
 .price-button {
     color: #000 !important;
 }
 
 .ma-my-cart {
+    .medicine-result.ng-enter,
+    .medicine-result.ng-leave {
+        -webkit-transition: 0.5s linear all;
+        transition: 0.5s linear all;
+    }
+    .medicine-result.ng-enter,
+    .medicine-result.ng-leave.ng-leave-active {
+        opacity: 0;
+        height: 0px;
+    }
+    .medicine-result.ng-leave,
+    .medicine-result.ng-enter.ng-enter-active {
+        opacity: 1;
+        height: 217px
+    }
     .med-quantity {
         .list {
             padding: 2px;
@@ -333,10 +315,28 @@
     }
 }
 
+.medicineMapView {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    left: 100%;
+    transition: .5s;
+    z-index: 99;
+    top: 0;
+    &.medicineMapPresent {
+        left: 0% !important;
+        transition: .5s;
+    }
+    ng-map {
+        height: 100% !important;
+    }
+}
+
 .ma-my-checkout {
     input[type="text"] {
         color: #444;
         min-height: 36px;
+        padding-top: 5px;
     }
     .ma-checkout-wrapper {
         margin: 10px;

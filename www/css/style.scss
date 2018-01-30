@@ -149,7 +149,9 @@ ion-content {
             font-size: 15px;
             line-height: 21px;
             color: rgb(48, 48, 48);
-            margin-top: 8px //font-family: "Gotham Pro";
+            padding-top: 5px;
+            margin-top: 8px; //font-family: "Gotham Pro";
+            padding-top: 5px;
         }
         .item-input.item {
             border: none;
@@ -168,7 +170,7 @@ ion-content {
     .checkbox-icon {
         width: 30px;
         height: 30px;
-        bottom: 3px;
+        bottom: 5px;
     }
     .item-checkbox {
         border: none;
@@ -210,6 +212,7 @@ ion-content {
         font-size: 15px;
         line-height: 21px;
         color: rgb(48, 48, 48);
+        padding-top: 5px;
         //font-family: "Gotham Pro";
     }
     legend {
@@ -322,7 +325,8 @@ ion-content {
 .ma-search-button {
     width: inherit;
     text-align: center;
-    margin: 30px 10px;
+    margin: 20px 10px;
+    margin-bottom: 10px;
     .search-button {
         background-color: $primary-orange;
         padding: 15px;
