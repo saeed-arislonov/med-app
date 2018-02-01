@@ -21,18 +21,50 @@ controllers
             }
         }
     })
-    .controller('LoginCtrl', function ($scope) {
-
+    .controller('LoginCtrl', function ($scope, $http) {
+        $scope.signin = {};
+    $scope.successs = ""
+        $scope.submitLogin = function(){
+            console.log($scope.signin);
+            $http.post('http://medappteka.uz/api/user/sign-in', $scope.signin)
+                .success(function(resp){
+                console.log(resp);
+                $scope.successs = "LOGGED IN"
+            }).error(function(err, a, b, c){
+                console.log(err, a, b, c);
+                $scope.successs = "ERROR"
+            })
+        }
     })
-    .controller('RegisterCtrl', function ($scope, Upload) {
+    .controller('RegisterCtrl', function ($scope, Upload, $http) {
 
         $scope.user = {};
         /*$scope.createUser = function () {
             console.log($scope.user)
         }*/
-console.log(Upload)
+    
+    $scope.userr = {
+        name: "Saeed",
+        phone: "998977887978",
+        birth_date: "12/12/1993",
+        email: "saidbek111@gmail.com",
+        login: "saidbekars137",
+        password: "123qwe123",
+        photo: null
+    };
+    
+     $scope.json = angular.toJson($scope.userr);
         $scope.createUser = function (file) {
-            console.log($scope.user);
+            console.log($scope.userr);
+            //$scope.userr = JSON.stringify($scope.userr);
+            console.log($scope.userr);
+            console.log($scope.json);
+            $http.post('http://medappteka.uz/api/user/sign-up', $scope.json)
+                .success(function(resp){
+                    console.log(resp);
+            }).error(function(a, b, c, d){
+                console.log(a, b, c, d);
+            })
             /*file.upload = Upload.upload({
                 url: 'http://medappteka.uz/api/user/sign-up',
                 data: $scope.user

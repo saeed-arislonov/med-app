@@ -15,7 +15,7 @@
                         <legend class="ma-search-title">Авторизоваться</legend>
                         <div class="list input-item">
                             <label class="item item-input">
-                                <input type="text" placeholder="Логин" ng-model="searchPlace" />
+                                <input type="text" placeholder="Логин" ng-model="signin.login" />
                             </label>
                             <!-- <pre>{{medicines}}</pre>-->
                             <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
@@ -24,7 +24,7 @@
                         
                         <div class="list input-item">
                             <label class="item item-input">
-                                <input type="password" placeholder="Пароль" ng-model="searchPlace" />
+                                <input type="password" placeholder="Пароль" ng-model="signin.password" />
                             </label>
                             <!-- <pre>{{medicines}}</pre>-->
                             <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
@@ -32,13 +32,14 @@
                         </div>
                     </fieldset>
                 </div>
+                <div>{{successs}}</div>
                 <!--<ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
         {{playlist.title}}
       </ion-item>
     </ion-list> -->
                 <div class="login-button-wrapper">
-                <button class="login-button" ng-click="submitSearch()">
+                <button class="login-button" ng-click="submitLogin()">
                         <a class="login-button-a">Войти</a>
                     </button>
                     

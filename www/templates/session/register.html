@@ -39,7 +39,7 @@
                         <input type="file" ngf-select ng-model="user.photo" name="file"    
                                 accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
                     </label>
-                </div>
+                </div>{{user.photo}}
                 <!--<ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
         {{playlist.title}}

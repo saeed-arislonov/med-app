@@ -25,6 +25,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
             }
         });
     })
+    .config(function ($httpProvider) {
+        $httpProvider.defaults.headers.common = {};
+        $httpProvider.defaults.headers.post = {};
+        $httpProvider.defaults.headers.put = {};
+        $httpProvider.defaults.headers.patch = {};
+    })
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
 
