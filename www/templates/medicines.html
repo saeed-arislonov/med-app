@@ -30,7 +30,7 @@
         <div class="ma-results">
             <div class="result-header-wrapper">
                 <div class="ma-search-name ma-search-name-left">
-                    <span><!--{{'selectedMedicine.name'}}--> Aspirin (Aspirin)</span>
+                    <span>{{selectedMedicine.name}}</span>
                 </div>
                 <div class="search-by-map" ng-click="showMapAll()">Поиск по <br/> карте
                     <i class="flaticon-placeholder">
@@ -92,7 +92,7 @@
                     <marker id="foo" position="{{singlePosition}}" on-click="map.showInfoWindow(event, 'bar')">
                     </marker>
                     <!-- <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>-->
-                    <custom-marker id="can" position="current" on-click="click()">
+                    <custom-marker id="can" position="currentPosition" on-click="click()">
                         <div>
                             <img src="img/map-icon.png" width="40" height="40" />
                         </div>
@@ -116,7 +116,7 @@
                     <marker id="marker-{{$index}}" ng-repeat="p in medicines" position="{{p.lang}}, {{p.long}}"></marker>
 
                     <!-- <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>-->
-                    <custom-marker id="can" position="current" on-click="click()">
+                    <custom-marker id="can" position="currentPosition" on-click="click()">
                         <div>
                             <img src="img/map-icon.png" width="40" height="40" />
                         </div>

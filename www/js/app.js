@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'ngTouch', 'ui.bootstrap', 'ngCordova', 'starter.factories', 'starter.filters', 'ngMap'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives', 'ngTouch', 'ui.bootstrap', 'starter.factories', 'starter.filters', 'ngMap', 'ngFileUpload'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -25,20 +25,34 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
             }
         });
     })
-
-    .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-        //$ionicConfigProvider.views.transition('none')
-        // rest of the config    
-    })
-
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
 
+            .state('firstTimeUser', {
+                url: '/firstTimeUser',
+                templateUrl: 'templates/session/firstTimeUser.html',
+                controller: 'FirstTimeCtrl'
+            })
+            .state('login', {
+                url: '/login',
+                templateUrl: 'templates/session/login.html',
+                controller: 'LoginCtrl'
+            })
+            .state('register', {
+                url: '/register',
+                templateUrl: 'templates/session/register.html',
+                controller: 'RegisterCtrl'
+            })
             .state('app', {
                 url: '/app',
                 abstract: true,
                 templateUrl: 'templates/menu.html',
-                controller: 'AppCtrl'
+                controller: 'AppCtrl',
+                onEnter: function ($state, Auth) {
+                    if (!Auth.isLoggedIn()) {
+                        $state.go('login');
+                    }
+                }
             })
 
             .state('app.medicines', {
@@ -46,7 +60,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/medicines.html',
-                        controller: 'ResultCtrl as vm'
+                        controller: 'ResultCtrl'
                     }
                 }
                 /*,
@@ -130,8 +144,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/map.html',
-                        controller: function($scope, $rootScope, singleMap, $ionicHistory){
-                            
+                        controller: function ($scope, $rootScope, singleMap, $ionicHistory) {
+
                             $scope.lastView = $ionicHistory.backView();
                             console.log($scope.lastView)
                             $scope.langs = singleMap.selectedClinicMap;

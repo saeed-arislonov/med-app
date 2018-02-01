@@ -9613,10 +9613,10 @@ a.button {
     margin-top: env(safe-area-inset-top); }
 
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header {
-  padding-left: calc( constant(safe-area-inset-left) + 5px);
+  padding-left: calc( constant(safe-area-inset-left) + 5px);
   padding-left: calc(env(safe-area-inset-left) + 5px);
-  padding-right: calc( constant(safe-area-inset-right) + 5px);
-  padding-right: calc( env(safe-area-inset-right) + 5px); }
+  padding-right: calc( constant(safe-area-inset-right) + 5px);
+  padding-right: calc( env(safe-area-inset-right) + 5px); }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header .buttons:last-child {
     right: calc(constant(safe-area-inset-right) + 5px);
     right: calc(env(safe-area-inset-right) + 5px); }
@@ -10245,8 +10245,10 @@ ion-content {
 
 .ma-results .result-header-wrapper {
   margin: 0;
-  padding: 20px 15px;
-  border-bottom: 1px solid #e3e0e5; }
+  padding: 15px;
+  border-bottom: 1px solid #e3e0e5;
+  display: inline-block;
+  padding-bottom: 10px; }
   .ma-results .result-header-wrapper .ion-ios-search-strong {
     float: left;
     font-size: 24px; }
@@ -10257,15 +10259,15 @@ ion-content {
     line-height: 20px;
     color: #303030; }
     .ma-results .result-header-wrapper .ma-search-name.ma-search-name-left {
+      float: left;
       text-align: left;
-      display: inline-block; }
+      display: inline-block;
+      width: 60%; }
   .ma-results .result-header-wrapper .search-by-map {
     display: inline-block;
     border: 1px solid #e3e0e5;
     border-radius: 5px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    float: right;
     padding: 3px 6px; }
 
 .ma-results .ma-filters {
@@ -10820,3 +10822,76 @@ ion-content {
       text-decoration: none; }
   .single-clinic .mr-bottom {
     margin: 0 !important; }
+
+.ma-login-page .item-input {
+  margin-bottom: 10px !important; }
+
+.ma-login-page .login-button-wrapper {
+  margin: 10px;
+  border-radius: 5px;
+  text-align: center; }
+  .ma-login-page .login-button-wrapper .login-button {
+    border-radius: 5px;
+    height: 45px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    margin: 20px 0;
+    background-color: #28ba23; }
+    .ma-login-page .login-button-wrapper .login-button a {
+      color: #fff; }
+
+.ma-firstTime-user {
+  background-color: #e3e0e5; }
+  .ma-firstTime-user .input-item {
+    margin-top: 0 !important; }
+  .ma-firstTime-user .ma-register-title {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    margin: 10px; }
+  .ma-firstTime-user .list {
+    margin: 0 15px; }
+    .ma-firstTime-user .list input {
+      padding-left: 8px; }
+  .ma-firstTime-user .getCode-button-wrapper {
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center; }
+    .ma-firstTime-user .getCode-button-wrapper .login-button {
+      border-radius: 5px;
+      height: 45px;
+      width: 100%;
+      border: none;
+      text-align: center;
+      margin: 20px 0;
+      background-color: #28ba23; }
+      .ma-firstTime-user .getCode-button-wrapper .login-button a {
+        color: #fff;
+        font-size: 20px; }
+  .ma-firstTime-user .verification-pane {
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    top: 100px;
+    left: 100%;
+    transition: .5s;
+    background-color: #e3e0e5; }
+    .ma-firstTime-user .verification-pane .item-input {
+      width: 105px;
+      margin: 0 auto;
+      padding: 5px; }
+    .ma-firstTime-user .verification-pane input {
+      font-size: 30px;
+      padding: 3px; }
+  .ma-firstTime-user .error-message {
+    color: red;
+    text-align: center; }
+
+.ma-register-page .list {
+  margin: 10px; }
+  .ma-register-page .list .half-size {
+    float: left;
+    width: 50%; }
+  .ma-register-page .list .item-floating-label {
+    margin-bottom: 0; }

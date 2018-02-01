@@ -1,5 +1,5 @@
 controllers
-    .controller('singleClinicCtrl', function ($stateParams, $scope, $http, orderCount, $ionicModal, $cordovaGeolocation, $ionicPopup, IonicClosePopupService, NgMap, $rootScope, $state, singleMap, $ionicScrollDelegate) {
+    .controller('singleClinicCtrl', function ($stateParams, $scope, $http, orderCount, $ionicModal, $ionicPopup, IonicClosePopupService, NgMap, $rootScope, $state, singleMap, $ionicScrollDelegate) {
 
         $http.get("http://medappteka.uz/api/inst/view?id=" + $stateParams.id).success(function (data) {
             $scope.singleClinic = data;

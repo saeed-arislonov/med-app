@@ -1,0 +1,51 @@
+<ion-view view-title="Поисковик лекарств" animation="no-animation" class="ma-login-page">
+    <ion-content>
+
+        <div class="ma-main-title">
+            <img src="img/logo_medd.png">
+        </div>
+
+        <form>
+
+            <ion-toolbar>
+                <div class="ma-search-where">
+                    <div></div>
+
+                    <fieldset>
+                        <legend class="ma-search-title">Авторизоваться</legend>
+                        <div class="list input-item">
+                            <label class="item item-input">
+                                <input type="text" placeholder="Логин" ng-model="searchPlace" />
+                            </label>
+                            <!-- <pre>{{medicines}}</pre>-->
+                            <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
+
+                        </div>
+                        
+                        <div class="list input-item">
+                            <label class="item item-input">
+                                <input type="password" placeholder="Пароль" ng-model="searchPlace" />
+                            </label>
+                            <!-- <pre>{{medicines}}</pre>-->
+                            <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
+
+                        </div>
+                    </fieldset>
+                </div>
+                <!--<ion-list>
+      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+        {{playlist.title}}
+      </ion-item>
+    </ion-list> -->
+                <div class="login-button-wrapper">
+                <button class="login-button" ng-click="submitSearch()">
+                        <a class="login-button-a">Войти</a>
+                    </button>
+                    
+                    <a ui-sref="firstTimeUser">Нет аккаунта? Зарегистрируйтесь здесь. </a>
+                </div>
+            </ion-toolbar>
+        </form>
+
+    </ion-content>
+</ion-view>

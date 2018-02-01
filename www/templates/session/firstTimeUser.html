@@ -1,0 +1,50 @@
+<ion-view view-title="Поисковик лекарств" animation="no-animation" class="ma-firstTime-user">
+    <ion-content>
+
+        <div class="ma-main-title">
+            <img src="img/logo_medd.png">
+        </div>
+
+        <ion-toolbar style="position:relative">
+            <form name="phoneForm">
+                <div class="ma-registers">
+                    <div class="enter-phone">
+
+                        <div class="ma-register-title">Введите номер телефона</div>
+                        <div class="list input-item">
+                            <label class="item item-input">
+                                <span>+998 </span><input name="phoneNum" id="phoneNum" type="number" ng-minlength="9" ng-maxlength="9"  ng-model="user.phone" required/>
+                            </label>
+                        </div>
+                        <div ng-show="phoneForm.phoneNum.$error.minlength && phoneForm.phoneNum.$touched || inputEmpty" class="error-message">Номер телефона недействителен.</div>
+                    </div>
+                    <div class="getCode-button-wrapper">
+                        <button type="submit" class="login-button" ng-click="submitNumber(phoneForm.$valid)">
+                        <a class="login-button-a">Получить код</a>
+                    </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="ma-registers verification-pane">
+                <form name="verifyForm">
+                    <div class="enter-verification">
+                        <div class="ma-register-title">Введите полученный код</div>
+                        <div class="list input-item">
+                            <label class="item item-input">
+                                <input type="text" ng-model="user.vcode" name="vcode" maxlength="4" required/>
+                            </label>
+                        </div>
+                        <div ng-show="submitted && user.vcode != verification_pass" class="error-message">Код проверки не соответствует
+                        </div>
+                    </div>
+                    <div class="getCode-button-wrapper">
+                        <button type="submit" class="login-button" ng-click="submitVerification(verification_code)">
+                        <a class="login-button-a">Подтверждать</a>
+                    </button>
+                    </div>
+                </form>
+            </div>
+        </ion-toolbar>
+    </ion-content>
+</ion-view>

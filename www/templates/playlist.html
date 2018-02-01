@@ -48,11 +48,11 @@
 
             <div class="ma-results-wrapper single-clinic-wrapper">
                 <div class="single-clinic-back">
-                    <img src="http://yangiliklar.net/wp-content/uploads/2016/01/Toshkent-shahrida-eng-zamonaviy-diagnostika-markazi-ish-boshladi-foto-uz-yangiliklar.jpg" style="max-width:100%;" />
+                    <img ng-src="{{'http://medappteka.uz'+singleClinic.photo}}" style="max-width:100%;" />
                 </div>
                 <div class="singleClinic-result">
                     <div class="mr-top">
-                        <img width="80" height="80" class="singleClinic-photo" src="https://vitamed.uz/ru/includes/logo.png" />
+                        <img width="80" height="80" class="singleClinic-photo" ng-src="{{'http://medappteka.uz'+singleClinic.photo}}" />
                         <div class="product-info">
                             <div class="singleClinic-info">Наименование: <span>{{singleClinic.name}} </span></div>
                             <div class="singleClinic-info">Адрес: <span>{{singleClinic.address}} </span></div>

@@ -42,7 +42,7 @@ controllers
         };
     })
 
-    .controller('MainPageCtrl', function ($scope, $http, $rootScope, $state, $cordovaGeolocation) {
+    .controller('MainPageCtrl', function ($scope, $http, $rootScope, $state) {
 
         /* var medicine_url = 'data/medicines.json'
          $http({
@@ -94,7 +94,19 @@ controllers
         }
     })
 
-    .controller('ResultCtrl', function ($scope, $stateParams, $ionicLoading, $rootScope, $http, $ionicPopover, $ionicModal, $cordovaGeolocation, orderCount, $filter, NgMap, $ionicPlatform) {
+    .controller('ResultCtrl', function ($scope, $stateParams, $ionicLoading, $rootScope, $http, $ionicPopover, $ionicModal, orderCount, $filter, NgMap, $ionicPlatform, $ionicScrollDelegate) {
+    
+    var options = {
+                enableHighAccuracy: true
+            };
+
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                $scope.currentPosition = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+                console.log(JSON.stringify($scope.currentPosition));                  
+            }, 
+            function(error) {                    
+                alert('Unable to get location: ' + error.message);
+            }, options);
 
         NgMap.getMap().then(function (map) {
             $rootScope.map = map;
@@ -108,6 +120,7 @@ controllers
                 $scope.medMapPresent = false;
                 $('.medicineMapView').removeClass('medicineMapPresent');
             } else {
+                $ionicScrollDelegate.scrollTop();
                 $scope.singlePosition = med.lang + ',' + med.long;
                 $scope.medMapPresent = true;
                 $('.medicineMapView').addClass('medicineMapPresent');
@@ -224,73 +237,6 @@ controllers
             $scope.mapModal = modal;
         });
 
-        $scope.openModal = function (lang, long) {
-
-            /*var currentPosMarker;
-
-            var posOptions = {timeout: 10000, enableHighAccuracy: false};
-            $cordovaGeolocation
-            .getCurrentPosition(posOptions)
-            .then(function(position) {
-              var lat         = position.coords.latitude,
-              long            = position.coords.longitude,
-              initialLocation = new google.maps.LatLng(lat, long);
-
-             $scope.map = new google.maps.Map(document.getElementById("map"), initialLocation);
-
-              currentPosMarker = new google.maps.Marker({
-                position: initialLocation,
-                animation: google.maps.Animation.DROP,
-                optimized: false,
-                icon: 'https://image.flaticon.com/icons/svg/33/33622.svg',
-                map: $scope.map
-              });
-            })*/
-
-            var options = {
-                timeout: 1000,
-                enableHighAccuracy: true
-            };
-
-            $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-
-                var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-                var mapOptions = {
-                    center: latLng,
-                    zoom: 14,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-
-                $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                $scope.marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(41.311335, 69.2257173),
-                    map: $scope.map,
-                    title: 'Holas!'
-                }, function (err) {
-                    console.err(err);
-                });
-
-                $scope.markerr = new google.maps.Marker({
-                    position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-                    map: $scope.map,
-                    title: 'Holas!'
-                }, function (err) {
-                    console.err(err);
-                });
-            }, function (error) {
-                console.log("Could not get location");
-            });
-            $scope.mapModal.show();
-        };
-        $scope.closeModal = function () {
-            $scope.mapModal.hide();
-        };
-        // Cleanup the modal when we're done with it!
-        $scope.$on('$destroy', function () {
-            $scope.mapModal.remove();
-        });
-
         /*
          * if given group is the selected group, deselect it
          * else, select the given group
@@ -359,11 +305,12 @@ controllers
         }
     })
 
-    .controller('ClinicCtrl', function ($scope, $state, $stateParams, $ionicLoading, $rootScope, $http, $ionicModal, $cordovaGeolocation, $rootScope, $ionicPlatform) {
+    .controller('ClinicCtrl', function ($scope, $state, $stateParams, $ionicLoading, $rootScope, $http, $ionicModal, $rootScope, $ionicPlatform, $ionicScrollDelegate) {
 
         $scope.clinicLoading = true;
         $http.get("http://medappteka.uz/api/inst").success(function (data) {
             $scope.clinics = data.data;
+            console.log($scope.clinics);
             $scope.clinicLoading = false;
         }).error(function (err) {
             return err;
@@ -423,6 +370,7 @@ controllers
                 $scope.cliMapPresent = false;
                 $('.medicineMapView').removeClass('medicineMapPresent');
             } else {
+                $ionicScrollDelegate.scrollTop();
                 $scope.singlePosition = cli.lat + ',' + cli.lng;
                 $scope.cliMapPresent = true;
                 $('.medicineMapView').addClass('medicineMapPresent');
@@ -452,53 +400,8 @@ controllers
             }
         }, 100);
 
-
-
-        $ionicModal.fromTemplateUrl('templates/map.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function (modal) {
-            $scope.mapModal = modal;
-        });
-        $scope.openModal = function (lang, long) {
-            var options = {
-                timeout: 10000,
-                enableHighAccuracy: true
-            };
-
-            $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-
-                var latLng = new google.maps.LatLng(41.311335, 69.2257173);
-
-                var mapOptions = {
-                    center: latLng,
-                    zoom: 12,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-
-                $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                $scope.marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(41.311335, 69.2257173),
-                    map: $scope.map,
-                    title: 'Holas!'
-                }, function (err) {
-                    console.err(err);
-                });
-            }, function (error) {
-                console.log("Could not get location");
-            });
-            $scope.mapModal.show();
-        };
-        $scope.closeModal = function () {
-            $scope.mapModal.hide();
-        };
-        // Cleanup the modal when we're done with it!
-        $scope.$on('$destroy', function () {
-            $scope.mapModal.remove();
-        });
-
-
-    }).controller('CheckOut', function ($scope, $rootScope, orderCount, $state, $http) {
+ })
+     .controller('CheckOut', function ($scope, $rootScope, orderCount, $state, $http) {
 
         $scope.confirming = false;
         $scope.submitPayment = function () {
@@ -564,7 +467,7 @@ controllers
              //$(this).find('input').attr('checked', true);
          })*/
     })
-    .controller("CartCtrl", function ($http, $scope, $rootScope, orderCount, $filter, $ionicModal, $cordovaGeolocation, $ionicPlatform) {
+    .controller("CartCtrl", function ($http, $scope, $rootScope, orderCount, $filter, $ionicModal, $ionicPlatform, $ionicScrollDelegate) {
         if ($rootScope.cartData == undefined) {
             $http.get('data/cart.json').success(function (data, status) {
                 $rootScope.cartData = data;
@@ -607,6 +510,7 @@ controllers
                 $('.medicineMapView').removeClass('medicineMapPresent');
             } else {
                 $scope.medMapPresent = true;
+                $ionicScrollDelegate.scrollTop();
                 $('.medicineMapView').addClass('medicineMapPresent');
             }
         }
@@ -623,49 +527,5 @@ controllers
         $scope.callFromCart = function (cart) {
             window.location.href = 'tel:' + cart.phone;
         }
-
-        $ionicModal.fromTemplateUrl('templates/map.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function (modal) {
-            $scope.mapModal = modal;
-        });
-
-        $scope.openModal = function (lang, long) {
-            var options = {
-                timeout: 10000,
-                enableHighAccuracy: true
-            };
-
-            $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-
-                var latLng = new google.maps.LatLng(41.311335, 69.2257173);
-
-                var mapOptions = {
-                    center: latLng,
-                    zoom: 12,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-
-                $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                $scope.marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(41.311335, 69.2257173),
-                    map: $scope.map,
-                    title: 'Holas!'
-                }, function (err) {
-                    console.err(err);
-                });
-            }, function (error) {
-                console.log("Could not get location");
-            });
-            $scope.mapModal.show();
-        };
-        $scope.closeModal = function () {
-            $scope.mapModal.hide();
-        };
-        // Cleanup the modal when we're done with it!
-        $scope.$on('$destroy', function () {
-            $scope.mapModal.remove();
-        });
 
     });
