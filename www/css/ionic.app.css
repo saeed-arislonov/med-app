@@ -9903,6 +9903,11 @@ button,
 select {
   font-family: 'Gotham' !important; }
 
+.loading-container .loading {
+  padding: 15px; }
+  .loading-container .loading ion-spinner {
+    font-size: 30px; }
+
 .pull-right {
   float: right; }
 
@@ -10247,8 +10252,10 @@ ion-content {
   margin: 0;
   padding: 15px;
   border-bottom: 1px solid #e3e0e5;
-  display: inline-block;
-  padding-bottom: 10px; }
+  display: block;
+  padding-bottom: 10px;
+  clear: both;
+  min-height: 75px; }
   .ma-results .result-header-wrapper .ion-ios-search-strong {
     float: left;
     font-size: 24px; }
@@ -10383,6 +10390,10 @@ ion-content {
         bottom: 5px; }
     .ma-results .ma-results-wrapper .mr-bottom .button-light {
       border: 1px solid #e3e0e5; }
+
+.half-size {
+  float: left;
+  width: 50%; }
 
 .price-button {
   color: #000 !important; }
@@ -10710,28 +10721,33 @@ ion-content {
 
 .ma-menu {
   padding: 20px; }
+  .ma-menu .ma-menu-profile {
+    min-height: 80px; }
   .ma-menu img {
     border-radius: 50px;
-    float: left; }
+    float: left;
+    margin-bottom: 10px; }
+  .ma-menu .sign-out-btn {
+    margin-bottom: 15px;
+    font-weight: 300;
+    clear: both;
+    text-align: center; }
+    .ma-menu .sign-out-btn a {
+      color: #444;
+      font-size: 16px;
+      font-weight: 400; }
+    .ma-menu .sign-out-btn i {
+      font-size: 24px;
+      margin-top: 5px;
+      padding: 5px;
+      position: relative;
+      top: 5px;
+      color: #2da5e1; }
   .ma-menu .ma-profile-info {
     float: left;
     margin: 10px;
     margin-left: 20px;
     margin-bottom: 0px; }
-    .ma-menu .ma-profile-info .sign-out-btn {
-      margin-bottom: 15px;
-      font-weight: 300; }
-      .ma-menu .ma-profile-info .sign-out-btn a {
-        color: #444;
-        font-size: 16px;
-        font-weight: 400; }
-      .ma-menu .ma-profile-info .sign-out-btn i {
-        font-size: 24px;
-        margin-top: 5px;
-        padding: 5px;
-        position: relative;
-        top: 5px;
-        color: #2da5e1; }
     .ma-menu .ma-profile-info .profile-info {
       padding: 0;
       font-weight: 500;
@@ -10739,7 +10755,8 @@ ion-content {
     .ma-menu .ma-profile-info .profile-name {
       font-weight: bold;
       font-size: 20px;
-      margin-bottom: 0; }
+      margin-bottom: 0;
+      margin: 10px; }
   .ma-menu .ma-menu-list {
     clear: both;
     border-top: 1px solid #e3e0e5;
@@ -10759,6 +10776,28 @@ ion-content {
         font-weight: 600;
         position: relative;
         bottom: 2px; }
+
+.ionic_datepicker_popup .popup-body .selected_date_full,
+.ionic_datepicker_popup .popup-buttons button,
+.ionic_datepicker_popup .selected_date {
+  background-color: #2da5e1 !important; }
+
+.ma-profile-edit .item-input {
+  padding-left: 5px; }
+  .ma-profile-edit .item-input input {
+    padding-right: 5px !important; }
+
+.ma-profile-edit .apply-filter-button {
+  display: flex; }
+  .ma-profile-edit .apply-filter-button button {
+    flex-grow: 1;
+    margin: 5px;
+    height: 40px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: #2da5e1;
+    font-size: 16px; }
 
 .about-app {
   position: absolute;
@@ -10837,57 +10876,88 @@ ion-content {
     border: none;
     text-align: center;
     margin: 20px 0;
-    background-color: #28ba23; }
+    background-color: #28ba23;
+    position: relative; }
     .ma-login-page .login-button-wrapper .login-button a {
       color: #fff; }
+    .ma-login-page .login-button-wrapper .login-button i {
+      margin-right: 15px;
+      display: inline-block;
+      position: absolute;
+      right: 20px;
+      color: #fff;
+      font-size: 20px;
+      top: 12px; }
 
-.ma-firstTime-user {
-  background-color: #e3e0e5; }
-  .ma-firstTime-user .input-item {
-    margin-top: 0 !important; }
-  .ma-firstTime-user .ma-register-title {
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    margin: 10px; }
-  .ma-firstTime-user .list {
-    margin: 0 15px; }
-    .ma-firstTime-user .list input {
-      padding-left: 8px;
-      font-size: 18px; }
-  .ma-firstTime-user .getCode-button-wrapper {
-    margin: 10px;
+.errorClass {
+  border: 1px solid red !important;
+  border-radius: 5px; }
+
+.ma-firstTime-user .input-item {
+  margin-top: 0 !important; }
+
+.ma-firstTime-user .ma-register-title {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  margin: 10px; }
+
+.ma-firstTime-user .list {
+  margin: 0 15px; }
+  .ma-firstTime-user .list input {
+    padding-left: 8px;
+    font-size: 18px; }
+
+.ma-firstTime-user .getCode-button-wrapper {
+  margin: 10px;
+  border-radius: 5px;
+  text-align: center; }
+  .ma-firstTime-user .getCode-button-wrapper .login-button {
     border-radius: 5px;
-    text-align: center; }
-    .ma-firstTime-user .getCode-button-wrapper .login-button {
-      border-radius: 5px;
-      height: 45px;
-      width: 100%;
-      border: none;
-      text-align: center;
-      margin: 20px 0;
-      background-color: #28ba23; }
-      .ma-firstTime-user .getCode-button-wrapper .login-button a {
-        color: #fff;
-        font-size: 20px; }
-  .ma-firstTime-user .verification-pane {
-    position: fixed;
+    height: 45px;
     width: 100%;
-    z-index: 9999;
-    top: 100px;
-    left: 100%;
-    transition: .5s;
-    background-color: #e3e0e5; }
-    .ma-firstTime-user .verification-pane .item-input {
-      width: 105px;
-      margin: 0 auto;
-      padding: 5px; }
-    .ma-firstTime-user .verification-pane input {
-      font-size: 30px;
-      padding: 3px; }
-  .ma-firstTime-user .error-message {
-    color: red;
-    text-align: center; }
+    border: none;
+    text-align: center;
+    margin: 20px 0;
+    background-color: #28ba23;
+    position: relative; }
+    .ma-firstTime-user .getCode-button-wrapper .login-button a {
+      color: #fff;
+      font-size: 20px; }
+    .ma-firstTime-user .getCode-button-wrapper .login-button i {
+      margin-right: 15px;
+      display: inline-block;
+      position: absolute;
+      right: 20px;
+      color: #fff;
+      font-size: 20px; }
+
+.ma-firstTime-user .verification-pane {
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  top: 100px;
+  left: 100%;
+  transition: .5s;
+  background-color: #fff; }
+  .ma-firstTime-user .verification-pane .item-input {
+    width: 205px;
+    margin: 0 auto;
+    padding: 5px; }
+  .ma-firstTime-user .verification-pane input {
+    font-size: 30px;
+    padding: 3px; }
+  .ma-firstTime-user .verification-pane i {
+    margin-right: 15px;
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    color: #fff;
+    font-size: 20px; }
+
+.error-message {
+  color: red;
+  text-align: center; }
 
 .ma-register-page .list {
   margin: 10px; }
@@ -10896,3 +10966,7 @@ ion-content {
     width: 50%; }
   .ma-register-page .list .item-floating-label {
     margin-bottom: 0; }
+
+.ma-register-page .register-error {
+  border: 1px solid red;
+  z-index: 9999; }

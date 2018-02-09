@@ -41,6 +41,15 @@ select {
     font-family: 'Gotham' !important;
 }
 
+.loading-container {
+	.loading {
+		padding: 15px;
+		ion-spinner {
+			font-size: 30px;
+		}
+	}
+}
+
 $font-family-base: "Gotham";
 .pull-right {
     float: right;

@@ -1,0 +1,41 @@
+<div class="bar-stable">
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
+      <span class="back-text"><div class="default-title medicine-search-title"></div><span class="previous-title hide"></span></span></button>
+
+        <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="flaticon-filter"></i> 
+        </button>
+
+        <button class="button header-right-button buttons button-clear header-item"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{cartData.length}}</span></span>
+        </button>
+
+
+    </ion-header-bar>
+</div>
+<ion-view view-title="Search" animation="no-animation">
+    <ion-content class="no-header">
+        <div class="ma-results ma-my-cart">
+
+            <div class="ma-results-wrapper">
+                <div class="medicine-result">
+                    <div class="mr-top">
+                        <img width="60" height="60" class="product-photo" src="http://apteka999.uz/img_filiali/2.jpg" />
+                        <div class="product-info">
+                            <div>Medicine: <span>Kyupen </span></div>
+                            <div>Manufacturer: <span>Russia</span></div>
+                            <div>Address: <span>Buyuk Ipak Yuli, 12</span></div>
+                        </div>
+                    </div>
+                    <div class="mr-bottom">
+                        <ul>
+                            <li class="button button-light map-button" ng-click="openModal()"><i class="ion-ios-location-outline" style="bottom:3px"></i> Kарта</li>
+                            <li class="button button-energized price-button">
+                                13000 <span class="sum">сум</span></li>
+                            <li class="button button-positive call-button"><a><i class="ion-ios-telephone" style="bottom:3px"></i> More</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

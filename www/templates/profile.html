@@ -1,42 +1,87 @@
 <div class="bar-stable">
-    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
-        <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
+	<ion-header-bar class="bar-stable bar bar-header" align-title="center">
+		<button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
       <span class="back-text"><span class="default-title"></span><span class="previous-title hide"></span></span></button>
 
-        <div class="title title-center header-item">МЕНЮ</div>
+		<div class="title title-center header-item">МЕНЮ</div>
 
-        <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i>
+		<button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i>
             <span class="order-count"><span>2</span></span>
         </button>
 
 
-    </ion-header-bar>
+	</ion-header-bar>
 </div>
 
 <ion-view view-title="Browse">
-    <ion-content class="profile-content">
-        <div class="ma-menu">
-            <div class="ma-menu-profile">
-                <img width="70" height="70" src="http://www1.pictures.zimbio.com/gi/Odil+Akhmedov+South+Korea+v+Uzbekistan+AMTp5LiMw9Rl.jpg" />
-                <div class="ma-profile-info">
-                    <div class="profile-name">Одил Ахмедов</div>
-                    <div class="profile-info button button-light">34 лет, г. Ташкент </div>
-                    <div class="sign-out-btn">
-                         <a>Выйти из профиля <i class="flaticon-logout"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="ma-menu-list">
-               <ul>
-                   <li><a ui-sref="app.mainPage"><i class="flaticon-search"></i><span class="menu-li">Поиск лекарств</span></a></li>
-                    <li><a ui-sref="app.mainPage"><i class="flaticon-medical"></i><span class="menu-li">Медицинские учреждения</span></a></li>
-                    <li><a ui-sref="app.myCart"><i class="flaticon-list"></i><span class="menu-li">Мои покупки</span></a></li>
-                    <li><a><i class="flaticon-settings"></i><span class="menu-li">Настройки приложения</span></a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="about-app">
-            Информация о приложении
-        </div>
-    </ion-content>
+	<ion-content class="profile-content">
+		<!-- FILTER DIV-->
+		<div class="list list-inset ma-profile-edit" style="display: none;">
+			<form name="updateForm" novalidate>
+
+				<div class="list">
+					<label class="item item-input item-floating-label" ng-class="submitted && registerForm.name.$error.required ? 'register-error' : ''">
+                        <span class="input-label">Имя *</span>
+                        <input ng-model="userInfo.name" name="name" type="text" placeholder="Имя *" required>
+                    </label>
+					<label class="item item-input item-floating-label">
+                        <span class="input-label">Эл. адрес</span>
+                        <input ng-model="userInfo.email" type="text" placeholder="Эл. адрес">
+                    </label>
+					<label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.phone.$error.required ? 'register-error' : ''">
+                        <span class="input-label">Телефон *</span>
+                        <input ng-model="userInfo.phone" name="phone" required type="text" placeholder="Телефон *">
+                    </label>
+					<label class="item item-input item-floating-label half-size">
+                        <span class="input-label">Дата рождения</span>
+                        <input ng-click="openDatePicker()" ng-model="userInfo.birth_date" type="text" placeholder="Дата рождения">
+                    </label>
+					<label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.login.$error.required ? 'register-error' : ''">
+                        <span class="input-label">Логин *</span>
+                        <input ng-model="userInfo.login" required name="login" type="text" placeholder="Логин *">
+                    </label>
+					<label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.password.$error.required ? 'register-error' : ''">
+                        <span class="input-label">Пароль</span>
+                        <input ng-model="userInfo.password" name="password" type="text" placeholder="Пароль">
+                    </label>
+					<label class="item item-input item-floating-label" style="width:100%">
+                        <span class="input-label">Фото</span>
+                       <!-- <input ng-model="user.photo" type="file" placeholder="Photo">-->
+                         <input type="file" ngf-select ng-model="userInfo.photo" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">
+                    </label>
+				</div>
+				<div class="apply-filter-button">
+					<button ng-click="uploadPic(user.photo)">Применить</button>
+					<button ng-click="updateUser(updateForm.$valid, userInfo)">Применить изменения</button>
+					<button ng-click="toggleMenu()">Закрыть</button>
+				</div>
+			</form>
+		</div>
+		<div class="ma-menu">
+			<div class="ma-menu-profile">
+				<img width="70" height="70" src="http://www1.pictures.zimbio.com/gi/Odil+Akhmedov+South+Korea+v+Uzbekistan+AMTp5LiMw9Rl.jpg" />
+				<div class="ma-profile-info">
+					<div class="profile-name">{{userInfo.name}}</div>
+					<div class="profile-info button button-light" ng-if="userInfo.birth_date.length">{{currentAge}} лет</div>
+				</div>
+				<div class="sign-out-btn" ng-click="signOut()">
+					<a>Выйти из профиля <i class="flaticon-logout"></i></a>
+				</div>
+			</div>
+			<div class="ma-menu-list">
+				<ul>
+					<li><a ui-sref="app.mainPage"><i class="flaticon-search"></i><span class="menu-li">Поиск лекарств</span></a></li>
+					<li><a ui-sref="app.mainPage"><i class="flaticon-medical"></i><span class="menu-li">Медицинские учреждения</span></a></li>
+					<li><a ui-sref="app.myOrders"><i class="flaticon-list"></i><span class="menu-li">Мои покупки</span></a></li>
+					<li><a><i class="flaticon-settings"></i><span class="menu-li" ng-click="toggleEdit()">Настройки приложения</span></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="about-app">
+			Информация о приложении
+		</div>
+
+	</ion-content>
 </ion-view>

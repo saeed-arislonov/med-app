@@ -1,0 +1,90 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "ionic-datepicker-fork-ionic1",
+        "scope": null,
+        "escapedName": "ionic-datepicker-fork-ionic1",
+        "name": "ionic-datepicker-fork-ionic1",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\sarislonov\\Desktop\\medApp\\med-app-3\\med-app-2"
+    ]
+  ],
+  "_from": "ionic-datepicker-fork-ionic1@latest",
+  "_id": "ionic-datepicker-fork-ionic1@1.6.3",
+  "_inCache": true,
+  "_location": "/ionic-datepicker-fork-ionic1",
+  "_nodeVersion": "6.9.4",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/ionic-datepicker-fork-ionic1-1.6.3.tgz_1497957596822_0.33064744994044304"
+  },
+  "_npmUser": {
+    "name": "postb99",
+    "email": "postb99@gmail.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "ionic-datepicker-fork-ionic1",
+    "scope": null,
+    "escapedName": "ionic-datepicker-fork-ionic1",
+    "name": "ionic-datepicker-fork-ionic1",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ionic-datepicker-fork-ionic1/-/ionic-datepicker-fork-ionic1-1.6.3.tgz",
+  "_shasum": "aaed2080356b17e8522b04ba4790e11b26192f7c",
+  "_shrinkwrap": null,
+  "_spec": "ionic-datepicker-fork-ionic1",
+  "_where": "C:\\Users\\sarislonov\\Desktop\\medApp\\med-app-3\\med-app-2",
+  "author": {
+    "name": "https://github.com/rajeshwarpatlolla, rajeshwar.patlolla@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "OSAMES",
+      "url": "https://github.com/OSAMES/ionic-datepicker"
+    }
+  ],
+  "dependencies": {},
+  "description": "A date picker for ionic framework, but also week picker and month picker",
+  "devDependencies": {
+    "del": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "^3",
+    "gulp-concat": "*",
+    "gulp-css2js": "*",
+    "gulp-minify-html": "*",
+    "gulp-ng-html2js": "*",
+    "gulp-sass": "^2",
+    "gulp-uglify": "*"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "aaed2080356b17e8522b04ba4790e11b26192f7c",
+    "tarball": "https://registry.npmjs.org/ionic-datepicker-fork-ionic1/-/ionic-datepicker-fork-ionic1-1.6.3.tgz"
+  },
+  "gitHead": "319dfb34927856fead3588b1375d331bf553e868",
+  "license": "MIT",
+  "main": "./dist/ionic-datepicker.bundle.min.js",
+  "maintainers": [
+    {
+      "name": "postb99",
+      "email": "postb99@gmail.com"
+    }
+  ],
+  "name": "ionic-datepicker-fork-ionic1",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {},
+  "version": "1.6.3"
+}

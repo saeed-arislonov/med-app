@@ -1,154 +1,188 @@
 .profile-content>div {
-    height: 100%;
+	height: 100%;
 }
 
 .ma-menu {
-    padding: 20px;
-    img {
-        border-radius: 50px;
-        float: left;
-    }
-    .ma-profile-info {
-        float: left;
-        margin: 10px;
-        margin-left: 20px;
-        margin-bottom: 0px;
-        .sign-out-btn {
-            // margin-top: -20px;
-            margin-bottom: 15px;
-            font-weight: 300;
-            a {
-                color: #444;
-                font-size: 16px;
-                font-weight: 400;
-            }
-            i {
-                font-size: 24px;
-                margin-top: 5px;
-                padding: 5px;
-                position: relative;
-                top: 5px;
-                color: $primary-blue;
-            }
-        }
-        .profile-info {
-            padding: 0;
-            font-weight: 500;
-            font-size: 17px;
-        }
-        .profile-name {
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 0;
-        }
-        .fa-sign-out {}
-    }
-    .ma-menu-list {
-        clear: both;
-        border-top: 1px solid $primary-grey;
-        text-align: left;
-        padding: 15px;
-        li {
-            padding: 15px 0;
-            a {
-                text-decoration: none;
-            }
-            i {
-                font-size: 24px;
-                //float: left;
-                color: $primary-blue;
-            }
-            .menu-li {
-                font-size: 18px;
-                color: #444;
-                margin-left: 15px;
-                font-weight: 600;
-                position: relative;
-                bottom: 2px;
-            }
-        }
-    }
+	padding: 20px;
+	.ma-menu-profile {
+		min-height: 80px;
+	}
+	img {
+		border-radius: 50px;
+		float: left;
+		margin-bottom: 10px;
+	}
+	.sign-out-btn {
+		// margin-top: -20px;
+		margin-bottom: 15px;
+		font-weight: 300;
+		clear: both;
+		text-align: center;
+		a {
+			color: #444;
+			font-size: 16px;
+			font-weight: 400;
+		}
+		i {
+			font-size: 24px;
+			margin-top: 5px;
+			padding: 5px;
+			position: relative;
+			top: 5px;
+			color: $primary-blue;
+		}
+	}
+	.ma-profile-info {
+		float: left;
+		margin: 10px;
+		margin-left: 20px;
+		margin-bottom: 0px;
+		.profile-info {
+			padding: 0;
+			font-weight: 500;
+			font-size: 17px;
+		}
+		.profile-name {
+			font-weight: bold;
+			font-size: 20px;
+			margin-bottom: 0;
+			margin: 10px;
+		}
+		.fa-sign-out {}
+	}
+	.ma-menu-list {
+		clear: both;
+		border-top: 1px solid $primary-grey;
+		text-align: left;
+		padding: 15px;
+		li {
+			padding: 15px 0;
+			a {
+				text-decoration: none;
+			}
+			i {
+				font-size: 24px;
+				//float: left;
+				color: $primary-blue;
+			}
+			.menu-li {
+				font-size: 18px;
+				color: #444;
+				margin-left: 15px;
+				font-weight: 600;
+				position: relative;
+				bottom: 2px;
+			}
+		}
+	}
+}
+
+.ionic_datepicker_popup .popup-body .selected_date_full,
+.ionic_datepicker_popup .popup-buttons button,
+.ionic_datepicker_popup .selected_date {
+	background-color: $primary-blue !important;
+}
+
+.ma-profile-edit {
+	.item-input {
+		padding-left: 5px;
+		input {
+			padding-right: 5px !important;
+		}
+	}
+	.apply-filter-button {
+		display: flex;
+		button {
+			flex-grow: 1;
+			margin: 5px;
+			height: 40px;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			background-color: $primary-blue;
+			font-size: 16px;
+		}
+	}
 }
 
 .about-app {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 12px;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 12px;
 }
 
 .order-accepted {
-    text-align: center;
-    font-weight: 500;
-    margin-top: 30px;
-    font-size: 16px;
-    .order-status {
-        font-weight: 600;
-    }
-    .order-status-icon {
-        height: 120px;
-        position: relative;
-        margin-top: 100px;
-        i {
-            font-size: 140px;
-            display: inline-block;
-            position: relative;
-            color: #27ae60;
-        }
-    }
+	text-align: center;
+	font-weight: 500;
+	margin-top: 30px;
+	font-size: 16px;
+	.order-status {
+		font-weight: 600;
+	}
+	.order-status-icon {
+		height: 120px;
+		position: relative;
+		margin-top: 100px;
+		i {
+			font-size: 140px;
+			display: inline-block;
+			position: relative;
+			color: #27ae60;
+		}
+	}
 }
 
 .ma-my-cart {
-    .price-button {
-        text-align: center !important;
-    }
+	.price-button {
+		text-align: center !important;
+	}
 }
 
 .single-clinic {
-    margin-bottom: 15px;
-    .single-clinic-wrapper {
-        border: .1px solid #e3e0e5;
-        margin-top: 5px;
-        border-radius: 3px;
-    }
-    .singleClinic-result {
-        background-color: #f7f7f7;
-        top: -10px;
-        position: relative;
-        padding: 15px;
-        .singleClinic-photo {
-            float: left;
-            margin-right: 20px;
-        }
-    }
-    .singleClinic-info {
-        padding: 3px;
-    }
-    .singleClinic-about {
-        padding: 15px;
-    }
-    .see-all-contacts {
-        text-align: center;
-        margin-bottom: 15px;
-    }
-    .first-button {
-        background-color: $primary-orange;
-        padding: 3px;
-        margin-left: 0 !important;
-        border-bottom-left-radius: 5px;
-    }
-    .second-button {
-        height: 26px;
-        transform: translateY(42%);
-        position: relative;
-        a {
-            color: #fff;
-            text-decoration: none;
-        }
-    }
-    .mr-bottom {
-        margin: 0 !important;
-    }
+	margin-bottom: 15px;
+	.single-clinic-wrapper {
+		border: .1px solid #e3e0e5;
+		margin-top: 5px;
+		border-radius: 3px;
+	}
+	.singleClinic-result {
+		background-color: #f7f7f7;
+		top: -10px;
+		position: relative;
+		padding: 15px;
+		.singleClinic-photo {
+			float: left;
+			margin-right: 20px;
+		}
+	}
+	.singleClinic-info {
+		padding: 3px;
+	}
+	.singleClinic-about {
+		padding: 15px;
+	}
+	.see-all-contacts {
+		text-align: center;
+		margin-bottom: 15px;
+	}
+	.first-button {
+		background-color: $primary-orange;
+		padding: 3px;
+		margin-left: 0 !important;
+		border-bottom-left-radius: 5px;
+	}
+	.second-button {
+		height: 26px;
+		transform: translateY(42%);
+		position: relative;
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+	}
+	.mr-bottom {
+		margin: 0 !important;
+	}
 }
-

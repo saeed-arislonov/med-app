@@ -1,52 +1,65 @@
+<div class="bar-stable">
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <div class="buttons buttons-left header-item">
+        </div>
+        <div class="title title-center header-item"> Регистрация
+        </div>
+    </ion-header-bar>
+</div>
 <ion-view view-title="Поисковик лекарств" animation="no-animation" class="ma-register-page">
     <ion-content>
         <div class="ma-main-title">
             <img src="img/logo_medd.png">
         </div>
 
-        <form>
+        <form name="registerForm" novalidate>
 
             <ion-toolbar>
 
                 <div class="list">
-                    <label class="item item-input item-floating-label half-size">
-                        <span class="input-label">First Name</span>
-                        <input ng-model="user.name" type="text" placeholder="First Name">
+                    <label class="item item-input item-floating-label half-size" 
+						   ng-class="submitted && registerForm.name.$error.required ? 'register-error' : ''">
+                        <span class="input-label">First Name *</span>
+                        <input ng-model="user.name" name="name" required type="text" placeholder="First Name *">
                     </label>
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">Phone</span>
-                        <input ng-model="user.phone" type="text" placeholder="Phone">
+                    <label class="item item-input item-floating-label"
+						   ng-class="submitted && registerForm.phone.$error.required ? 'register-error' : ''">
+                        <span class="input-label" required>Phone *</span>
+                        <input ng-model="user.phone" name="phone" type="text" placeholder="Phone *">
                     </label>
                     <label class="item item-input item-floating-label half-size">
                         <span class="input-label">Birth Date</span>
-                        <input ng-model="user.birth_date" type="text" placeholder="Birth Date">
+                        <input ng-model="user.birth_date" ng-click="openDatePicker()" type="text" placeholder="Birth Date" >
                     </label>
                     <label class="item item-input item-floating-label">
                         <span class="input-label">Email</span>
                         <input ng-model="user.email" type="text" placeholder="Email">
                     </label>
-                    <label class="item item-input item-floating-label half-size">
-                        <span class="input-label">Login</span>
-                        <input ng-model="user.login" type="text" placeholder="Login">
+                    <label class="item item-input item-floating-label half-size"
+						   ng-class="submitted && registerForm.login.$error.required ? 'register-error' : ''">
+                        <span class="input-label">Login *</span>
+                        <input ng-model="user.login" name="login" required type="text" placeholder="Login *">
                     </label>
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">Password</span>
-                        <input ng-model="user.password" type="text" placeholder="Password">
+                    <label class="item item-input item-floating-label"
+						   ng-class="submitted && registerForm.password.$error.required ? 'register-error' : ''">
+                        <span class="input-label">Password *</span>
+                        <input ng-model="user.password" name="password" required type="text" placeholder="Password *">
                     </label>
                     <label class="item item-input item-floating-label" style="width:100%">
                         <span class="input-label">Photo</span>
                        <!-- <input ng-model="user.photo" type="file" placeholder="Photo">-->
-                        <input type="file" ngf-select ng-model="user.photo" name="file"    
-                                accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+                        <input type="file" ng-model="user.photo" name="file"   
+                                  />
                     </label>
-                </div>{{user.photo}}
+					
+                </div>
                 <!--<ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
         {{playlist.title}}
       </ion-item>
     </ion-list> -->
                 <div class="login-button-wrapper">
-                    <button class="login-button" ng-click="createUser(user.photo)">
+                    <button class="login-button" ng-click="createUser(registerForm.$valid)">
                         <a class="login-button-a">Войти</a>
                     </button>
                 </div>

@@ -1,3 +1,14 @@
+<div class="bar-stable">
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <button ui-sref="login" class="button back-button buttons button-clear header-item">
+            <i class="flaticon-left-arrow"></i> 
+            <span class="back-text">
+                <div class="default-title medicine-search-title">Вернуться в логин</div>
+                <span class="previous-title hide"></span>
+            </span>
+        </button>
+    </ion-header-bar>
+</div>
 <ion-view view-title="Поисковик лекарств" animation="no-animation" class="ma-firstTime-user">
     <ion-content>
 
@@ -13,7 +24,7 @@
                         <div class="ma-register-title">Введите номер телефона</div>
                         <div class="list input-item">
                             <label class="item item-input">
-                                <span>+998 </span><input name="phoneNum" id="phoneNum" type="number" ng-minlength="9" ng-maxlength="9"  ng-model="user.phone" required/>
+                                <span>+998 </span><input name="phoneNum" id="phoneNum" type="number" ng-minlength="9" ng-maxlength="9" placeholder="97 7777777"  ng-model="user.phone" required/>
                             </label>
                         </div>
                         <div ng-show="phoneForm.phoneNum.$error.minlength && phoneForm.phoneNum.$touched || inputEmpty" class="error-message">Номер телефона недействителен.</div>
@@ -21,27 +32,33 @@
                     <div class="getCode-button-wrapper">
                         <button type="submit" class="login-button" ng-click="submitNumber(phoneForm.$valid)">
                         <a class="login-button-a">Получить код</a>
+                        <i class="fa fa-spinner fa-spin" ng-if="sendingCode"></i>
                     </button>
                     </div>
                 </div>
             </form>
 
             <div class="ma-registers verification-pane">
+                <div style="text-align:center">{{verification_pass}}</div>
                 <form name="verifyForm">
                     <div class="enter-verification">
                         <div class="ma-register-title">Введите полученный код</div>
                         <div class="list input-item">
                             <label class="item item-input">
-                                <input type="text" ng-model="user.vcode" name="vcode" maxlength="4" required/>
+                                <input type="text" ng-model="user.vcode" name="vcode" maxlength="8" required/>
                             </label>
                         </div>
                         <div ng-show="submitted && user.vcode != verification_pass" class="error-message">Код проверки не соответствует
                         </div>
+                        <div ng-show="userExists" class="error-message">Пользователь уже существует. Попробуйте <a ng-click="backToLogin()">войти</a> в систему</div>
+                        
                     </div>
                     <div class="getCode-button-wrapper">
                         <button type="submit" class="login-button" ng-click="submitVerification(verification_code)">
                         <a class="login-button-a">Подтверждать</a>
+                        <i class="fa fa-spinner fa-spin" ng-if="confirmingCode"></i>
                     </button>
+                         <a ng-click="reSendCode()">Не получили код? Попробуйте еще раз.</a>
                     </div>
                 </form>
             </div>
