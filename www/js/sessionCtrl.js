@@ -114,7 +114,7 @@ controllers
 			}
 		}
 	})
-	.controller('LoginCtrl', function ($scope, $http, $state, Auth, $ionicLoading) {
+	.controller('LoginCtrl', function ($scope, $http, $state, Auth, $ionicLoading, $rootScope) {
 
 		$state.go($state.current, {}, {
 			reload: true
