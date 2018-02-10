@@ -10,14 +10,7 @@ controllers
 			localStorage.removeItem("registerInfo");
 			if (theForm) {
 				// $('.verification-pane').css('left', '0');
-				Object.toparams = function ObjecttoParams(obj) {
-					var p = [];
-					for (var key in obj) {
-						p.push(key + '=' + encodeURIComponent(obj[key]));
-					}
-					return p.join('&');
-				};
-
+		
 				var user_phone = '998' + $scope.user.phone;
 				Auth.userInfo.phone = user_phone;
 
@@ -73,13 +66,6 @@ controllers
 					user_id: sessionService.get('userId'),
 					phone_code: sessionService.get('vcode'),
 				}
-				Object.toparams = function ObjecttoParams(obj) {
-					var p = [];
-					for (var key in obj) {
-						p.push(key + '=' + encodeURIComponent(obj[key]));
-					}
-					return p.join('&');
-				};
 
 				$http({
 					method: 'POST',
@@ -132,14 +118,6 @@ controllers
 				$ionicLoading.show({
 					template: '<ion-spinner></ion-spinner>'
 				});
-				//console.log("login form is VALID");
-				Object.toparams = function ObjecttoParams(obj) {
-					var p = [];
-					for (var key in obj) {
-						p.push(key + '=' + encodeURIComponent(obj[key]));
-					}
-					return p.join('&');
-				};
 
 				$http({
 					method: 'POST',
@@ -228,14 +206,6 @@ controllers
 				$ionicLoading.show({
 					template: '<ion-spinner></ion-spinner>'
 				});
-
-				Object.toparams = function ObjecttoParams(obj) {
-					var p = [];
-					for (var key in obj) {
-						p.push(key + '=' + encodeURIComponent(obj[key]));
-					}
-					return p.join('&');
-				};
 
 				$http({
 					method: 'POST',

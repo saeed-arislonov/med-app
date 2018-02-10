@@ -86,6 +86,8 @@
             </div>
             <!-- END OF FILTER DIV-->
 
+			<div ng-click="addPostCart()">ADD</div>
+			
             <!--  MAP DIV TO SHOW THE PHARMACY LOCATION  -->
             <div class="medicineMapView" style="height:100%">
                 <ng-map ng-if="singleView" default-style="false" center="{{singlePosition}}" zoom="11" style="height:100% !important; width:100%;">
@@ -138,12 +140,12 @@
             <!-- END OF MAP SHOW   -->
 
             <div class="ma-results-wrapper">
-                <div class="medicine-result" ng-repeat="med in medicines">
+                <div class="medicine-result" ng-repeat="med in pharmacies">
                     <input type="text" style="display:none" ng-model="$index">
                     <div class="mr-top">
-                        <img width="60" height="60" class="product-photo" src="{{med.ph_image}}" />
+                        <img width="60" height="60" class="product-photo" ng-src="{{'http://medappteka.uz'+med.photo}}" />
                         <div class="product-info">
-                            <div>Производитель: <span>{{med.manufacturer}} </span></div>
+                            <div>Производитель: <span>{{selectedMedicine.manufacturer}} </span></div>
                             <div>Адрес: <span>{{med.address}} </span></div>
                             <div>Ориентир: <span>{{med.orientir}}</span></div>
                         </div>

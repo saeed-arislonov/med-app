@@ -64,7 +64,10 @@
                                 </div>
 
                                 <div ng-if="isActive('clinic')" class="what-to-search">
-                                    <input type="text" placeholder="{{productPlaceholder}}" required ng-model="selectedClinic" ng-blur="setClinic(selectedClinic)" ng-required="isActive('clinic')" /> <i class="ion-android-close" ng-click="selectedClinic='';setClinic('')"></i>
+                                    <input type="text" placeholder="{{productPlaceholder}}" required ng-model="selectedClinic" 
+									uib-typeahead="cli as cli.name for cli in specializations | filter:$viewValue" 
+									typeahead-focus-first="true" typeahead-on-select="setClinic(selectedClinic);"	   
+									ng-required="isActive('clinic')" 	   /> <i class="ion-android-close" ng-click="selectedClinic='';setClinic('')"></i>
                                 </div>
                             </div>
 

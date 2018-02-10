@@ -1,15 +1,93 @@
 var controllers = angular.module('starter.controllers', []);
 
+Object.toparams = function ObjecttoParams(obj) {
+	var p = [];
+	for (var key in obj) {
+		p.push(key + '=' + encodeURIComponent(obj[key]));
+	}
+	return p.join('&');
+};
+
 controllers
 	.controller('AppCtrl', function ($scope, $ionicModal, $timeout, $rootScope) {
 
 		$rootScope.savedLocalStorage = localStorage.getItem('registerInfoCompleted');
 		$rootScope.userInfo = JSON.parse($rootScope.savedLocalStorage);
-	console.log($rootScope.userInfo);
+		console.log($rootScope.userInfo);
+
+
+
+
+		$rootScope.savedCart = localStorage.getItem('shoppingCart');
+		$rootScope.shoppingCart = (localStorage.getItem('shoppingCart') !== null) ? JSON.parse($rootScope.savedCart) : [];
+		localStorage.setItem('shoppingCart', JSON.stringify($rootScope.shoppingCart));
+
+
+		$rootScope.addToCart = function (index, med) {
+			med.added_to_cart = true;
+			$rootScope.shoppingCart.push({
+				"id": index + 1,
+				"med_name": med.med_name,
+				"manufacturer": med.manufacturer,
+				"pharmacy": med.ph_name,
+				"ph_image": med.ph_image,
+				"address": med.address,
+				"phone": med.ph_phone,
+				"price": med.price,
+				"cart_count": "1"
+			});
+
+			$ionicLoading.show({
+				template: 'Добавлено в корзину',
+				noBackdrop: true,
+				duration: 1000
+			});
+			localStorage.setItem('shoppingCart', JSON.stringify($rootScope.shoppingCart));
+		};
+
+
+
+		/*$rootScope.addToCart = function () {
+			$rootScope.shoppingCart.push();
+			$scope.todoText = ''; //clear the input after adding
+			localStorage.setItem('shoppingCart', JSON.stringify($rootScope.shoppingCart));
+		};*/
+
+		$rootScope.cartCount = function () {
+			var count = 0;
+			angular.forEach($scope.shoppingCart, function (todo) {
+				count += todo.done ? 0 : 1;
+			});
+			return count;
+		};
+
+
+
+		$rootScope.removeFromCart = function (index, med) {
+			//med.added_to_cart = false;
+			$rootScope.cartData = $rootScope.cartData.filter(function (item) {
+				return item.id !== parseInt(med.id);
+			});
+			$ionicLoading.show({
+				template: 'Удалено из корзины',
+				noBackdrop: true,
+				duration: 1000
+			});
+		}
+
+		$rootScope.archive = function () {
+			var oldTodos = $rootScope.shoppingCart;
+			$rootScope.shoppingCart = [];
+			angular.forEach(oldTodos, function (todo) {
+				if (!todo.done)
+					$rootScope.shoppingCart.push(todo);
+			});
+			localStorage.setItem('shoppingCart', JSON.stringify($rootScope.shoppingCart));
+		};
 
 	})
 
-	.controller('MainPageCtrl', function ($scope, $http, $rootScope, $state) {
+	.controller('MainPageCtrl', function ($scope, $http, $rootScope, $state, $ionicLoading) {
 
 		var medicine_url = 'http://medappteka.uz/api/medicine'
 		$http({
@@ -18,6 +96,17 @@ controllers
 		}).success(function (data) {
 			$scope.medicines = data.data;
 			console.log($scope.medicines)
+		}).error(function (err) {
+			return err;
+		});
+	
+		var specialization_url = 'http://medappteka.uz/api/inst/specializations';
+		$http({
+			method: 'GET',
+			url: specialization_url
+		}).success(function (data) {
+			$scope.specializations = data.data;
+			console.log($scope.specializations)
 		}).error(function (err) {
 			return err;
 		});
@@ -53,63 +142,49 @@ controllers
 		};
 
 		$scope.submitSearch = function () {
+			console.log('CLICKKCKC');
+			console.log($rootScope.selectedMedicine)
+			$ionicLoading.show({
+				template: '<ion-spinner></ion-spinner>'
+			});
 			if ($scope.active == 'medicine') {
-				$state.go('app.medicines');
+					console.log('active medicine');
+
+					$http({
+						method: 'POST',
+						url: 'http://medappteka.uz/api/medicine/search',
+						data: Object.toparams({query : $rootScope.selectedMedicine.name}),
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded'
+						}
+					}).success(function (data) {
+						console.log(data)
+						$rootScope.pharmacies = data.data;
+						$ionicLoading.hide();
+						$state.go('app.medicines');
+					}).error(function (err, a, b, c) {
+						console.log(err, a, b, c);
+						$ionicLoading.hide();
+					});
 			} else {
-				$state.go('app.clinics');
+				$http({
+						method: 'POST',
+						url: 'http://medappteka.uz/api/inst/search-by-spec',
+						data: Object.toparams({query : $rootScope.selectedClinic.name}),
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded'
+						}
+					}).success(function (data) {
+						console.log(data)
+						$rootScope.clinics = data.data;
+						$ionicLoading.hide();
+						$state.go('app.clinics');
+					}).error(function (err, a, b, c) {
+						console.log(err, a, b, c);
+						$ionicLoading.hide();
+					});
 			}
 		}
-
-
-
-
-		$scope.addToCart = function (index, med) {
-			med.added_to_cart = true;
-			$rootScope.cartData.push({
-				"id": index + 1,
-				"med_name": med.med_name,
-				"manufacturer": med.manufacturer,
-				"pharmacy": med.ph_name,
-				"ph_image": med.ph_image,
-				"address": med.address,
-				"phone": med.ph_phone,
-				"price": med.price,
-				"cart_count": "1"
-			});
-
-			$ionicLoading.show({
-				template: 'Добавлено в корзину',
-				noBackdrop: true,
-				duration: 1000
-			});
-		};
-
-		$scope.removeFromCart = function (index, med) {
-			med.added_to_cart = false;
-			$rootScope.cartData = $rootScope.cartData.filter(function (item) {
-				return item.id !== parseInt(med.id);
-			});
-			$ionicLoading.show({
-				template: 'Удалено из корзины',
-				noBackdrop: true,
-				duration: 1000
-			});
-		}
-
-		var handleSuccess = function (data, status) {
-
-		}
-
-		$http({
-			method: 'POST',
-			url: 'http://medappteka.uz/api/cart'
-		}).success(function (data) {
-			console.log(data)
-			$rootScope.cartData = data;
-			$rootScope.cartCount = data.length;
-		}).error(function (err, a, b, c) {
-			console.log(err, a, b, c)
-		});
 
 		//$http.get('http://medappteka.uz/api/cart').success(handleSuccess);
 
@@ -117,11 +192,11 @@ controllers
 
 	.controller('ResultCtrl', function ($scope, $stateParams, $ionicLoading, $rootScope, $http, $ionicPopover, $ionicModal, orderCount, $filter, NgMap, $ionicPlatform, $ionicScrollDelegate, $cordovaGeolocation) {
 
-	
-	/*$ionicLoading.show({
+
+		/*$ionicLoading.show({
       template: 'загрузка...'
     });*/
-	
+
 		var options = {
 			enableHighAccuracy: true
 		};
@@ -138,7 +213,7 @@ controllers
 						var lat = position.coords.latitude
 						var long = position.coords.longitude
 						console.log(position)
-					$scope.currentPosition = new google.maps.LatLng(lat, long);
+						$scope.currentPosition = new google.maps.LatLng(lat, long);
 					}, function (err) {
 						// error
 					});
@@ -195,60 +270,6 @@ controllers
 			window.location.href = 'tel:' + med.ph_phone;
 		}
 
-		var medicine_id;
-		$scope.positions = [];
-		$http.get("data/pharmacies.json" /*+ $rootScope.selectedMedicine*/ ).success(function (data) {
-			$scope.medicines = data;
-			$scope.medicines.forEach(function (p) {
-				p.med_name = $rootScope.selectedMedicine.name;
-				p.added_to_cart = false;
-			})
-		}).error(function (err) {
-			return err;
-		});
-
-		/*  var vm=this;
-		 vm.data =[
-		   {foo:1, bar:1},
-		   {foo:2, bar:2},
-		   {foo:3, bar:3},
-		   {foo:4, bar:4},
-		   {foo:5, bar:5},
-		   {foo:6, bar:6},
-		   {foo:7, bar:7}
-		 ];
-		 vm.positions =[
-		   {pos:[40.71, -74.21]},
-		   {pos:[40.72, -74.20]},
-		   {pos:[40.73, -74.19]},
-		   {pos:[40.74, -74.18]},
-		   {pos:[40.75, -74.17]},
-		   {pos:[40.76, -74.16]},
-		   {pos:[40.77, -74.15]}
-		 ];
-		 vm.showData = function() {
-		   alert(this.data.foo);
-		 }*/
-
-
-		$ionicModal.fromTemplateUrl('templates/map.html', {
-			scope: $scope,
-			animation: 'slide-in-up'
-		}).then(function (modal) {
-			$scope.mapModal = modal;
-		});
-
-		/*
-		 * if given group is the selected group, deselect it
-		 * else, select the given group
-		 */
-		$scope.togglePharmacies = function () {
-			if ($scope.isGroupShown()) {
-				$scope.shownGroup = null;
-			} else {
-				$scope.shownGroup = group;
-			}
-		};
 
 		/* ========  Display Filters ============*/
 
@@ -304,18 +325,20 @@ controllers
 			$('.ma-filters').slideUp();
 			$('.ma-results-wrapper').fadeIn(100);
 		}
+
+
 	})
 
 	.controller('ClinicCtrl', function ($scope, $state, $stateParams, $ionicLoading, $rootScope, $http, $ionicModal, $rootScope, $ionicPlatform, $ionicScrollDelegate) {
 
-		$scope.clinicLoading = true;
+		/*$scope.clinicLoading = true;
 		$http.get("http://medappteka.uz/api/inst").success(function (data) {
 			$scope.clinics = data.data;
 			console.log($scope.clinics);
 			$scope.clinicLoading = false;
 		}).error(function (err) {
 			return err;
-		});
+		});*/
 
 		$scope.go = function (param) {
 			$state.go('app.singleClinic', {
