@@ -164,8 +164,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives',
 								Auth.logout();
 								$state.go('login');
 							}
+                            
+                            console.log($rootScope.userInfo);
 
-							if ($rootScope.userInfo.birth_date == 'null') {
+							if ($rootScope.userInfo.birth_date == 'null' || $rootScope.userInfo.birth_date == null) {
 								$rootScope.userInfo.birth_date = ''
 							} else {
 
