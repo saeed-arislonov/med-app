@@ -26,17 +26,14 @@
                         <i ng-class="showInfo ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-detail">
                         <div class="list">
-                            <label class="item item-input">
-                                <input type="text" placeholder="First Name" value="Anthony">
+                            <label class="item item-input" style="width:100%">
+                                <input type="text" placeholder="First Name" value="{{userInfo.name}}">
                             </label>
                             <label class="item item-input">
-                                <input type="text" placeholder="Last Name" value="Bowen">
+                                <input type="text" placeholder="Phone Number" value="{{userInfo.phone}}">
                             </label>
                             <label class="item item-input">
-                                <input type="text" placeholder="Phone Number" value="+998977777777">
-                            </label>
-                            <label class="item item-input">
-                                <input type="text" placeholder="Email" value="anowen@gmail.com">
+                                <input type="text" placeholder="Email" value="{{userInfo.email}}">
                             </label>
                         </div>
                     </div>
@@ -60,13 +57,13 @@
                     <div class="buyer-info-detail-delivery">
                         <ion-list class="del-checkboxes item-input">
                             <label class="del-radio-wrapper" for="f1">
-                                <div class="delivery-radio"><input type="radio" id="f1" name="f1" ng-model="filter" /></div>Обычная доставка в течении дня <span class="bolder-text"> 5.000 sum</span>
+                                <div class="delivery-radio"><input type="radio" id="f1" name="f1" value="1" ng-value="TRUE" ng-model="filter" /></div>Обычная доставка в течении дня <span class="bolder-text"> 5.000 sum</span>
                             </label>
                             <label class="del-radio-wrapper" for="f2">
-                                <div class="delivery-radio"><input type="radio" id="f2" name="f1" ng-model="filter" /></div>Быстрая доставка в течении часа <span class="bolder-text"> 15.000 sum</span>
+                                <div class="delivery-radio"><input type="radio" id="f2" name="f1" value="2" ng-model="filter" /></div>Быстрая доставка в течении часа <span class="bolder-text"> 15.000 sum</span>
                             </label>
                             <label class="del-radio-wrapper" for="f3">
-                                <div class="delivery-radio"><input type="radio" id="f3" name="f1" ng-model="filter" /></div>Самовызов. Бесплатно
+                                <div class="delivery-radio"><input type="radio" id="f3" name="f1" value="3" ng-model="filter" /></div>Самовызов. Бесплатно
                             </label>
                         </ion-list>
                     </div>
@@ -78,7 +75,7 @@
                     <div class="buyer-info-payment">
                         <ion-list class="del-checkboxes item-input">
                             <label class="del-radio-wrapper" for="p1">
-                                <span class="delivery-radio"><input type="radio" id="p1" name="p1" ng-model="filterPayment" /></span>
+                                <span class="delivery-radio"><input type="radio" id="p1" name="p1" value="1" ng-model="filterPayment" /></span>
                                 Онлайн оплата по UzCard
                             </label>
                             <div class="debit-card">
@@ -95,11 +92,11 @@
                                 </div>
                             </div>
                             <label class="del-radio-wrapper" for="p2">
-                                <span class="delivery-radio"><input type="radio" id="p2" name="p1" ng-model="filterPayment" /></span>
+                                <span class="delivery-radio"><input type="radio" id="p2" name="p1" value="2" ng-value="TRUE" ng-model="filterPayment" /></span>
                                 Оплата наличными при получении
                             </label>
                             <label class="del-radio-wrapper" for="p3">
-                                <span class="delivery-radio"><input type="radio" id="p3" name="p1" ng-model="filterPayment" /></span>
+                                <span class="delivery-radio"><input type="radio" id="p3" name="p1" value="3" ng-model="filterPayment" /></span>
                                 Оплата при получении картой
                             </label>
                         </ion-list>

@@ -74,8 +74,8 @@ ion-content {
         }
     }
     .order-count {
-        height: 15px;
-        width: 15px;
+        height: 18px;
+        width: 18px;
         position: absolute;
         font-size: 14px;
         color: #000;
@@ -115,7 +115,7 @@ ion-content {
         top: 5px;
         right: 45px;
         bottom: 5px;
-        padding: 11px;
+        padding: 11px 7px;
         i {
             color: #fff;
             font-size: 24px;
@@ -148,6 +148,10 @@ ion-content {
     }
 }
 
+input {
+    line-height: 100% !important;
+}
+
 .ma-search-where {
     margin: 10px;
     margin-top: -10px;
@@ -160,7 +164,8 @@ ion-content {
             color: rgb(48, 48, 48);
             padding-top: 5px;
             margin-top: 8px; //font-family: "Gotham Pro";
-            padding-top: 5px;
+            padding-top: 0;
+            height: 38px !important;
         }
         .item-input.item {
             border: none;
@@ -169,6 +174,7 @@ ion-content {
             padding-top: 0;
             padding-bottom: 0;
             padding-left: 5px;
+            height: 40px !important;
         }
     }
     .item-input .checkbox input:before,
@@ -221,7 +227,7 @@ ion-content {
         font-size: 15px;
         line-height: 21px;
         color: rgb(48, 48, 48);
-        padding-top: 5px;
+        padding-top: 12px;
         //font-family: "Gotham Pro";
     }
     legend {

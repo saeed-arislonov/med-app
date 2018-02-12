@@ -9925,8 +9925,8 @@ ion-content {
     .bar-header.bar-stable .filterOpen i {
       color: #2da5e1 !important; }
   .bar-header.bar-stable .order-count {
-    height: 15px;
-    width: 15px;
+    height: 18px;
+    width: 18px;
     position: absolute;
     font-size: 14px;
     color: #000;
@@ -9959,7 +9959,7 @@ ion-content {
     top: 5px;
     right: 45px;
     bottom: 5px;
-    padding: 11px; }
+    padding: 11px 7px; }
     .bar-header.bar-stable .header-right-button-1 i {
       color: #fff;
       font-size: 24px;
@@ -9985,6 +9985,9 @@ ion-content {
   .ma-main-title img {
     width: 80%; }
 
+input {
+  line-height: 100% !important; }
+
 .ma-search-where {
   margin: 10px;
   margin-top: -10px; }
@@ -9997,14 +10000,16 @@ ion-content {
       color: #303030;
       padding-top: 5px;
       margin-top: 8px;
-      padding-top: 5px; }
+      padding-top: 0;
+      height: 38px !important; }
     .ma-search-where .input-item .item-input.item {
       border: none;
       border-bottom: 1px solid #2da5e1;
       margin: 0 30px;
       padding-top: 0;
       padding-bottom: 0;
-      padding-left: 5px; }
+      padding-left: 5px;
+      height: 40px !important; }
   .ma-search-where .item-input .checkbox input:before,
   .ma-search-where .checkbox-icon:before {
     border-radius: 3px;
@@ -10047,7 +10052,7 @@ ion-content {
     font-size: 15px;
     line-height: 21px;
     color: #303030;
-    padding-top: 5px; }
+    padding-top: 12px; }
   .ma-search-what legend {
     border: none;
     font-weight: 700;
@@ -10879,7 +10884,8 @@ ion-content {
     background-color: #28ba23;
     position: relative; }
     .ma-login-page .login-button-wrapper .login-button a {
-      color: #fff; }
+      color: #fff;
+      font-size: 18px; }
     .ma-login-page .login-button-wrapper .login-button i {
       margin-right: 15px;
       display: inline-block;
@@ -10970,3 +10976,38 @@ ion-content {
 .ma-register-page .register-error {
   border: 1px solid red;
   z-index: 9999; }
+
+.ma-register-page .register-button {
+  border-radius: 5px;
+  height: 45px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  margin: 20px 0;
+  background-color: #28ba23;
+  position: relative; }
+
+.ma-register-page .login-button-wrapper {
+  margin: 10px;
+  border-radius: 5px;
+  text-align: center; }
+  .ma-register-page .login-button-wrapper .login-button {
+    border-radius: 5px;
+    height: 45px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    margin: 20px 0;
+    background-color: #28ba23;
+    position: relative; }
+    .ma-register-page .login-button-wrapper .login-button a {
+      color: #fff;
+      font-size: 18px; }
+    .ma-register-page .login-button-wrapper .login-button i {
+      margin-right: 15px;
+      display: inline-block;
+      position: absolute;
+      right: 20px;
+      color: #fff;
+      font-size: 20px;
+      top: 12px; }

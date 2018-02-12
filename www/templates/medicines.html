@@ -11,7 +11,7 @@
         <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="flaticon-filter"></i> 
         </button>
 
-        <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{cartData.length}}</span></span>
+        <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{shoppingCart.length}}</span></span>
         </button>
     </ion-header-bar>
 
@@ -85,16 +85,16 @@
                 </div>
             </div>
             <!-- END OF FILTER DIV-->
-
-			<div ng-click="addPostCart()">ADD</div>
-			
+            
+            
             <!--  MAP DIV TO SHOW THE PHARMACY LOCATION  -->
             <div class="medicineMapView" style="height:100%">
                 <ng-map ng-if="singleView" default-style="false" center="{{singlePosition}}" zoom="11" style="height:100% !important; width:100%;">
-                    <marker id="foo" position="{{singlePosition}}" on-click="map.showInfoWindow(event, 'bar')">
+                    <marker id="foooo" position="{{singlePosition}}" on-click="map.showInfoWindow(event, 'bar')">
                     </marker>
                     <!-- <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>-->
-                    <custom-marker id="can" position="currentPosition" on-click="click()">
+                    <custom-marker id="can" position="currentPosition" on-click="
+                                                                                 +  ()">
                         <div>
                             <img src="img/map-icon.png" width="40" height="40" />
                         </div>
@@ -115,10 +115,10 @@
                 <ng-map ng-if="!singleView" default-style="false" center="tashkent" zoom="11" style="height:100% !important; width:100%;">
                     <!--<marker id="foo" position="41.2627976,69.2295227" on-click="map.showInfoWindow(event, 'bar')">
                     </marker>-->
-                    <marker id="marker-{{$index}}" ng-repeat="p in medicines" position="{{p.lang}}, {{p.long}}"></marker>
+                    <marker id="marker-{{$index}}" ng-repeat="p in pharmacies" position="{{p.pharmacy.lat}}, {{p.pharmacy.lng}}"></marker>
 
                     <!-- <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>-->
-                    <custom-marker id="can" position="currentPosition" on-click="click()">
+                    <custom-marker id="can2" position="currentPosition" on-click="click()">
                         <div>
                             <img src="img/map-icon.png" width="40" height="40" />
                         </div>
@@ -139,15 +139,16 @@
             </div>
             <!-- END OF MAP SHOW   -->
 
+           <!-- {{pharmacies | json}}-->
             <div class="ma-results-wrapper">
                 <div class="medicine-result" ng-repeat="med in pharmacies">
                     <input type="text" style="display:none" ng-model="$index">
                     <div class="mr-top">
                         <img width="60" height="60" class="product-photo" ng-src="{{'http://medappteka.uz'+med.photo}}" />
                         <div class="product-info">
-                            <div>Производитель: <span>{{selectedMedicine.manufacturer}} </span></div>
-                            <div>Адрес: <span>{{med.address}} </span></div>
-                            <div>Ориентир: <span>{{med.orientir}}</span></div>
+                            <div>Производитель: <span>{{med.manufacturer}} </span></div>
+                            <div>Аптека: <span>{{med.pharmacy.name}}</span></div>
+                            <div>Адрес: <span>{{med.pharmacy.address}} </span></div>
                         </div>
                     </div>
                     <div class="mr-bottom">

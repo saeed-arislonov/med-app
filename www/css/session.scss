@@ -1,132 +1,171 @@
 .ma-login-page {
-	.item-input {
-		margin-bottom: 10px !important;
-	}
-	.login-button-wrapper {
-		margin: 10px;
-		border-radius: 5px;
-		text-align: center;
-		.login-button {
-			border-radius: 5px;
-			height: 45px;
-			width: 100%;
-			border: none;
-			text-align: center;
-			margin: 20px 0;
-			background-color: $secondary-green;
-			position: relative;
-			a {
-				color: #fff;
-			}
-			i {
-				margin-right: 15px;
-				display: inline-block;
-				position: absolute;
-				right: 20px;
-				color: #fff;
-				font-size: 20px;
-				top: 12px;
-			}
-		}
-	}
+    .item-input {
+        margin-bottom: 10px !important;
+    }
+    .login-button-wrapper {
+        margin: 10px;
+        border-radius: 5px;
+        text-align: center;
+        .login-button {
+            border-radius: 5px;
+            height: 45px;
+            width: 100%;
+            border: none;
+            text-align: center;
+            margin: 20px 0;
+            background-color: $secondary-green;
+            position: relative;
+            a {
+                color: #fff;
+                font-size: 18px;
+            }
+            i {
+                margin-right: 15px;
+                display: inline-block;
+                position: absolute;
+                right: 20px;
+                color: #fff;
+                font-size: 20px;
+                top: 12px;
+            }
+        }
+    }
 }
 
 .errorClass {
-	border: 1px solid red !important;
-	border-radius: 5px;
+    border: 1px solid red !important;
+    border-radius: 5px;
 }
 
 .ma-firstTime-user {
-	//background-color: $primary-grey;
-	.input-item {
-		margin-top: 0 !important;
-	}
-	.ma-register-title {
-		font-size: 18px;
-		font-weight: 500;
-		text-align: center;
-		margin: 10px;
-	}
-	.list {
-		margin: 0 15px;
-		input {
-			padding-left: 8px;
-			font-size: 18px;
-		}
-	}
-	.getCode-button-wrapper {
-		margin: 10px;
-		border-radius: 5px;
-		text-align: center;
-		.login-button {
-			border-radius: 5px;
-			height: 45px;
-			width: 100%;
-			border: none;
-			text-align: center;
-			margin: 20px 0;
-			background-color: $secondary-green;
-			position: relative;
-			a {
-				color: #fff;
-				font-size: 20px;
-			}
-			i {
-				margin-right: 15px;
-				display: inline-block;
-				position: absolute;
-				right: 20px;
-				color: #fff;
-				font-size: 20px;
-			}
-		}
-	}
-	.verification-pane {
-		position: fixed;
-		width: 100%;
-		z-index: 9999;
-		top: 100px;
-		left: 100%;
-		transition: .5s;
-		background-color: #fff;
-		.item-input {
-			width: 205px;
-			margin: 0 auto;
-			padding: 5px;
-		}
-		input {
-			font-size: 30px;
-			padding: 3px;
-		}
-		i {
-			margin-right: 15px;
-			display: inline-block;
-			position: absolute;
-			right: 20px;
-			color: #fff;
-			font-size: 20px;
-		}
-	}
+    //background-color: $primary-grey;
+    .input-item {
+        margin-top: 0 !important;
+    }
+    .ma-register-title {
+        font-size: 18px;
+        font-weight: 500;
+        text-align: center;
+        margin: 10px;
+    }
+    .list {
+        margin: 0 15px;
+        input {
+            padding-left: 8px;
+            font-size: 18px;
+        }
+    }
+    .getCode-button-wrapper {
+        margin: 10px;
+        border-radius: 5px;
+        text-align: center;
+        .login-button {
+            border-radius: 5px;
+            height: 45px;
+            width: 100%;
+            border: none;
+            text-align: center;
+            margin: 20px 0;
+            background-color: $secondary-green;
+            position: relative;
+            a {
+                color: #fff;
+                font-size: 20px;
+            }
+            i {
+                margin-right: 15px;
+                display: inline-block;
+                position: absolute;
+                right: 20px;
+                color: #fff;
+                font-size: 20px;
+            }
+        }
+    }
+    .verification-pane {
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+        top: 100px;
+        left: 100%;
+        transition: .5s;
+        background-color: #fff;
+        .item-input {
+            width: 205px;
+            margin: 0 auto;
+            padding: 5px;
+        }
+        input {
+            font-size: 30px;
+            padding: 3px;
+        }
+        i {
+            margin-right: 15px;
+            display: inline-block;
+            position: absolute;
+            right: 20px;
+            color: #fff;
+            font-size: 20px;
+        }
+    }
 }
 
 .error-message {
-	color: red;
-	text-align: center;
+    color: red;
+    text-align: center;
 }
 
 .ma-register-page {
-	.list {
-		margin: 10px;
-		.half-size {
-			float: left;
-			width: 50%;
-		}
-		.item-floating-label {
-			margin-bottom: 0;
-		}
-	}
-	.register-error {
-		border: 1px solid red;
-		z-index: 9999;
-	}
+    .list {
+        margin: 10px;
+        .half-size {
+            float: left;
+            width: 50%;
+        }
+        .item-floating-label {
+            margin-bottom: 0;
+        }
+    }
+    .register-error {
+        border: 1px solid red;
+        z-index: 9999;
+    }
+    .register-button {
+        border-radius: 5px;
+        height: 45px;
+        width: 100%;
+        border: none;
+        text-align: center;
+        margin: 20px 0;
+        background-color: #28ba23;
+        position: relative;
+    }
+    .login-button-wrapper {
+        margin: 10px;
+        border-radius: 5px;
+        text-align: center;
+        .login-button {
+            border-radius: 5px;
+            height: 45px;
+            width: 100%;
+            border: none;
+            text-align: center;
+            margin: 20px 0;
+            background-color: $secondary-green;
+            position: relative;
+            a {
+                color: #fff;
+                font-size: 18px;
+            }
+            i {
+                margin-right: 15px;
+                display: inline-block;
+                position: absolute;
+                right: 20px;
+                color: #fff;
+                font-size: 20px;
+                top: 12px;
+            }
+        }
+    }
 }
