@@ -9939,12 +9939,13 @@ ion-content {
       top: -8px; }
   .bar-header.bar-stable .title {
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 34px;
     color: white;
     font-weight: 400;
     text-align: center;
-    padding: 6px; }
+    padding: 6px 0;
+    margin: 0; }
   .bar-header.bar-stable .button.button-icon {
     color: #fff; }
   .bar-header.bar-stable .button.button-clear {
@@ -9995,21 +9996,22 @@ input {
     margin-bottom: 10px;
     margin-top: -15px; }
     .ma-search-where .input-item input {
-      font-size: 15px;
-      line-height: 21px;
+      font-size: 16px;
       color: #303030;
-      padding-top: 5px;
-      margin-top: 8px;
-      padding-top: 0;
-      height: 38px !important; }
-    .ma-search-where .input-item .item-input.item {
+      margin-right: 0; }
+    .ma-search-where .input-item .search-div {
       border: none;
       border-bottom: 1px solid #2da5e1;
       margin: 0 30px;
-      padding-top: 0;
-      padding-bottom: 0;
-      padding-left: 5px;
-      height: 40px !important; }
+      padding: 0 10px;
+      position: relative; }
+      .ma-search-where .input-item .search-div .ion-android-close {
+        padding: 0 5px;
+        font-size: 26px;
+        position: absolute;
+        right: -5px;
+        color: #878787;
+        top: 5px; }
   .ma-search-where .item-input .checkbox input:before,
   .ma-search-where .checkbox-icon:before {
     border-radius: 3px;
@@ -10038,21 +10040,13 @@ input {
     border-radius: 5px;
     padding-bottom: 0; }
 
-.ion-android-close {
-  padding: 0 5px;
-  font-size: 26px;
-  position: absolute;
-  right: 0;
-  color: #878787; }
-
 .ma-search-what {
   margin: 10px; }
   .ma-search-what input {
     width: 100%;
-    font-size: 15px;
-    line-height: 21px;
+    font-size: 16px;
     color: #303030;
-    padding-top: 12px; }
+    z-index: 9999999; }
   .ma-search-what legend {
     border: none;
     font-weight: 700;
@@ -10060,7 +10054,6 @@ input {
     width: inherit;
     padding: 0 10px;
     background: #fff;
-    top: -3px;
     position: relative;
     font-size: 18px; }
   .ma-search-what fieldset {
@@ -10075,7 +10068,8 @@ input {
       position: absolute;
       right: 0;
       top: 5px;
-      color: #878787; }
+      color: #878787;
+      background-color: #fff; }
   .ma-search-what .button-bar {
     margin: 0 30px;
     width: inherit;
@@ -10137,7 +10131,8 @@ input {
     padding-top: 0;
     padding-bottom: 0;
     padding-left: 5px;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    height: 100% !important; }
   .ma-search-what .input-item {
     margin-bottom: 10px; }
 
@@ -10161,13 +10156,6 @@ input {
       color: #303030;
       text-align: center;
       padding: 0; }
-  .ma-search-button .contact-info {
-    margin: 25px 0; }
-    .ma-search-button .contact-info .contact-num {
-      font-size: 28px;
-      font-weight: bold;
-      padding-bottom: 5px;
-      color: #28ba23; }
 
 .dropdown-menu {
   position: absolute;
@@ -10201,7 +10189,7 @@ input {
 
 .dropdown-menu li a {
   display: block;
-  padding: 3px 20px;
+  padding: 5px 20px;
   clear: both;
   font-weight: 400;
   line-height: 1.42857143;
@@ -10227,6 +10215,21 @@ input {
 
 .modal-backdrop {
   background-color: transparent; }
+
+.lang-div {
+  position: absolute;
+  right: 5px;
+  top: 11px; }
+  .lang-div select {
+    background: transparent;
+    color: #fff;
+    line-height: 100%;
+    font-size: 16px;
+    border-color: #fff;
+    border-radius: 5px;
+    padding: 2px !important; }
+    .lang-div select option {
+      color: #ddd; }
 
 .back-text,
 .ion-ios-arrow-back {
@@ -10271,7 +10274,6 @@ input {
     line-height: 20px;
     color: #303030; }
     .ma-results .result-header-wrapper .ma-search-name.ma-search-name-left {
-      float: left;
       text-align: left;
       display: inline-block;
       width: 60%; }
@@ -10322,7 +10324,9 @@ input {
     text-align: center;
     padding: 16px;
     background: #2da5e1;
-    color: #fff; }
+    color: #fff;
+    margin: 0 10px;
+    flex-grow: 1; }
 
 .ma-results .ma-results-wrapper {
   margin: 0 10px; }
@@ -10507,12 +10511,17 @@ input {
     height: 100% !important; }
 
 .ma-my-checkout input[type="text"] {
-  color: #444;
-  min-height: 36px;
-  padding-top: 5px; }
+  color: #444; }
 
 .ma-my-checkout .ma-checkout-wrapper {
   margin: 10px; }
+
+.ma-my-checkout .buyer-info-address input {
+  color: #444;
+  height: 100%;
+  font-size: 16px;
+  padding: 7px;
+  padding-left: 0; }
 
 .ma-my-checkout .buyer-info {
   background-color: #fafbfd;
@@ -10533,17 +10542,19 @@ input {
     text-align: center;
     width: 100%; }
     .ma-my-checkout .buyer-info .list .item-input {
-      width: 45%;
-      display: inline-block;
       border: none;
       border-bottom: 1px solid #e3e0e5;
       padding-left: 3px;
       padding-bottom: 0;
-      margin: 1px 5px;
-      background-color: #fafbfd; }
+      margin: 10px;
+      background-color: #fafbfd;
+      padding-top: 0; }
       .ma-my-checkout .buyer-info .list .item-input input {
         color: #444;
-        min-height: 36px; }
+        height: 100%;
+        font-size: 16px;
+        padding: 7px;
+        padding-left: 0; }
 
 .ma-my-checkout .buyer-info-address,
 .ma-my-checkout .buyer-info-payment-type,
@@ -10597,6 +10608,10 @@ input {
     .ma-my-checkout .buyer-info-delivery .debit-card .debit-card-top {
       display: flex;
       margin: 10px 0; }
+      .ma-my-checkout .buyer-info-address .debit-card .debit-card-top span,
+      .ma-my-checkout .buyer-info-payment-type .debit-card .debit-card-top span,
+      .ma-my-checkout .buyer-info-delivery .debit-card .debit-card-top span {
+        width: 20%; }
       .ma-my-checkout .buyer-info-address .debit-card .debit-card-top .debit-num,
       .ma-my-checkout .buyer-info-payment-type .debit-card .debit-card-top .debit-num,
       .ma-my-checkout .buyer-info-delivery .debit-card .debit-card-top .debit-num {
@@ -10606,8 +10621,12 @@ input {
         padding: 5px 6px;
         border-radius: 5px;
         margin: 0 5px;
-        font-size: 20px;
+        font-size: 18px;
         text-align: center; }
+    .ma-my-checkout .buyer-info-address .debit-card .debit-date,
+    .ma-my-checkout .buyer-info-payment-type .debit-card .debit-date,
+    .ma-my-checkout .buyer-info-delivery .debit-card .debit-date {
+      width: 80% !important; }
   .ma-my-checkout .buyer-info-address .buyer-info-detail-delivery .list .item-content,
   .ma-my-checkout .buyer-info-address .buyer-info-payment .list .item-content,
   .ma-my-checkout .buyer-info-payment-type .buyer-info-detail-delivery .list .item-content,
@@ -10670,13 +10689,13 @@ input {
   .ma-my-checkout .buyer-info-payment-type .buyer-info-payment .list .delivery-radio,
   .ma-my-checkout .buyer-info-delivery .buyer-info-detail-delivery .list .delivery-radio,
   .ma-my-checkout .buyer-info-delivery .buyer-info-payment .list .delivery-radio {
-    padding: 3px;
+    padding: 2px;
     border: 1px solid #2da5e1;
     border-radius: 50%;
     position: relative;
-    width: 22px;
+    width: 21px;
     margin-right: 10px;
-    height: 23px;
+    height: 22px;
     float: left; }
   .ma-my-checkout .buyer-info-address .buyer-info-detail-delivery .list .del-radio-wrapper,
   .ma-my-checkout .buyer-info-address .buyer-info-payment .list .del-radio-wrapper,
@@ -10711,8 +10730,12 @@ input {
   text-align: center;
   padding: 10px;
   font-weight: 700;
-  font-size: 18px;
-  margin: 20px; }
+  font-size: 17px;
+  margin: 20px 0;
+  display: flex; }
+  .ma-my-checkout .cart-total div {
+    flex-grow: 1;
+    text-align: left; }
   .ma-my-checkout .cart-total span {
     font-weight: 600;
     color: #444; }
@@ -10721,8 +10744,136 @@ input {
   font-weight: 600;
   color: #444; }
 
+.refreshOrder {
+  margin: 5px;
+  margin-top: 10px;
+  text-align: right; }
+  .refreshOrder button {
+    margin-top: 5px; }
+
+.single-order ul {
+  display: block !important;
+  text-align: right; }
+  .single-order ul li {
+    flex-grow: 0; }
+
+.myOrderInfo {
+  font-size: 17px;
+  margin: 5px 0; }
+
+@media (min-width: 500px) {
+  .bar-header.bar-stable .title {
+    font-size: 26px !important; }
+  .bar-header.bar-stable select {
+    font-size: 21px !important; }
+  .bar-header.bar-stable .header-right-button-1 {
+    right: 65px !important; }
+    .bar-header.bar-stable .header-right-button-1 i {
+      font-size: 30px !important; }
+  .bar-header.bar-stable .button.button-clear i {
+    font-size: 30px !important; }
+  .bar-header.bar-stable .button.button-clear .order-count {
+    height: 22px !important;
+    width: 22px !important; }
+    .bar-header.bar-stable .button.button-clear .order-count span {
+      font-size: 16px;
+      font-weight: bold; }
+  .ma-menu .profile-name {
+    font-size: 24px !important; }
+  .ma-menu .ma-menu-list li .menu-li {
+    font-size: 22px !important; }
+  .ma-menu .ma-menu-list li i {
+    font-size: 28px !important; }
+  .search-by-map {
+    font-size: 20px !important;
+    padding: 10px !important; }
+  .ma-results .ma-results-wrapper .medicine-result {
+    width: 65% !important;
+    margin: 18px auto !important; }
+    .ma-results .ma-results-wrapper .medicine-result .product-photo {
+      height: 90px !important;
+      width: 90px !important;
+      margin-right: 15px; }
+    .ma-results .ma-results-wrapper .medicine-result .mr-bottom i {
+      font-size: 20px !important; }
+    .ma-results .ma-results-wrapper .medicine-result .product-info div {
+      font-size: 20px !important;
+      margin: 10px 15px !important; }
+    .ma-results .ma-results-wrapper .medicine-result .button.call-button {
+      font-size: 20px !important;
+      max-width: 170px !important; }
+    .ma-results .ma-results-wrapper .medicine-result li.map-button {
+      width: 90px !important;
+      max-width: 110px !important;
+      font-size: 20px !important; }
+    .ma-results .ma-results-wrapper .medicine-result .price-button {
+      font-size: 20px !important; }
+    .ma-results .ma-results-wrapper .medicine-result .med-quantity .input-label,
+    .ma-results .ma-results-wrapper .medicine-result .med-quantity .cart-subtotal,
+    .ma-results .ma-results-wrapper .medicine-result .med-quantity span,
+    .ma-results .ma-results-wrapper .medicine-result .med-quantity .cart-total {
+      font-size: 18px !important; }
+  .cart-total {
+    font-size: 18px !important; }
+  .proceed-checkout {
+    font-size: 22px !important; }
+  .ma-search-button {
+    margin: 20px 60px !important; }
+  .ma-search-what {
+    margin: 10px 60px !important; }
+    .ma-search-what input {
+      font-size: 20px !important; }
+    .ma-search-what legend {
+      font-size: 24px !important; }
+    .ma-search-what .button-bar .button {
+      font-size: 24px !important;
+      line-height: 28px !important; }
+    .ma-search-what .button-bar .button-first {
+      max-width: 200px !important; }
+  .ma-search-where {
+    margin: 10px 60px !important;
+    /* margin-top: -10px; */ }
+    .ma-search-where .input-item input {
+      font-size: 20px !important; }
+    .ma-search-where legend {
+      font-size: 24px !important; }
+  .ma-profile-edit {
+    margin: 10px 70px !important; }
+    .ma-profile-edit .input-label {
+      font-size: 20px !important; }
+    .ma-profile-edit .item-input input {
+      font-size: 20px !important; }
+    .ma-profile-edit #my_photo {
+      font-size: 20px; }
+  .apply-filter-button button {
+    font-size: 22px !important; }
+  .ma-my-checkout input[type="text"], .ma-my-checkout .checkout-sub-total {
+    font-size: 20px !important; }
+  .ma-my-checkout .ma-search-name {
+    font-size: 24px !important;
+    margin-top: 10px !important; }
+  .ma-my-checkout .buyer-info-header,
+  .ma-my-checkout .buyer-info-header-payment {
+    font-size: 22px !important; }
+  .delivery-text {
+    font-size: 20px !important;
+    top: -4px !important;
+    position: relative !important; } }
+
 .profile-content > div {
   height: 100%; }
+
+.contact-info {
+  margin: 25px 0;
+  margin-top: 10px; }
+  .contact-info .contact-num {
+    font-size: 28px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    color: #28ba23; }
+
+.social-icons img {
+  margin: 0 10px; }
 
 .ma-menu {
   padding: 20px; }
@@ -10733,18 +10884,18 @@ input {
     float: left;
     margin-bottom: 10px; }
   .ma-menu .sign-out-btn {
-    margin-bottom: 15px;
     font-weight: 300;
-    clear: both;
-    text-align: center; }
+    clear: both; }
     .ma-menu .sign-out-btn a {
-      color: #444;
-      font-size: 16px;
-      font-weight: 400; }
+      /*color: #444;
+            font-size: 16px;
+            font-weight: 400;
+            margin-left: 15px;
+            font-weight: 600;*/ }
     .ma-menu .sign-out-btn i {
       font-size: 24px;
       margin-top: 5px;
-      padding: 5px;
+      padding: 0;
       position: relative;
       top: 5px;
       color: #2da5e1; }
@@ -10761,7 +10912,8 @@ input {
       font-weight: bold;
       font-size: 20px;
       margin-bottom: 0;
-      margin: 10px; }
+      margin: 10px;
+      margin-left: 0; }
   .ma-menu .ma-menu-list {
     clear: both;
     border-top: 1px solid #e3e0e5;
@@ -10790,7 +10942,9 @@ input {
 .ma-profile-edit .item-input {
   padding-left: 5px; }
   .ma-profile-edit .item-input input {
-    padding-right: 5px !important; }
+    padding-right: 5px !important;
+    font-size: 16px;
+    height: 100%; }
 
 .ma-profile-edit .apply-filter-button {
   display: flex; }
@@ -10805,11 +10959,14 @@ input {
     font-size: 16px; }
 
 .about-app {
-  position: absolute;
+  position: relative;
   bottom: 0;
   text-align: center;
   width: 100%;
   margin-bottom: 12px; }
+  .about-app .absolute-bottom {
+    position: relative;
+    bottom: 0; }
 
 .order-accepted {
   text-align: center;
@@ -10867,6 +11024,24 @@ input {
   .single-clinic .mr-bottom {
     margin: 0 !important; }
 
+.my-orders .completed-button {
+  color: #27ae60;
+  border: none; }
+  .my-orders .completed-button i {
+    color: #27ae60; }
+
+.my-orders .waiting-button {
+  color: #e8e129;
+  border: none; }
+  .my-orders .waiting-button i {
+    color: #e8e129; }
+
+.my-orders .canceled-button {
+  color: #d10a14;
+  border: none; }
+  .my-orders .canceled-button i {
+    color: #d10a14; }
+
 .ma-login-page .item-input {
   margin-bottom: 10px !important; }
 
@@ -10894,6 +11069,12 @@ input {
       color: #fff;
       font-size: 20px;
       top: 12px; }
+
+.ma-login-page .list .item-input {
+  border: none;
+  border-bottom: 1px solid #2da5e1;
+  padding-bottom: 0;
+  margin: 0 10px; }
 
 .errorClass {
   border: 1px solid red !important;
@@ -10972,6 +11153,9 @@ input {
     width: 50%; }
   .ma-register-page .list .item-floating-label {
     margin-bottom: 0; }
+  .ma-register-page .list input {
+    font-size: 16px;
+    height: 100%; }
 
 .ma-register-page .register-error {
   border: 1px solid red;
@@ -11011,3 +11195,12 @@ input {
       color: #fff;
       font-size: 20px;
       top: 12px; }
+
+.ma-register-page input {
+  font-size: 16px;
+  color: #303030;
+  z-index: 999999; }
+
+.address-error {
+  padding-left: 3px;
+  border: 1px solid red; }

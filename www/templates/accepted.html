@@ -1,26 +1,25 @@
 <div class="bar-stable">
      <ion-header-bar class="bar-stable bar bar-header" align-title="center">
-        <button ui-sref="app.myCart" class="button back-button buttons button-clear header-item"><i class="flaticon-left-arrow"></i> 
-      <span class="back-text"><div class="default-title medicine-search-title"></div><span class="previous-title hide"></span></span></button>
-        <div class="title title-center header-item">Заказ оформлен
+       <!-- <button ui-sref="app.myCart" class="button back-button buttons button-clear header-item"><i class="flaticon-left-arrow"></i> 
+      <span class="back-text"><div class="default-title medicine-search-title"></div><span class="previous-title hide"></span></span></button>-->
+        <div class="title title-center header-item">{{'confirm_maintitle' | translate}}
         </div>
     </ion-header-bar>
 </div>
 <ion-view view-title="Search">
     <ion-content class="no-header">
         <div class="ma-results ma-my-checkout">
-            
             <div class="ma-checkout-wrapper">
                 <div class="order-accepted">
-                    <div class="order-status">Статус оформления заказа</div>
+                    <div class="order-status">{{'confirm_title' | translate}}</div>
                     <div class="order-status-icon">
                         <i class="flaticon-success-1"></i>
                     </div>
-                    <div>Ваш <span class="bolder-text">Заказ #32</span> успешно оформлен и отправлен в обработку</div>
-                    <div>Оплата Вашего заказа успешно обработана, ожидайте курьера.</div>
+                    <div>{{'confirm_text1' | translate}} <span class="bolder-text">{{'confirm_text1-ru' | translate}} # {{ orderId}} {{'confirm_text1-uz' | translate}}</span> {{'confirm_text2' | translate}}</div>
+                    <div>{{'confirm_text2' | translate}}</div>
                 </div>
-                <div class="cart-total"><span> Телефон для справок <br /></span>+998 71 552 0303</div>
-                <div class="proceed-checkout" ui-sref="app.mainPage">Вернуться на Главную
+                <div class="cart-total"><span> {{'confirm_phone' | translate}} <br /></span>+998 71 552 0303</div>
+                <div class="proceed-checkout" ui-sref="app.mainPage">{{'confirm_backtomain' | translate}}
                     <i class="flaticon-right-arrow"></i>
                 </div>
             </div>

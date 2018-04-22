@@ -1,20 +1,77 @@
 controllers
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $cordovaGeolocation, $ionicLoading) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $cordovaGeolocation, $ionicLoading, $cordovaNetwork, $timeout) {
 
         var posOptions = {
             timeout: 10000,
             enableHighAccuracy: false
         };
 
-//localStorage.removeItem('shoppingCart');
+
+    //$timeout(function(){
+        document.addEventListener("deviceready", function () {
+
+            $scope.network = $cordovaNetwork.getNetwork();
+            $scope.isOnline = $cordovaNetwork.isOnline();
+            $scope.$apply();
+
+            // listen for Online event
+            $rootScope.$on('$cordovaNetwork:online', function (event, networkState) {
+                $scope.isOnline = true;
+                $scope.network = $cordovaNetwork.getNetwork();
+
+                $scope.$apply();
+            })
+
+            // listen for Offline event
+            $rootScope.$on('$cordovaNetwork:offline', function (event, networkState) {
+                console.log("got offline");
+                $scope.isOnline = false;
+                $scope.network = $cordovaNetwork.getNetwork();
+                $ionicLoading.show({
+                    template: 'Интернет отключен на вашем устройстве.',
+                    noBackdrop: true,
+                    duration: 2000
+                });
+
+                $scope.$apply();
+            })
+
+        }, true);
+   // }, 5000)
+        document.addEventListener("deviceready", function () {
+
+            $scope.network = $cordovaNetwork.getNetwork();
+            $scope.isOnline = $cordovaNetwork.isOnline();
+            $scope.$apply();
+
+            // listen for Online event
+            $rootScope.$on('$cordovaNetwork:online', function (event, networkState) {
+                $scope.isOnline = true;
+                $scope.network = $cordovaNetwork.getNetwork();
+
+                $scope.$apply();
+            })
+
+            // listen for Offline event
+            $rootScope.$on('$cordovaNetwork:offline', function (event, networkState) {
+                console.log("got offline");
+                $scope.isOnline = false;
+                $scope.network = $cordovaNetwork.getNetwork();
+
+                $scope.$apply();
+            })
+
+        }, false);
+
+
+        //localStorage.removeItem('shoppingCart');
         $rootScope.savedLocalStorage = localStorage.getItem('registerInfoCompleted');
         $rootScope.userInfo = JSON.parse($rootScope.savedLocalStorage);
-        console.log($rootScope.userInfo);
+        /*console.log($rootScope.userInfo);*/
 
         $rootScope.savedCart = localStorage.getItem('shoppingCart');
         $rootScope.shoppingCart = (localStorage.getItem('shoppingCart') !== null) ? JSON.parse($rootScope.savedCart) : [];
         localStorage.setItem('shoppingCart', JSON.stringify($rootScope.shoppingCart));
-        console.log($rootScope.shoppingCart);
 
         $rootScope.addToCart = function (index, med) {
             med.added_to_cart = true;
@@ -32,13 +89,13 @@ controllers
             });
 
             $ionicLoading.show({
-                template: 'Добавлено в корзину',
+                template: "{{'med_added_tocart' | translate}}",
                 noBackdrop: true,
                 duration: 1000
             });
             localStorage.setItem('shoppingCart', JSON.stringify($rootScope.shoppingCart));
-            console.log('LocalStorage ===>>> ', localStorage.getItem('shoppingCart'));
-            console.log('$rootScope.shoppingCart === >',$rootScope.shoppingCart);
+           /* console.log('LocalStorage ===>>> ', localStorage.getItem('shoppingCart'));
+            console.log('$rootScope.shoppingCart === >', $rootScope.shoppingCart);*/
         };
 
 
@@ -66,13 +123,13 @@ controllers
             });
             med.added_to_cart = false;
             $ionicLoading.show({
-                template: 'Удалено из корзины',
+                template: "{{'med_removed_tocart' | translate}}",
                 noBackdrop: true,
                 duration: 1000
             });
             localStorage.setItem('shoppingCart', JSON.stringify($rootScope.shoppingCart));
-            console.log($rootScope.shoppingCart, '$rootScope.shoppingCart')
-            console.log(localStorage.getItem('shoppingCart'))
+            /*console.log($rootScope.shoppingCart, '$rootScope.shoppingCart')
+            console.log(localStorage.getItem('shoppingCart'))*/
         }
 
         $rootScope.archive = function () {

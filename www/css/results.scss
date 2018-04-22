@@ -36,23 +36,20 @@
         border-bottom: 1px solid $primary-grey;
         display: block;
         padding-bottom: 10px;
-		clear: both;
-    	min-height: 75px;
+        clear: both;
+        min-height: 75px;
         .ion-ios-search-strong {
             float: left;
             font-size: 24px;
         }
         .ma-search-name {
-            text-align: center;
-            //font-size: 18px;
+            text-align: center; //font-size: 18px;
             //display: inline-block;
             font-weight: bold;
             font-size: 20px;
             line-height: 20px;
-            color: rgb(48, 48, 48);
-            //font-family: "Gotham Pro";
+            color: rgb(48, 48, 48); //font-family: "Gotham Pro";
             &.ma-search-name-left {
-                float: left;
                 text-align: left;
                 display: inline-block;
                 width: 60%;
@@ -72,8 +69,7 @@
             margin: 15px 0;
             .filter-titles {
                 background-color: #fff;
-                border-radius: 5px;
-                //font-family: "Gotham";
+                border-radius: 5px; //font-family: "Gotham";
                 font-weight: 500;
                 z-index: 20;
                 i {
@@ -84,7 +80,7 @@
             }
             .item-accordion-filter,
             /*.item-accordion-filter-pharmacy*/
-            {
+                {
                 display: none;
                 position: relative;
                 top: -4px;
@@ -107,14 +103,15 @@
         }
         .apply-filter-button {
             background-color: #fff;
-            border-radius: 5px;
-            //font-family: "Gotham";
+            border-radius: 5px; //font-family: "Gotham";
             font-weight: 500;
             /* z-index: 20; */
             text-align: center;
             padding: 16px;
             background: $primary-blue;
             color: #fff;
+            margin: 0 10px;
+            flex-grow: 1;
         }
     }
     .ma-results-wrapper {
@@ -130,8 +127,7 @@
             }
             .product-info {
                 margin: 5px;
-                margin-left: 85px;
-                //float: left;
+                margin-left: 85px; //float: left;
                 div {
                     color: $secondary-grey;
                     span {
@@ -210,9 +206,9 @@
 }
 
 .half-size {
-            float: left;
-            width: 50%;
-        }
+    float: left;
+    width: 50%;
+}
 
 .price-button {
     color: #000 !important;
@@ -278,8 +274,7 @@
         text-align: center;
         padding: 10px;
         font-weight: 700;
-        font-size: 16px;
-        //font-family: "Gotham";
+        font-size: 16px; //font-family: "Gotham";
         margin: 20px 8px;
         span {
             font-weight: 400;
@@ -291,8 +286,7 @@
         text-align: center;
         color: #fff;
         font-size: 18px;
-        padding: 12px;
-        //font-family: "Gotham";
+        padding: 12px; //font-family: "Gotham";
         font-weight: 600;
         border-radius: 5px;
         position: relative;
@@ -343,12 +337,21 @@
 
 .ma-my-checkout {
     input[type="text"] {
-        color: #444;
-        min-height: 36px;
-        padding-top: 5px;
+        color: #444; // min-height: 36px;
+        // padding-top: 5px;
     }
     .ma-checkout-wrapper {
         margin: 10px;
+    }
+
+    .buyer-info-address {
+        input {
+            color: #444;
+            height: 100%;
+            font-size: 16px;
+            padding: 7px;
+            padding-left: 0;
+        }
     }
     .buyer-info {
         background-color: #fafbfd;
@@ -371,17 +374,21 @@
             text-align: center;
             width: 100%;
             .item-input {
-                width: 45%;
-                display: inline-block;
+                //width: 45%;
+                //display: inline-block;
                 border: none;
                 border-bottom: 1px solid $primary-grey;
                 padding-left: 3px;
                 padding-bottom: 0;
-                margin: 1px 5px;
+                margin: 10px;
                 background-color: #fafbfd;
+                padding-top: 0;
                 input {
-                    color: #444;
-                    min-height: 36px;
+                    color: #444; //min-height: 36px;
+                    height: 100%;
+                    font-size: 16px;
+                    padding: 7px;
+                    padding-left: 0;
                 }
             }
         }
@@ -425,6 +432,9 @@
             .debit-card-top {
                 display: flex;
                 margin: 10px 0;
+                span {
+                    width: 20%;
+                }
                 .debit-num {
                     flex-grow: 1;
                     color: #fff;
@@ -432,9 +442,12 @@
                     padding: 5px 6px;
                     border-radius: 5px;
                     margin: 0 5px;
-                    font-size: 20px;
+                    font-size: 18px;
                     text-align: center;
                 }
+            }
+            .debit-date {
+                width: 80% !important;
             }
         }
         .buyer-info-detail-delivery,
@@ -467,21 +480,20 @@
                     border-radius: 50%;
                     background-color: transparent;
                     outline: 0;
-                    padding: 0;
-                    //position: relative;
+                    padding: 0; //position: relative;
                     //top: 3px;
                 }
                 input[type="radio"]:checked {
                     background-color: $primary-blue;
                 }
                 .delivery-radio {
-                    padding: 3px;
+                    padding: 2px;
                     border: 1px solid $primary-blue;
                     border-radius: 50%;
                     position: relative;
-                    width: 22px;
+                    width: 21px;
                     margin-right: 10px;
-                    height: 23px;
+                    height: 22px;
                     float: left;
                 }
                 .del-radio-wrapper {
@@ -497,8 +509,7 @@
         text-align: center;
         color: #fff;
         font-size: 18px;
-        padding: 12px;
-        //font-family: "Gotham";
+        padding: 12px; //font-family: "Gotham";
         font-weight: 600;
         border-radius: 5px;
         position: relative;
@@ -517,9 +528,13 @@
         text-align: center;
         padding: 10px;
         font-weight: 700;
-        font-size: 18px;
-        //font-family: "Gotham";
-        margin: 20px;
+        font-size: 17px; //font-family: "Gotham";
+        margin: 20px 0;
+        display: flex;
+        div {
+            flex-grow: 1;
+            text-align: left;
+        }
         span {
             font-weight: 600;
             color: #444;
@@ -530,4 +545,205 @@
 .bolder-text {
     font-weight: 600;
     color: #444;
+}
+
+.refreshOrder {
+    margin: 5px;
+    margin-top: 10px;
+    text-align: right;
+    button {
+        margin-top: 5px;
+    }
+}
+
+.single-order {
+    ul {
+        display: block !important;
+        text-align: right;
+        li {
+            flex-grow: 0;
+        }
+    }
+}
+
+.myOrderInfo {
+    font-size: 17px;
+    margin: 5px 0;
+}
+
+@media (min-width: 500px) {
+
+    .bar-header.bar-stable {
+        .title {
+            font-size: 26px !important;
+        }
+        select {
+            font-size: 21px !important;
+        }
+
+        .header-right-button-1 {
+            right: 65px !important;
+            i {
+                font-size: 30px !important;
+            }
+        }
+
+        .button.button-clear {
+            i {
+                font-size: 30px !important;
+            }
+            .order-count {
+                height: 22px !important;
+                width: 22px !important;
+                span {
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+            }
+        }
+
+    }
+
+    .ma-menu .profile-name {
+        font-size: 24px !important;
+    }
+
+    .ma-menu .ma-menu-list li {
+        .menu-li {
+            font-size: 22px !important;
+        }
+        i {
+            font-size: 28px !important;
+        }
+    }
+
+    .search-by-map {
+        font-size: 20px !important;
+        padding: 10px !important;
+    }
+
+    .ma-results .ma-results-wrapper .medicine-result {
+        width: 65% !important;
+        margin: 18px auto !important;
+
+        .product-photo {
+            height: 90px !important;
+            width: 90px !important;
+            margin-right: 15px;
+        }
+
+        .mr-bottom i {
+            font-size: 20px !important;
+        }
+        .product-info div {
+            font-size: 20px !important;
+            margin: 10px 15px !important;
+        }
+        .button.call-button {
+            font-size: 20px !important;
+            max-width: 170px !important;
+        }
+
+        li.map-button {
+            width: 90px !important;
+            max-width: 110px !important;
+            font-size: 20px !important;
+        }
+
+        .price-button {
+            font-size: 20px !important;
+        }
+        .med-quantity {
+            .input-label,
+            .cart-subtotal,
+            span,
+            .cart-total {
+                font-size: 18px !important;
+            }
+        }
+    }
+    .cart-total {
+        font-size: 18px !important;
+    }
+    .proceed-checkout {
+        font-size: 22px !important;
+    }
+
+    .ma-search-button {
+        margin: 20px 60px !important;
+    }
+
+    .ma-search-what {
+        margin: 10px 60px !important;
+        input {
+            font-size: 20px !important;
+            ;
+        }
+        legend {
+            font-size: 24px !important;
+            ;
+        }
+        .button-bar {
+            .button {
+                font-size: 24px !important;
+                ;
+                line-height: 28px !important;
+                ;
+            }
+            .button-first {
+                max-width: 200px !important;
+                ;
+            }
+        }
+    }
+    .ma-search-where {
+        margin: 10px 60px !important;
+        .input-item input {
+            font-size: 20px !important;
+            ;
+        }
+        legend {
+            font-size: 24px !important;
+            ;
+        }
+        /* margin-top: -10px; */
+    }
+
+    .ma-profile-edit {
+        margin: 10px 70px !important;
+        .input-label {
+            font-size: 20px !important;
+        }
+
+        .item-input input {
+            font-size: 20px !important;
+        }
+        #my_photo {
+            font-size: 20px;
+        }
+    }
+    .apply-filter-button button {
+        font-size: 22px !important;
+    }
+
+    .ma-my-checkout {
+         input[type="text"], .checkout-sub-total {
+        font-size: 20px !important; // min-height: 36px;
+        // padding-top: 5px;
+    }
+        .ma-search-name {
+            font-size: 24px !important;
+            margin-top: 10px !important;
+        }
+        .buyer-info-header,
+        .buyer-info-header-payment {
+            font-size: 22px !important;
+        }
+
+    }
+     .delivery-text {
+        font-size: 20px !important;
+        top: -4px !important;
+        position: relative !important;
+    }
 }

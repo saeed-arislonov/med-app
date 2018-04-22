@@ -3,7 +3,7 @@
         <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item">
             <i class="flaticon-left-arrow"></i> 
             <span class="back-text">
-                <div class="default-title medicine-search-title">Поиск препаратов</div>
+                <div class="default-title medicine-search-title">{{'sr_title' | translate}}</div>
                 <span class="previous-title hide"></span>
             </span>
         </button>
@@ -19,7 +19,7 @@
         <button ng-click="showMapMed()" class="button back-button buttons button-clear header-item">
             <i class="flaticon-left-arrow"></i> 
             <span class="back-text">
-                <div class="default-title medicine-search-title">Назад</div>
+                <div class="default-title medicine-search-title">{{'sr_back' | translate}}</div>
                 <span class="previous-title hide"></span>
             </span>
         </button>
@@ -32,7 +32,7 @@
                 <div class="ma-search-name ma-search-name-left">
                     <span>{{selectedMedicine.name}}</span>
                 </div>
-                <div class="search-by-map" ng-click="showMapAll()">Поиск по <br/> карте
+                <div class="search-by-map" ng-click="showMapAll()"> {{'sr_mymap' | translate}}
                     <i class="flaticon-placeholder">
                         <!--<img width="20" height="20" src="http://www.iconarchive.com/download/i89683/alecive/flatwoken/Apps-Google-Maps.ico" />-->
                     </i>
@@ -43,15 +43,13 @@
             <div class="list list-inset ma-filters">
                 <div class="filter-panes">
                     <ion-item class="item filter-titles" ng-click="toggleFilterPharmacy()">
-                        &nbsp; Выбор аптеки <i class="icon" ng-class="isDisplayPharmacy ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
+                        &nbsp; {{'med_filter_pharmacy' | translate}} <i class="icon" ng-class="isDisplayPharmacy ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
                     </ion-item>
                     <ion-item class="item-accordion-filter-pharmacy">
                         <ion-list>
-                            <ion-checkbox ng-model="phoxymed">Сеть аптек Таблека</ion-checkbox>
-                            <ion-checkbox ng-model="phddarmon">Сеть аптек OXYmed</ion-checkbox>
-                            <ion-checkbox ng-model="ph999">Аптека 999</ion-checkbox>
-                            <ion-checkbox ng-model="phdavo">Сеть аптек DAVO</ion-checkbox>
-                            <ion-checkbox ng-model="phedelves">Сеть аптек Edelves</ion-checkbox>
+                            <ion-checkbox ng-repeat="phar in pharmacy_set" ng-model="phar.on">
+                                {{'med_filter_pharmacy-set-ru' | translate}} {{phar.name}} {{'med_filter_pharmacy-set-uz' | translate}}
+                            </ion-checkbox>
                         </ion-list>
                     </ion-item>
 
@@ -59,112 +57,120 @@
 
                 <div class="filter-panes">
                     <ion-item class="item filter-titles" ng-click="toggleFilterPrice()">
-                        &nbsp; Сортировка по цене <i class="icon" ng-class="isDisplayPrice ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
+                        &nbsp; {{'med_filter_price' | translate}} <i class="icon" ng-class="isDisplayPrice ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
                     </ion-item>
                     <ion-item class="item-accordion-filter-price" style="display:none">
                         <ion-list>
-                            <ion-checkbox ng-model="ph1">500 - 10.000</ion-checkbox>
-                            <ion-checkbox ng-model="ph2">10.000 - 100.000</ion-checkbox>
-                            <ion-checkbox ng-model="ph3">100.000 - 300.000</ion-checkbox>
-                            <ion-checkbox ng-model="ph4">300.000 - 500.000</ion-checkbox>
-                            <ion-checkbox ng-model="ph5">500.000 - up</ion-checkbox>
+                            <ion-checkbox ng-repeat="priceR in priceList" ng-model="priceR.selected">{{priceR.pr_start}} - {{priceR.pr_end}}</ion-checkbox>
                         </ion-list>
                     </ion-item>
                 </div>
 
-                <div class="filter-panes">
+                <!--<div class="filter-panes">
                     <ion-item class="item filter-titles" ng-click="toggleFilterPlace()">
                         &nbsp; Сортировка по удаленности <i class="icon" ng-class="isDisplayPlace ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
                     </ion-item>
                     <ion-item class="item-accordion-filter-place" style="display:none">
                         {{item}}
                     </ion-item>
-                </div>
+                </div>-->
                 <div class="apply-filter-button" ng-click="applyFilters()">
-                    ПРИМЕНИТЬ
+                    {{'med_filter_close' | translate}}
                 </div>
             </div>
             <!-- END OF FILTER DIV-->
-            
-            
+
+
             <!--  MAP DIV TO SHOW THE PHARMACY LOCATION  -->
             <div class="medicineMapView" style="height:100%">
                 <ng-map ng-if="singleView" default-style="false" center="{{singlePosition}}" zoom="11" style="height:100% !important; width:100%;">
-                    <marker id="foooo" position="{{singlePosition}}" on-click="map.showInfoWindow(event, 'bar')">
+                     <marker id="foooo" position="{{singlePosition}}" on-click="map.showInfoWindow(event, 'bar')" >
                     </marker>
+                    <directions draggable="true" travel-mode="DRIVING" origin="{{lat}}, {{long}}" destination="{{singlePosition}}">
+                    </directions>
+
                     <!-- <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>-->
-                    <custom-marker id="can" position="currentPosition" on-click="
-                                                                                 +  ()">
+                    <custom-marker id="start" position="{{lat}}, {{long}}" >
                         <div>
                             <img src="img/map-icon.png" width="40" height="40" />
                         </div>
                     </custom-marker>
-                    <info-window id="bar" max-width="200">
+                    <!--<info-window id="bar" max-width="200">
                         <div ng-non-bindable>
                             <div id="siteNotice"></div>
                             <div id="bodyContent">
                                 <p>
-                                    <b>{{clinicName}}</b>
+                                    <b>{{'clinicName'}}</b>
                                 </p>
                             </div>
                         </div>
-                    </info-window>
+                    </info-window>-->
                 </ng-map>
-                
-                 <!--  MAP DIV TO SHOW ALL PHARMACIES BY MAP  -->
+
+                <!--  MAP DIV TO SHOW ALL PHARMACIES BY MAP  -->
                 <ng-map ng-if="!singleView" default-style="false" center="tashkent" zoom="11" style="height:100% !important; width:100%;">
                     <!--<marker id="foo" position="41.2627976,69.2295227" on-click="map.showInfoWindow(event, 'bar')">
                     </marker>-->
-                    <marker id="marker-{{$index}}" ng-repeat="p in pharmacies" position="{{p.pharmacy.lat}}, {{p.pharmacy.lng}}"></marker>
+                   <!-- <marker id="marker-{{$index}}" ng-repeat="p in pharmacies" position="{{p.pharmacy.lat}}, {{p.pharmacy.lng}}"></marker>-->
+
+                    <custom-marker ng-repeat="p in pharmacies track by $index" id="custom-marker-{{$index}}" 
+                        position="{{p.pharmacy.lat}}, {{p.pharmacy.lng}}" >
+                        <div style="text-align:center">
+                            <!-- <span>{{p.pharmacy.name}}, <br />
+                                 {{p.pharmacy.address}}</span><br />-->
+                            <img src="img/pharmacy-icon2.png" width="30" height="30" />
+                        </div>
+                    </custom-marker>
 
                     <!-- <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>-->
-                    <custom-marker id="can2" position="currentPosition" on-click="click()">
+                    <custom-marker id="can2" position="{{lat}}, {{long}}" on-click="click()">
                         <div>
                             <img src="img/map-icon.png" width="40" height="40" />
                         </div>
                     </custom-marker>
-                    <info-window id="bar" max-width="200">
+                    <!--<info-window id="bar" max-width="200">
                         <div ng-non-bindable>
                             <div id="siteNotice"></div>
                             <div id="bodyContent">
                                 <p>
-                                    <b>{{clinicName}}</b>
+                                    <b>{{p.pharmacy.name}}</b>
                                 </p>
                             </div>
                         </div>
-                    </info-window>
+                    </info-window>-->
                 </ng-map>
-            <!-- END OF MAP SHOW   -->
-                
+                <!-- END OF MAP SHOW   -->
+
             </div>
             <!-- END OF MAP SHOW   -->
 
-           <!-- {{pharmacies | json}}-->
+            <!-- {{pharmacies | json}}-->
             <div class="ma-results-wrapper">
-                <div class="medicine-result" ng-repeat="med in pharmacies">
+                <div class="medicine-result" ng-repeat="med in pharmacies | filter:itemFilter | filter:priceRange">
                     <input type="text" style="display:none" ng-model="$index">
                     <div class="mr-top">
-                        <img width="60" height="60" class="product-photo" ng-src="{{'http://medappteka.uz'+med.photo}}" />
+                        <img width="60" height="60" class="product-photo" ng-src="{{'http://medappteka.uz'+med.photo}}" onerror="this.src='img/med.png'" />
                         <div class="product-info">
-                            <div>Производитель: <span>{{med.manufacturer}} </span></div>
-                            <div>Аптека: <span>{{med.pharmacy.name}}</span></div>
-                            <div>Адрес: <span>{{med.pharmacy.address}} </span></div>
+                            <div>{{'sr_manufacturer' | translate}}: <span>{{med.manufacturer}} </span></div>
+                            <div>{{'sr_pharmacy' | translate}}: <span>{{med.pharmacy.name}}</span></div>
+                            <div>{{'sr_address' | translate}}: <span>{{med.pharmacy.address}} </span></div>
                         </div>
                     </div>
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-light map-button" ng-click="showMapMed(med)"><i class="flaticon-placeholder" style="bottom:3px"></i> Kарта</li>
-                            <li class="button button-positive call-button" ng-click="callTel(med)"><i class="flaticon-call-answer" style="bottom:3px"></i> Позвонить </li>
+                            <li class="button button-light map-button" ng-click="showMapMed(med)"><i class="flaticon-placeholder" style="bottom:3px"></i> {{'sr_map' | translate}}</li>
+                            <li class="button button-positive call-button" ng-click="callTel(med)"><i class="flaticon-call-answer" style="bottom:3px"></i> {{'sr_call' | translate}} </li>
                             <li class="button button-energized price-button" ng-if="!med.added_to_cart" ng-click="addToCart($index, med)">
-                                <i class="flaticon-shopping-cart"></i> {{med.price | formatPrice}} <span class="sum">сум</span>
+                                <i class="flaticon-shopping-cart"></i> {{med.price | formatPrice}} <span class="sum"> {{'sr_sum' | translate}}</span>
                             </li>
 
                             <li class="button button-energized price-button" ng-if="med.added_to_cart" ng-click="removeFromCart($index, med)">
-                                <i class="flaticon-success-1" ng-if="med.added_to_cart" style="color:forestgreen"></i> {{med.price | formatPrice}} <span class="sum">сум</span>
+                                <i class="flaticon-success-1" ng-if="med.added_to_cart" style="color:forestgreen"></i> {{med.price | formatPrice}} <span class="sum"> {{'sr_sum' | translate}}</span>
                             </li>
                         </ul>
                     </div>
                 </div>
+                <h4 ng-if="!pharmacies.length">{{'sr_empty' | translate}}</h4>
             </div>
         </div>
     </ion-content>

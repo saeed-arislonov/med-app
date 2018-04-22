@@ -2,7 +2,7 @@
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
         <div class="buttons buttons-left header-item">
         </div>
-        <div class="title title-center header-item"> Регистрация
+        <div class="title title-center header-item"> {{'session_register_text' | translate}}
         </div>
     </ion-header-bar>
 </div>
@@ -17,41 +17,42 @@
             <ion-toolbar>
 
                 <div class="list">
-                    <label class="item item-input item-floating-label half-size" 
-						   ng-class="submitted && registerForm.name.$error.required ? 'register-error' : ''">
-                        <span class="input-label">First Name *</span>
-                        <input ng-model="user.name" name="name" required type="text" placeholder="First Name *">
-                    </label>
-                    <label class="item item-input item-floating-label"
-						   ng-class="submitted && registerForm.phone.$error.required ? 'register-error' : ''">
-                        <span class="input-label" required>Phone *</span>
-                        <input ng-model="user.phone" name="phone" type="text" placeholder="Phone *">
-                    </label>
-                    <label class="item item-input item-floating-label half-size">
-                        <span class="input-label">Birth Date</span>
-                        <input ng-model="user.birth_date" ng-click="openDatePicker()" type="text" placeholder="Birth Date" >
+                    <label class="item item-input item-floating-label" ng-class="submitted && registerForm.name.$error.required ? 'register-error' : ''">
+                        <span class="input-label">{{'up_name' | translate}} *</span>
+                        <input ng-model="user.name" name="name" required type="text" placeholder="{{'up_name' | translate}} *">
                     </label>
                     <label class="item item-input item-floating-label">
-                        <span class="input-label">Email</span>
-                        <input ng-model="user.email" type="text" placeholder="Email">
+                        <span class="input-label">{{'up_email' | translate}}</span>
+                        <input ng-model="user.email" type="text" placeholder="{{'up_email' | translate}}">
                     </label>
-                    <label class="item item-input item-floating-label half-size"
-						   ng-class="submitted && registerForm.login.$error.required ? 'register-error' : ''">
-                        <span class="input-label">Login *</span>
-                        <input ng-model="user.login" name="login" required type="text" placeholder="Login *">
+                    <label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.phone.$error.required ? 'register-error' : ''">
+                        <span class="input-label" required>{{'up_tel' | translate}} *</span>
+                        <input ng-model="user.phone" name="phone" type="text" placeholder="{{'up_tel' | translate}} *">
                     </label>
-                    <label class="item item-input item-floating-label"
-						   ng-class="submitted && registerForm.password.$error.required ? 'register-error' : ''">
-                        <span class="input-label">Password *</span>
-                        <input ng-model="user.password" name="password" required type="text" placeholder="Password *">
+                    <label class="item item-input item-floating-label half-size">
+                        <span class="input-label">{{'up_dob' | translate}}</span>
+                        <input ng-model="user.birth_date" ng-click="openDatePicker()" type="text" placeholder="{{'up_dob' | translate}}" >
+                    </label>
+                    <label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.login.$error.required ? 'register-error' : ''">
+                        <span class="input-label">{{'up_login' | translate}} *</span>
+                        <input ng-model="user.login" name="login" required type="text" placeholder="{{'up_login' | translate}} *">
+                    </label>
+                    <label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.password.$error.required ? 'register-error' : ''">
+                        <span class="input-label">{{'up_password' | translate}} *</span>
+                        <input ng-model="user.password" name="password" required type="password" placeholder="{{'up_password' | translate}} *">
                     </label>
                     <label class="item item-input item-floating-label" style="width:100%">
-                        <span class="input-label">Photo</span>
+                        <span class="input-label">{{'up_addphoto' | translate}}</span>
                        <!-- <input ng-model="user.photo" type="file" placeholder="Photo">-->
-                        <input type="file" ng-model="user.photo" name="file"   
-                                  />
+                         <input accept="image/*" name="file" ng-value="fileToUpload"
+                                value="{{fileToUpload}}" file-model="fileToUpload"
+                                set-file-data="fileToUpload = value;" 
+                                type="file" id="my_pro_file" ngf-max-size="2048" style="display:none"/>
+                        <button style="margin: 10px;" id="my_photo" ng-click="openFile()">{{'up_addphoto' | translate}}</button>
+                        {{fileToUpload.name}}
+                         <p style="color:red" ng-if="fileToUpload.size / 1024 > 2048">{{'up_addphoto-error' | translate}}</p>
                     </label>
-					
+
                 </div>
                 <!--<ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
@@ -59,11 +60,11 @@
       </ion-item>
     </ion-list> -->
                 <div class="login-button-wrapper">
-                <button class="login-button" ng-click="createUser(registerForm.$valid)">
-                        <a class="login-button-a">Войти</a>
+                    <button class="login-button" ng-disabled="fileToUpload.size / 1024 > 2048" ng-click="createUser(registerForm.$valid, fileToUpload)">
+                        <a class="login-button-a">{{'session_login_button' | translate}}</a>
                     </button>
-                    
-                    <a ng-click="openAccount()">Нет аккаунта? Зарегистрируйтесь здесь. </a>
+
+                   <!-- <a ui-sref="login">Назад в Логин </a>-->
                 </div>
             </ion-toolbar>
         </form>

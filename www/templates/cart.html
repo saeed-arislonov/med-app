@@ -3,12 +3,9 @@
         <button ui-sref="app.medicines" class="button back-button buttons button-clear header-item">
             <i class="flaticon-left-arrow"></i> 
             <span class="back-text">
-                <div class="default-title medicine-search-title">Поиск препаратов</div>
+                <div class="default-title medicine-search-title">{{'sr_title' | translate}}</div>
                 <span class="previous-title hide"></span>
             </span>
-        </button>
-
-        <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="flaticon-filter"></i> 
         </button>
 
         <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{shoppingCart.length}}</span></span>
@@ -30,7 +27,7 @@
         <div class="ma-results ma-my-cart">
             <div class="result-header-wrapper">
                 <div class="ma-search-name">
-                    <span>Корзина покупок<span ng-if="!shoppingCart.length"> пуста</span></span>
+                    <span>{{'cart_title' | translate}}<span ng-if="!shoppingCart.length"> {{'cart_title1' | translate}}</span></span>
                 </div>
             </div>
             
@@ -40,8 +37,11 @@
                 <ng-map default-style="false" center="tashkent" zoom="12" style="height:100% !important; width:100%;">
                     <marker id="foo" position="{{cartMap}}" on-click="map.showInfoWindow(event, 'bar')">
                     </marker>
+                    <directions draggable="true" 
+                        travel-mode="DRIVING" origin="{{lat}}, {{long}}" destination="{{cartMap}}">
+                    </directions>
                     <!-- <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>-->
-                    <custom-marker id="can" position="current" on-click="click()">
+                    <custom-marker id="can" position="{{lat}}, {{long}}" on-click="click()">
                         <div>
                             <img src="img/map-icon.png" width="40" height="40" />
                         </div>
@@ -61,52 +61,42 @@
             <!-- END OF MAP SHOW   -->
 
             <div class="ma-results-wrapper">
-                <div class="medicine-result" ng-repeat="cart in shoppingCart">
+                <div class="medicine-result" ng-repeat="cart in shoppingCart track by $index">
                     <div class="mr-top">
                         <img width="60" height="60" class="product-photo" ng-src="{{'http://medappteka.uz'+cart.med_photo}}" />
                         <div class="product-info">
-                            <div>Препарат: <span>{{cart.med_name}} </span></div>
-                            <div>Аптека: <span>{{cart.pharmacy_name}}</span></div>
-                            <div>Адрес: <span>{{cart.pharmacy_address}} </span></div>
+                            <div>{{'cart_product' | translate}}: <span>{{cart.med_name}} </span></div>
+                            <div>{{'sr_pharmacy' | translate}}: <span>{{cart.pharmacy_name}}</span></div>
+                            <div>{{'sr_address' | translate}}: <span>{{cart.pharmacy_address}} </span></div>
                         </div>
                     </div>                    
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-light map-button" ng-click="showMapMed(cart)"><i class="flaticon-placeholder" style="bottom:3px"></i> Kарта</li>
-                            <li class="button button-positive call-button" ng-click="callFromCart(cart)"><i class="flaticon-call-answer" style="bottom:3px"></i> Позвонить </li>
+                            <li class="button button-light map-button" ng-click="showMapMed(cart)"><i class="flaticon-placeholder" style="bottom:3px"></i> {{'sr_map' | translate}}</li>
+                            <li class="button button-positive call-button" ng-click="callFromCart(cart)"><i class="flaticon-call-answer" style="bottom:3px"></i> {{'sr_call' | translate}} </li>
                             <li class="button button-energized price-button">
-                                {{cart.med_price | formatPrice}} <span class="sum">сум</span></li>
+                                {{cart.med_price | formatPrice}} <span class="sum">{{'sr_sum' | translate}}</span></li>
                         </ul>
                     </div>
                     <div class="list med-quantity">
                         <ion-item>
                             <div class="list">
                                 <label class="item item-input item-select">
-                                    <div class="input-label"> Выберите необходимое количество</div>
-                                    <select ng-model="cart.count" class="quantity-select">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
+                                    <div class="input-label"> {{'cart_choose_quantity' | translate}}</div>
+                                    <select ng-model="cart.count" class="quantity-select" ng-options="q.val as q.val for q in quantity">
                                     </select>
                                 </label>
                                 <div class="cart-subtotal">
-                                   <span>Под итог : </span> {{cart.med_price * cart.count | formatPrice}}
-                                    <div class="remove-order" ng-click="removeFromCart($index)">Убрать</div>
+                                   <span>{{'cart_subtotal' | translate}} : </span> {{cart.med_price * cart.count | formatPrice}}
+                                    <div class="remove-order" ng-click="removeFromCart($index)">{{'cart_remove' | translate}}</div>
                                 </div>
                             </div>
                         </ion-item>
                     </div>
                 </div>
                 
-                <div ng-if="shoppingCart.length" class="cart-total">Итого заказ на сумму: <span> {{getTotal()}} сум</span></div>
-                <button ng-if="shoppingCart.length" class="proceed-checkout" ui-sref="app.checkout">Перейти к оформлению 
+                <div ng-if="shoppingCart.length" class="cart-total">{{'cart_total' | translate}}: <span> {{getTotal()}} {{ 'sr_sum' | translate}}</span></div>
+                <button ng-if="shoppingCart.length" class="proceed-checkout" ui-sref="app.checkout">{{'cart_checkout' | translate}} 
                     <i class="flaticon-right-arrow"></i>
                 </button>
             </div>

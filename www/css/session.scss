@@ -30,6 +30,12 @@
             }
         }
     }
+    .list .item-input {
+        border: none;
+        border-bottom: 1px solid #2da5e1;
+        padding-bottom: 0;
+        margin: 0 10px;
+    }
 }
 
 .errorClass {
@@ -125,6 +131,10 @@
         .item-floating-label {
             margin-bottom: 0;
         }
+        input {
+            font-size: 16px;
+            height: 100%;
+        }
     }
     .register-error {
         border: 1px solid red;
@@ -168,4 +178,14 @@
             }
         }
     }
+    input {
+        font-size: 16px;
+        color: #303030;
+        z-index: 999999;
+    }
+}
+
+.address-error {
+    padding-left: 3px;
+    border: 1px solid red;
 }

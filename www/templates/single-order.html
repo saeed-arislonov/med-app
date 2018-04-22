@@ -1,0 +1,35 @@
+<div class="bar-stable">
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <button ui-sref="app.myOrders" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
+      <span class="back-text"><div class="default-title medicine-search-title"></div><span class="previous-title hide"></span></span></button>
+        <div class="title title-center header-item">{{'mo_order' | translate}} # {{singleOrder.session}}
+        </div>
+    </ion-header-bar>
+</div>
+<ion-view view-title="Search" animation="no-animation">
+    <ion-content class="no-header">
+      <!-- <pre>{{singleOrder | json}}</pre> -->
+        
+        <div class="ma-results clinic-results single-order">
+            <div class="ma-results-wrapper">
+                <div class="medicine-result" ng-repeat="ord in singleOrder.orderGoods" style="padding-bottom: 15px;">
+                    <div class="mr-top">
+                        <img width="60" height="60" class="product-photo" ng-src="{{'http://medappteka.uz'+ord.medicine.pharmacy.photo}}" />
+                        <div class="product-info">
+                            <div>{{'cart_product' | translate}}: <span>{{ord.medicine.name}} </span></div>
+                            <div>{{'sr_pharmacy' | translate}}: <span>{{ord.medicine.pharmacy.name}} </span></div>
+                            <div>{{'sr_pharmacy-1' | translate}}: <span>{{ord.medicine.pharmacy.address}} </span></div>
+                            <div>{{'mo_product-sum' | translate}}: <span>{{ord.medicine.price | formatPrice}} сум</span></div>
+                            <div>{{'mo_quantity' | translate}}: <span>{{ord.totalCount}}</span></div>
+                        </div>
+                    </div>
+                    <div class="mr-bottom">
+                        <ul>
+                            <li class="button button-positive call-button" ng-click="callPharmacy(ord)" style="padding:10px;padding-left: 24px;"><i class="flaticon-call-answer" style="bottom:10px"></i> {{'sr_call' | translate}} </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

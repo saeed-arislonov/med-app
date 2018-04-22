@@ -3,7 +3,7 @@
         <button ui-sref="login" class="button back-button buttons button-clear header-item">
             <i class="flaticon-left-arrow"></i> 
             <span class="back-text">
-                <div class="default-title medicine-search-title">Вернуться в логин</div>
+                <div class="default-title medicine-search-title">{{'session_back_tologin' | translate}}</div>
                 <span class="previous-title hide"></span>
             </span>
         </button>
@@ -21,17 +21,17 @@
                 <div class="ma-registers">
                     <div class="enter-phone">
 
-                        <div class="ma-register-title">Введите номер телефона</div>
+                        <div class="ma-register-title">{{'session_type_phone' | translate}}</div>
                         <div class="list input-item">
                             <label class="item item-input">
                                 <span>+998 </span><input name="phoneNum" id="phoneNum" type="number" ng-minlength="9" ng-maxlength="9" placeholder="97 7777777"  ng-model="user.phone" required/>
                             </label>
                         </div>
-                        <div ng-show="phoneForm.phoneNum.$error.minlength && phoneForm.phoneNum.$touched || inputEmpty" class="error-message">Номер телефона недействителен.</div>
+                        <div ng-show="phoneForm.phoneNum.$error.minlength && submitted" class="error-message">{{'session_wrong_phone' | translate}}</div>
                     </div>
                     <div class="getCode-button-wrapper">
                         <button type="submit" class="login-button" ng-click="submitNumber(phoneForm.$valid)">
-                        <a class="login-button-a">Получить код</a>
+                        <a class="login-button-a">{{'session_get_code' | translate}}</a>
                         <i class="fa fa-spinner fa-spin" ng-if="sendingCode"></i>
                     </button>
                     </div>
@@ -39,26 +39,26 @@
             </form>
 
             <div class="ma-registers verification-pane">
-                <div style="text-align:center">{{verification_pass}}</div>
                 <form name="verifyForm">
                     <div class="enter-verification">
-                        <div class="ma-register-title">Введите полученный код</div>
+                        <div class="ma-register-title">{{'session_type_code' | translate}}</div>
                         <div class="list input-item">
                             <label class="item item-input">
-                                <input type="text" ng-model="user.vcode" name="vcode" maxlength="8" required/>
+                                <input type="number" ng-model="user.vcode" name="vcode" maxlength="8" required/>
                             </label>
                         </div>
-                        <div ng-show="submitted && user.vcode != verification_pass" class="error-message">Код проверки не соответствует
+                        <div ng-show="submitted && user.vcode != verification_pass" class="error-message">
+                            {{'session_wrong_code' | translate}}
                         </div>
-                        <div ng-show="userExists" class="error-message">Пользователь уже существует. Попробуйте <a ng-click="backToLogin()">войти</a> в систему</div>
+                        <!--<div ng-show="userExists" class="error-message">Пользователь уже существует. Попробуйте <a ui-sref="login">войти</a> в систему</div>-->
                         
                     </div>
                     <div class="getCode-button-wrapper">
                         <button type="submit" class="login-button" ng-click="submitVerification(verification_code)">
-                        <a class="login-button-a">Подтверждать</a>
+                        <a class="login-button-a">{{'session_confirm_code' | translate}}</a>
                         <i class="fa fa-spinner fa-spin" ng-if="confirmingCode"></i>
                     </button>
-                         <a ng-click="reSendCode()">Не получили код? Попробуйте еще раз.</a>
+                         <a ng-click="reSendCode()">{{'session_didnt_get_code' | translate}}</a>
                     </div>
                 </form>
             </div>

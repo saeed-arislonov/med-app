@@ -42,12 +42,12 @@ select {
 }
 
 .loading-container {
-	.loading {
-		padding: 15px;
-		ion-spinner {
-			font-size: 30px;
-		}
-	}
+    .loading {
+        padding: 15px;
+        ion-spinner {
+            font-size: 30px;
+        }
+    }
 }
 
 $font-family-base: "Gotham";
@@ -90,13 +90,13 @@ ion-content {
     }
     .title {
         color: #fff;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 34px;
-        color: rgb(255, 255, 255);
-        //font-family: 'Gotham';
+        color: rgb(255, 255, 255); //font-family: 'Gotham';
         font-weight: 400;
         text-align: center;
-        padding: 6px;
+        padding: 6px 0;
+        margin: 0;
     }
     .button.button-icon {
         color: #fff;
@@ -105,8 +105,7 @@ ion-content {
         font-size: 22px;
         letter-spacing: 0;
         line-height: 34px;
-        color: rgb(255, 255, 255);
-        //font-family: "Gotham Pro";
+        color: rgb(255, 255, 255); //font-family: "Gotham Pro";
         text-align: center;
         font-weight: 300;
     }
@@ -159,22 +158,30 @@ input {
         margin-bottom: 10px;
         margin-top: -15px;
         input {
-            font-size: 15px;
-            line-height: 21px;
+            font-size: 16px; //line-height: 21px;
             color: rgb(48, 48, 48);
-            padding-top: 5px;
-            margin-top: 8px; //font-family: "Gotham Pro";
-            padding-top: 0;
-            height: 38px !important;
+            margin-right: 0;
+            //z-index: 999999; // padding-top: 0 !important;
+            // border: 1px solid red;
+            // padding: 2px;
         }
-        .item-input.item {
+        .search-div {
             border: none;
             border-bottom: 1px solid $primary-blue;
             margin: 0 30px;
-            padding-top: 0;
-            padding-bottom: 0;
-            padding-left: 5px;
-            height: 40px !important;
+            padding: 0 10px;
+            position: relative;
+            .ion-android-close {
+                padding: 0 5px;
+                font-size: 26px;
+                position: absolute;
+                right: -5px;
+                color: $secondary-grey;
+                top: 5px;
+            } // padding-top: 0 !important;
+            //padding-bottom: 0;
+            // padding-left:  5px;
+            // height: 100% !important;
         }
     }
     .item-input .checkbox input:before,
@@ -194,8 +201,7 @@ input {
         padding-left: 55px;
     }
     legend {
-        border: none;
-        //font-family: "Gotham";
+        border: none; //font-family: "Gotham";
         font-weight: bold;
         text-align: center;
         width: inherit;
@@ -212,33 +218,23 @@ input {
     }
 }
 
-.ion-android-close {
-    padding: 0 5px;
-    font-size: 26px;
-    position: absolute;
-    right: 0;
-    color: $secondary-grey;
-}
-
 .ma-search-what {
     margin: 10px;
     input {
         width: 100%;
-        font-size: 15px;
-        line-height: 21px;
+        font-size: 16px; //line-height: 21px;
         color: rgb(48, 48, 48);
-        padding-top: 12px;
+        z-index: 9999999; //padding: 2px;
+        // height: 36px !important;
         //font-family: "Gotham Pro";
     }
     legend {
-        border: none;
-        //font-family: "Gotham";
+        border: none; //font-family: "Gotham";
         font-weight: 700;
         text-align: center;
         width: inherit;
         padding: 0 10px;
-        background: #fff;
-        top: -3px;
+        background: #fff; // top: -3px;
         position: relative;
         font-size: 18px;
     }
@@ -248,7 +244,7 @@ input {
         padding-bottom: 0;
     }
     .what-to-search {
-        position: relative;
+        position: relative; // height: 100%;
         .ion-android-close {
             padding: 0 5px;
             font-size: 26px;
@@ -256,6 +252,7 @@ input {
             right: 0;
             top: 5px;
             color: $secondary-grey;
+            background-color: #fff;
         }
     }
     .button-bar {
@@ -288,7 +285,7 @@ input {
             -webkit-animation: institution linear;
             animation: institution linear;
             width: 56%;
-            @media (max-width:400px){
+            @media (max-width: 400px) {
                 width: 56%;
                 margin-left: 46%;
                 width: 53%;
@@ -303,12 +300,10 @@ input {
             min-height: auto;
             line-height: 100%;
             border-radius: 5px;
-            padding: 2px;
-            //padding-bottom: 4px;
+            padding: 2px; //padding-bottom: 4px;
             background-color: transparent;
             font-size: 17px;
-            line-height: 22px;
-            //color: rgb(255,255,255);
+            line-height: 22px; //color: rgb(255,255,255);
             //font-family: "Gotham";
             font-weight: 400;
             color: $primary-blue;
@@ -331,6 +326,7 @@ input {
         padding-bottom: 0;
         padding-left: 5px;
         margin-bottom: 10px;
+        height: 100% !important;
     }
     .input-item {
         margin-bottom: 10px;
@@ -354,22 +350,13 @@ input {
             text-decoration: none;
             font-size: 18px;
             line-height: 21px;
-            color: rgb(48, 48, 48);
-            //font-family: "Gotham";
+            color: rgb(48, 48, 48); //font-family: "Gotham";
             text-align: center;
             padding: 0;
         }
     }
-    .contact-info {
-        margin: 25px 0;
-        .contact-num {
-            font-size: 28px;
-            font-weight: bold;
-            padding-bottom: 5px;
-            color: $secondary-green;
-        }
-    }
 }
+
 
 .dropdown-menu {
     position: absolute;
@@ -394,9 +381,9 @@ input {
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175)
 }
 
-.dropdown-menu>.active>a,
-.dropdown-menu>.active>a:focus,
-.dropdown-menu>.active>a:hover {
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:focus,
+.dropdown-menu > .active > a:hover {
     color: #fff;
     text-decoration: none;
     background-color: $primary-blue;
@@ -405,7 +392,7 @@ input {
 
 .dropdown-menu li a {
     display: block;
-    padding: 3px 20px;
+    padding: 5px 20px;
     clear: both;
     font-weight: 400;
     line-height: 1.42857143;
@@ -435,4 +422,22 @@ input {
 
 .modal-backdrop {
     background-color: transparent;
+}
+
+.lang-div {
+    position: absolute;
+    right: 5px;
+    top: 11px;
+    select {
+        background: transparent;
+        color: #fff;
+        line-height: 100%;
+        font-size: 16px;
+        border-color: #fff;
+        border-radius: 5px;
+        padding: 2px !important;
+        option { 
+            color: #ddd;
+        }
+    }
 }

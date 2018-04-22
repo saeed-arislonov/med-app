@@ -1,7 +1,7 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
         <button ui-sref="app.myCart" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
-      <span class="back-text"><div class="default-title medicine-search-title">Назад в Корзину</div><span class="previous-title hide"></span></span></button>
+      <span class="back-text"><div class="default-title medicine-search-title">{{'cart_main_title' | translate}}</div><span class="previous-title hide"></span></span></button>
 
         <!-- <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="fa fa-filter"></i> 
         </button>
@@ -17,99 +17,141 @@
         <div class="ma-results ma-my-checkout">
             <div class="result-header-wrapper">
                 <div class="ma-search-name">
-                    <span>Оформление заказа</span>
+                    <span>{{'checkout_title' | translate}}</span>
                 </div>
             </div>
             <div class="ma-checkout-wrapper">
+
+                <!--buyer info to get name, phone and email-->
                 <div class="buyer-info">
-                    <div class="buyer-info-header" ng-click="toggleInfo()">Информатция о покупателе 
+                    <div class="buyer-info-header" ng-click="toggleInfo()">{{'checkout_buyerinfo' | translate}}
                         <i ng-class="showInfo ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-detail">
                         <div class="list">
-                            <label class="item item-input" style="width:100%">
-                                <input type="text" placeholder="First Name" value="{{userInfo.name}}">
+                            <label class="item item-input">
+                                <input type="text" placeholder="{{'checkout_info1' | translate}}" value="{{userInfo.name}}">
                             </label>
                             <label class="item item-input">
-                                <input type="text" placeholder="Phone Number" value="{{userInfo.phone}}">
+                                <span>+</span><input type="text" placeholder="{{'checkout_info2' | translate}}" value="{{userInfo.phone}}">
                             </label>
                             <label class="item item-input">
-                                <input type="text" placeholder="Email" value="{{userInfo.email}}">
+                                <input type="text" placeholder="{{'checkout_info3' | translate}}" value="{{userInfo.email}}">
                             </label>
                         </div>
                     </div>
                 </div>
+                <!--end of buyer info-->
 
                 <div class="buyer-info-address">
-                    <div class="buyer-info-header" ng-click="toggleAddress()">Адрес доставки
+                    <div class="buyer-info-header" ng-click="toggleAddress()">{{'checkout_address' | translate}}
                         <i ng-class="showAddress ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-detail-address">
-                        <div class="list">
+                        <div class="list" ng-class="checkoutError ? 'address-error' : ''">
                             <label class="item item-input">
-                                <input type="text" placeholder="First Name" value="Buyuk Ipak Yuli, 67 uy">
+                                <input type="text" placeholder="{{'checkout_address1' | translate}}" ng-model="del_address">
                             </label>
                         </div>
                     </div>
                 </div>
 
+                <!--below section is for to get delivery type-->
                 <div class="buyer-info-delivery">
-                    <div class="buyer-info-header" ng-click="toggleDelivery()">Выбор сбособа доставки
+                    <div class="buyer-info-header" ng-click="toggleDelivery()">{{'checkout_deltype' | translate}}
                         <i ng-class="showDelivery ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-detail-delivery">
                         <ion-list class="del-checkboxes item-input">
                             <label class="del-radio-wrapper" for="f1">
-                                <div class="delivery-radio"><input type="radio" id="f1" name="f1" value="1" ng-value="TRUE" ng-model="filter" /></div>Обычная доставка в течении дня <span class="bolder-text"> 5.000 sum</span>
+                                <div class="delivery-radio"><input ng-click="dell=5000" type="radio" id="f1" name="f1" value="1" ng-model="del_type" /></div>
+                                     <span class="delivery-text">
+                                {{'checkout_deltype1' | translate}} <span class="bolder-text"> 5.000  {{'sr_sum' | translate}}</span>
+</span>
                             </label>
                             <label class="del-radio-wrapper" for="f2">
-                                <div class="delivery-radio"><input type="radio" id="f2" name="f1" value="2" ng-model="filter" /></div>Быстрая доставка в течении часа <span class="bolder-text"> 15.000 sum</span>
+                                <div class="delivery-radio"><input ng-click="dell=15000" type="radio" id="f2" name="f1" value="2" ng-model="del_type" /></div>
+                                     <span class="delivery-text">
+                                {{'checkout_deltype2' | translate}} <span class="bolder-text"> 15.000  {{'sr_sum' | translate}}</span>
+</span>
                             </label>
                             <label class="del-radio-wrapper" for="f3">
-                                <div class="delivery-radio"><input type="radio" id="f3" name="f1" value="3" ng-model="filter" /></div>Самовызов. Бесплатно
+                                <div class="delivery-radio"><input ng-click="dell=0" type="radio" id="f3" name="f1" value="3" ng-model="del_type" /></div>
+                                 <span class="delivery-text">
+                                {{'checkout_deltype3' | translate}}
+</span>
                             </label>
                         </ion-list>
                     </div>
                 </div>
 
                 <div class="buyer-info-payment-type">
-                    <div class="buyer-info-header-payment" ng-click="togglePayment()">Выбор типа оплаты
+                    <div class="buyer-info-header-payment" ng-click="togglePayment()">{{'checkout_paytype' | translate}}
                         <i ng-class="showPayment ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-payment">
                         <ion-list class="del-checkboxes item-input">
                             <label class="del-radio-wrapper" for="p1">
-                                <span class="delivery-radio"><input type="radio" id="p1" name="p1" value="1" ng-model="filterPayment" /></span>
-                                Онлайн оплата по UzCard
+                                <span class="delivery-radio">
+                                    <input type="radio" id="p1" name="p1" value="1" ng-model="payment_type" />
+                                </span>
+                                 <span class="delivery-text">
+                                {{'checkout_paytype1' | translate}}
+                                </span>
                             </label>
                             <div class="debit-card">
                                 <div class="debit-card-top">
-                                    <div class="debit-num">8907</div>
-                                    <div class="debit-num">3486</div>
-                                    <div class="debit-num">1249</div>
-                                    <div class="debit-num">0010</div>
+                                    <input type="number" limit-to="4" class="debit-num" placeholder="1234" id="debit1" maxlength="4" auto-tab-to="debit2"/>
+                                    <input type="number" limit-to="4" class="debit-num" placeholder="5678" id="debit2" maxlength="4" auto-tab-to="debit3"/>
+                                    <input type="number" limit-to="4" class="debit-num" placeholder="9100" id="debit3" maxlength="4" auto-tab-to="debit4"/>
+                                    <input type="number" limit-to="4" class="debit-num" placeholder="1213" id="debit4" maxlength="4" auto-tab-to="debit_date"/>
                                 </div>
                                 <div class="debit-card-top">
-                                    <div class="debit-num">07</div>
-                                    <div class="debit-num">11</div>
-                                    <div class="debit-num">+998976671121</div>
+                                    <span>
+                                        <input type="number" id="debit_date" limit-to="2" class="debit-num debit-date" placeholder="08"  maxlength="2" auto-tab-to="debit_month"/>
+                                    </span>
+                                    <span>
+                                        <input type="number" id="debit_month" limit-to="2" class="debit-num debit-date" placeholder="21"/>
+                                    </span>
+                                    <input type="number" limit-to="4" value="{{userInfo.phone}}" class="debit-num" placeholder="" />
                                 </div>
                             </div>
                             <label class="del-radio-wrapper" for="p2">
-                                <span class="delivery-radio"><input type="radio" id="p2" name="p1" value="2" ng-value="TRUE" ng-model="filterPayment" /></span>
-                                Оплата наличными при получении
+                                <span class="delivery-radio">
+                                    <input type="radio" id="p2" name="p1" value="2" ng-model="payment_type" />
+                                </span>
+                                <span class="delivery-text">
+                                    {{'checkout_paytype2' | translate}}
+                                </span>
                             </label>
                             <label class="del-radio-wrapper" for="p3">
-                                <span class="delivery-radio"><input type="radio" id="p3" name="p1" value="3" ng-model="filterPayment" /></span>
-                                Оплата при получении картой
+                                <span class="delivery-radio">
+                                    <input type="radio" id="p3" name="p1" value="3" ng-model="payment_type" />
+                                </span>
+                                <span class="delivery-text">
+                                    {{'checkout_paytype3' | translate}}
+                                </span>
                             </label>
                         </ion-list>
                     </div>
                 </div>
-                <div class="cart-total">Итого заказ на сумму: <span>{{checkoutTotal | formatPrice}} sum</span></div>
-                <div class="proceed-checkout" ng-show="!confirming" ng-click="submitPayment()">Подтверждаю
+                <div style="display:flex;padding:10px;" class="checkout-sub-total">
+                    <div style="flex-grow:1">{{'checkout_delfee' | translate}}:</div>
+                    <div>
+                        <span ng-if="del_type=='1'">5.000</span>
+                        <span ng-if="del_type=='2'">15.000</span>
+                        <span ng-if="del_type=='3'">0</span> {{'sr_sum' | translate}}
+                    </div>
+                </div>
+                <div style="display:flex;padding:10px;" class="checkout-sub-total">
+                    <div style="flex-grow:1">{{'checkout_prodfee' | translate}}:</div>
+                    <div>{{total | formatPrice}} {{'sr_sum' | translate}}</div>
+                </div>
+                <div class="cart-total">
+                    <div>{{'checkout_totalfee' | translate}}:</div> <span>{{total + dell | formatPrice}}  {{'sr_sum' | translate}}</span></div>
+                <div class="proceed-checkout" ng-click="submitPayment(del_type, payment_type, del_address)">{{'checkout_confirm' | translate}}
                     <i class="flaticon-right-arrow"></i>
                 </div>
-                
-                <button class="proceed-checkout" ng-show="confirming">Подтверждаю
+
+                <!--<button class="proceed-checkout" ng-show="confirming">Подтверждаю
                     <i class="fa fa-spinner fa-spin"></i>
-                </button>
+                </button>-->
             </div>
         </div>
     </ion-content>

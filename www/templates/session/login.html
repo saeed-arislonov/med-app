@@ -2,7 +2,12 @@
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
         <div class="buttons buttons-left header-item">
         </div>
-        <div class="title title-center header-item"> Поисковик лекарств
+        <div class="title title-center header-item"> {{'main_page_title' | translate}}
+        </div>
+        <div class="lang-div">
+            <span class=" header-right-button  header-item">
+             <select class=" header-right-button" ng-model="language" ng-options="lang.key as lang.value for lang in langOptions" ng-change="updateLang(language)"></select>
+        </span>
         </div>
     </ion-header-bar>
 </div>
@@ -20,10 +25,11 @@
                     <div></div>
 
                     <fieldset>
-                        <legend class="ma-search-title">Авторизоваться</legend>
+                        <legend class="ma-search-title">{{'session_signin' | translate}}</legend>
                         <div class="list input-item">
-                            <label class="item item-input" ng-class="(errorClass && !signin.login.length) ? 'errorClass' : ''">
-                                <input type="text" name="login" placeholder="Логин *" ng-model="signin.login" required/>
+                            
+                            <label class="item item-input" >
+                                <input type="text" name="login" placeholder="{{'session_login' | translate}}" ng-model="signin.login" required />
                             </label>
                             <!-- <pre>{{medicines}}</pre>-->
                             <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
@@ -32,17 +38,19 @@
                         
                         <div class="list input-item">
                             <label class="item item-input" ng-class="(errorClass && !signin.password.length) ? 'errorClass' : ''">
-                                <input type="password" name="password" placeholder="Пароль *" ng-model="signin.password" required/>
+                                <input type="password" name="password" placeholder="{{'session_password' | translate}}" ng-model="signin.password" required/>
                             </label>
+                                          <!--  <pre> {{userInfo | json}} </pre>-->
                             <!-- <pre>{{medicines}}</pre>-->
                             <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
 
                         </div>
+
                     </fieldset>
                 </div>
                 <!--<pre>{{loginForm.$valid}}</pre>-->
-                <div class="error-message" ng-show="errorLogIn">Hе верный логин или пароль</div>
-                <div class="error-message" ng-show="errorClass">Введите логин и пароль</div>
+                <div class="error-message" ng-show="errorLogIn">{{'session_wrong_cr' | translate}}</div>
+                <div class="error-message" ng-show="errorClass">{{'session_login_required' | translate}}</div>
 
                 <!--<ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
@@ -51,11 +59,14 @@
     </ion-list> -->
                 <div class="login-button-wrapper">
                 <button class="login-button" ng-click="submitLogin(loginForm.$valid)" ng-disabled="loggingIn">
-                        <a class="login-button-a">Войти</a>
-                        <i class="fa fa-spinner fa-spin" ng-if="loggingIn"></i>
+                        <a class="login-button-a">{{'session_login_button' | translate}}</a>
                     </button>
+                    <button id="hiddenLogin" ui-sref="app.mainPage" style="display:none">hidden</button>
                     
-                    <a ng-click="openAccount()">Нет аккаунта? Зарегистрируйтесь здесь. </a>
+                    <a ng-click="openAccount(false)">{{'session_no_account' | translate}} </a>
+                    <div style="margin-top:10px;">
+                        <a ng-click="openAccount(true)">{{'session_forgot_password' | translate}}</a>
+                    </div>
                 </div>
             </ion-toolbar>
         </form>

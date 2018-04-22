@@ -1,12 +1,11 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
-        <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
+        <button ui-sref="app.profile" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
       <span class="back-text"><div class="default-title medicine-search-title"></div><span class="previous-title hide"></span></span></button>
+        <div class="title title-center header-item"> {{'mo_title' | translate}}
+        </div>
 
-        <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="flaticon-filter"></i> 
-        </button>
-
-        <button class="button header-right-button buttons button-clear header-item"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{cartData.length}}</span></span>
+        <button ui-sref="app.myCart" class="button header-right-button buttons button-clear header-item"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{shoppingCart.length}}</span></span>
         </button>
 
 
@@ -14,10 +13,53 @@
 </div>
 <ion-view view-title="Search" animation="no-animation">
     <ion-content class="no-header">
-        <div class="ma-results ma-my-cart">
+        <div class="ma-results ma-my-cart my-orders">
 
             <div class="ma-results-wrapper">
-                <div class="medicine-result">
+                <div class="refreshOrder">
+                    <button ng-click="getOrders()" class="button button-positive">{{'mo_refresh' | translate}} <i class="flaticon-reuse"></i></button>
+                </div>
+                <div class="medicine-result" ng-repeat="order in myOrderHistory">
+                    <div class="mr-top">
+                        <!--<img width="60" height="60" class="product-photo" ng-src="{{'http://medappteka.uz'+order.orderGoods[0].medicine.photo}}" onerror="this.src='img/med.png'"/>-->
+                        <div class="product-info" style="margin-left: 10px;">
+                            <div class="myOrderInfo">{{'mo_order_num' | translate}}: <span># {{order.session}} </span></div>
+                            <div class="myOrderInfo">{{'mo_delivery_type' | translate}}: 
+                                <span ng-if="order.type_pay==1">{{'checkout_paytype1' | translate}}</span>
+                                <span ng-if="order.type_pay==2">{{'checkout_paytype2' | translate}}</span>
+                                <span ng-if="order.type_pay==3">{{'checkout_paytype3' | translate}}</span>
+                            </div>
+                            <div class="myOrderInfo"> {{'mo_payment_type' | translate}}:
+                                <span ng-if="order.type_deliver==1">{{'checkout_deltype1' | translate}} <span class="bolder-text"> 5.000   {{'sr_sum' | translate}}</span></span>
+                                <span ng-if="order.type_deliver==2">{{'checkout_deltype2' | translate}} <span class="bolder-text"> 15.000  {{'sr_sum' | translate}}</span></span>
+                                <span ng-if="order.type_deliver==3">{{'checkout_deltype3' | translate}}</span>
+                            </div>
+                            <div class="myOrderInfo">{{'mo_total_sum' | translate}}: <span>{{order.totalPrice | formatPrice}}  {{'sr_sum' | translate}}</span></div>
+                        </div>
+                    </div>
+                    <div class="mr-bottom">
+                        <ul>
+                            <li ng-if="order.status == 0" class="button button-light waiting-button" style="padding: 4px 4px;">
+                                <i class="flaticon-minus" style="bottom:3px;position:relative;left:0;bottom:0"></i> 
+                                {{'mo_waiting' | translate}} </li>
+                            
+                             <li ng-if="order.status == 1" class="button button-light completed-button" style="padding: 4px 4px;">
+                                <i class="flaticon-success-1" style="bottom:3px;position:relative;left:0;bottom:0"></i> {{'mo_completed' | translate}}</li>
+                            
+                            <li ng-if="order.status == 2" class="button button-light canceled-button" style="padding: 4px 4px;"><i class="flaticon-time" style="bottom:3px;position:relative;left:0;bottom:0"></i> {{'mo_canceled' | translate}}</li>
+                            
+                            
+                            <!--<li class="button button-energized price-button" style="padding: 4px 4px;">
+                                {{order.totalPrice}} <span class="sum">сум</span></li>-->
+                            <li class="button button-positive call-button" style="padding-left:5px;" ng-click="orderDetail(order)"><a>{{'clinic_about' | translate}}</a> </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ng-if="noData">
+                    <h4>{{'mo_noorders' | translate}}</h4>
+                </div>
+                
+                <!--<div class="medicine-result">
                     <div class="mr-top">
                         <img width="60" height="60" class="product-photo" src="http://apteka999.uz/img_filiali/2.jpg" />
                         <div class="product-info">
@@ -28,13 +70,33 @@
                     </div>
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-light map-button" ng-click="openModal()"><i class="ion-ios-location-outline" style="bottom:3px"></i> Kарта</li>
-                            <li class="button button-energized price-button">
+                           
+                            
+                            <li class="button button-energized price-button" style="padding: 4px 4px;">
                                 13000 <span class="sum">сум</span></li>
-                            <li class="button button-positive call-button"><a><i class="ion-ios-telephone" style="bottom:3px"></i> More</a> </li>
+                            <li class="button button-positive call-button" style="padding-left:5px;"><a>Подробнее</a> </li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
+                
+                <!--<div class="medicine-result">
+                    <div class="mr-top">
+                        <img width="60" height="60" class="product-photo" src="http://apteka999.uz/img_filiali/2.jpg" />
+                        <div class="product-info">
+                            <div>Medicine: <span>Kyupen </span></div>
+                            <div>Manufacturer: <span>Russia</span></div>
+                            <div>Address: <span>Buyuk Ipak Yuli, 12</span></div>
+                        </div>
+                    </div>
+                    <div class="mr-bottom">
+                        <ul>
+                            
+                            <li class="button button-energized price-button" style="padding: 4px 4px;">
+                                13000 <span class="sum">сум</span></li>
+                            <li class="button button-positive call-button" style="padding-left:5px;"><a> Подробнее</a> </li>
+                        </ul>
+                    </div>
+                </div>-->
             </div>
         </div>
     </ion-content>

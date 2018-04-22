@@ -2,27 +2,16 @@
     order: [
         {
             med_id: 'string',
-            med_name: 'string',
-            med_price: '',
             count: 'string',
-            med_price_subtotal: '',
             pharmacy_id: 'string',
-            pharmacy_name: 'string',
-            pharmacy_address: 'string'
         },
         {
             med_id: 'string',
-            med_name: 'string',
-            med_price: '',
             count: 'string',
-            med_price_subtotal: '',
             pharmacy_id: 'string',
-            pharmacy_name: 'string',
-            pharmacy_address: 'string'
         }
     ],
-    total_amount: 'string',
     delivery_type: 'string',
-    delivery_fee: 'string',
-    payment_type: 'string'
+    payment_type: 'string',
+    delivery_address: 'string'
 }

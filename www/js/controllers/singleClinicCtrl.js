@@ -1,11 +1,15 @@
 controllers
-    .controller('singleClinicCtrl', function ($stateParams, $scope, $http, orderCount, $ionicModal, $ionicPopup, IonicClosePopupService, NgMap, $rootScope, $state, singleMap, $ionicScrollDelegate) {
+    .controller('singleClinicCtrl', function ($stateParams, $scope, $http, orderCount, $ionicModal, $ionicPopup, IonicClosePopupService, NgMap, $rootScope, $state, singleMap, $ionicScrollDelegate, $cordovaGeolocation) {
 
         $http.get("http://medappteka.uz/api/inst/view?id=" + $stateParams.id).success(function (data) {
             $scope.singleClinic = data;
             console.log($scope.singleClinic)
         }).error(function (err) {
-            return err;
+            $ionicLoading.show({
+                template: "{{'slow_internet' | translate}}",
+                noBackdrop: true,
+                duration: 2000
+            });
         });
 
         $scope.callClinic = function (cli) {
@@ -16,14 +20,29 @@ controllers
         $scope.todaysDate = d.getDate();
         $scope.todaysMonth = d.getMonth() + 1;
 
-        
-    $scope.cliMapPresent = false;
-    $scope.showMapMed = function (cli) {
+        var options = {
+            timeout: 10000,
+            enableHighAccuracy: false
+        };
+        $scope.cliMapPresent = false;
+        $scope.showMapMed = function (cli) {
             if ($scope.cliMapPresent) {
                 console.log('true')
                 $scope.cliMapPresent = false;
                 $('.medicineMapView').removeClass('medicineMapPresent');
             } else {
+                $cordovaGeolocation
+                    .getCurrentPosition(options)
+                    .then(function (position) {
+                        $scope.lat = position.coords.latitude
+                        $scope.long = position.coords.longitude
+                    }, function (err) {
+                        $ionicLoading.show({
+                            template: "{{'gps_off' | translate}}",
+                            noBackdrop: true,
+                            duration: 2000
+                        });
+                    });
                 $ionicScrollDelegate.scrollTop();
                 console.log('false')
                 $scope.singlePosition = cli.lat + ',' + cli.lng;
@@ -32,8 +51,11 @@ controllers
             }
         }
 
-    NgMap.getMap().then(function(map) {
-          $rootScope.map = map;
+
+
+
+        NgMap.getMap().then(function (map) {
+            $rootScope.map = map;
         });
 
         $scope.showPopup = function () {

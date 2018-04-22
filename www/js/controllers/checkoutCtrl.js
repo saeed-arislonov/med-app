@@ -1,18 +1,73 @@
 controllers
-    .controller('CheckOut', function ($scope, $rootScope, orderCount, $state, $http, $ionicLoading) {
+    .controller('CheckOut', function ($scope, $rootScope, orderCount, $state, $http, $ionicLoading, $ionicScrollDelegate) {
+        $scope.payment_type = '3'
+        $scope.del_type = '3';
+        $scope.checkoutError = false;
 
-        $scope.submitPayment = function () {
-            $ionicLoading.show({
+        /* $scope.getTotal = function (del_type) {
+             if (del_type == '1') {
+                 $rootScope.total = $rootScope.total + 5000;
+             }
+             if (del_type == '2') {
+                 $rootScope.total = $rootScope.total + 15000;
+             }
+             if (del_type == '3') {
+                 $rootScope.total;
+             }
+         }*/
+
+        $scope.submitPayment = function (del_type, payment_type, del_address) {
+
+            if ((del_address == '' || del_address == undefined) && del_type != 3) {
+                $scope.checkoutError = true;
+                $ionicScrollDelegate.scrollTop();
+            } else {
+                $ionicLoading.show({
                     template: '<ion-spinner></ion-spinner>'
                 });
-            setTimeout(function () {
-                $ionicLoading.hide();
-                $state.go('app.accepted')
-            }, 2000)
-        }
+                var order_data = {
+                    user_id: $rootScope.userInfo.user_id,
+                    order: [],
+                    delivery_type: del_type,
+                    payment_type: payment_type,
+                    address: del_address
+                }
+                $rootScope.shoppingCart.forEach(function (p) {
+                    order_data.order.push({
+                        med_id: p.med_id,
+                        count: p.count,
+                        pharmacy_id: p.pharmacy_id
+                    })
+                });
 
-        console.log($rootScope.total)
-        $scope.checkoutTotal = $rootScope.total;
+                /*console.log($.param(order_data))*/
+
+                $http({
+                    method: 'POST',
+                    url: 'http://medappteka.uz/api/order',
+                    data: $.param(order_data),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).success(function (data) {
+                    /*console.log(data)*/
+                    $ionicLoading.hide();
+                    $rootScope.orderId = data.order_id
+                    $state.go('app.accepted')
+                    // $rootScope.savedCart = localStorage.getItem('shoppingCart');
+                    $rootScope.shoppingCart = [];
+                    localStorage.setItem('shoppingCart', JSON.stringify($rootScope.shoppingCart));
+                }).error(function (err, a, b, c) {
+                    /*console.log(err, a, b, c);*/
+                    $ionicLoading.hide();
+                    $ionicLoading.show({
+                        template: "{{'slow_internet' | translate}}",
+                        noBackdrop: true,
+                        duration: 2000
+                    });
+                });
+            }
+        }
 
         $scope.showPayment = true;
         $scope.showDelivery = true;

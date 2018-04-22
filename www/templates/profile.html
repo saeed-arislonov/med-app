@@ -1,87 +1,109 @@
 <div class="bar-stable">
-	<ion-header-bar class="bar-stable bar bar-header" align-title="center">
-		<button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
+    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+        <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
       <span class="back-text"><span class="default-title"></span><span class="previous-title hide"></span></span></button>
 
-		<div class="title title-center header-item">МЕНЮ</div>
+        <div class="title title-center header-item">{{'pr_menu' | translate}} </div>
 
-		<button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i>
-            <span class="order-count"><span>2</span></span>
+        <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i>
+            <span class="order-count"><span>{{shoppingCart.length}}</span></span>
         </button>
 
 
-	</ion-header-bar>
+    </ion-header-bar>
 </div>
 
 <ion-view view-title="Browse">
-	<ion-content class="profile-content">
-		<!-- FILTER DIV-->
-		<div class="list list-inset ma-profile-edit" style="display: none;">
-			<form name="updateForm" novalidate>
+    <ion-content class="profile-content">
+        <!-- FILTER DIV-->
+        <div class="list list-inset ma-profile-edit" style="display: none;">
+            <form name="updateForm" novalidate>
 
-				<div class="list">
-					<label class="item item-input item-floating-label" ng-class="submitted && registerForm.name.$error.required ? 'register-error' : ''">
-                        <span class="input-label">Имя *</span>
-                        <input ng-model="userInfo.name" name="name" type="text" placeholder="Имя *" required>
+                <div class="list">
+                    <label class="item item-input item-floating-label" ng-class="submitted && registerForm.name.$error.required ? 'register-error' : ''">
+                        <span class="input-label">{{'up_name' | translate}} *</span>
+                        <input ng-model="userInfo.name" name="name" type="text" placeholder="{{'up_name' | translate}} *" required>
                     </label>
-					<label class="item item-input item-floating-label">
-                        <span class="input-label">Эл. адрес</span>
-                        <input ng-model="userInfo.email" type="text" placeholder="Эл. адрес">
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">{{'up_email' | translate}}</span>
+                        <input ng-model="userInfo.email" type="text" placeholder="{{'up_email' | translate}}">
                     </label>
-					<label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.phone.$error.required ? 'register-error' : ''">
-                        <span class="input-label">Телефон *</span>
-                        <input ng-model="userInfo.phone" name="phone" required type="text" placeholder="Телефон *">
+                    <label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.phone.$error.required ? 'register-error' : ''">
+                        <span class="input-label">{{'up_tel' | translate}} *</span>
+                        <input ng-model="userInfo.phone" name="phone" required type="text" placeholder="{{'up_tel' | translate}} *">
                     </label>
-					<label class="item item-input item-floating-label half-size">
-                        <span class="input-label">Дата рождения</span>
-                        <input ng-click="openDatePicker()" ng-model="userInfo.birth_date" type="text" placeholder="Дата рождения">
+                    <label class="item item-input item-floating-label half-size">
+                        <span class="input-label">{{'up_dob' | translate}}</span>
+                        <input ng-click="openDatePicker()" ng-model="userInfo.birth_date" type="text" placeholder="{{'up_dob' | translate}}">
                     </label>
-					<label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.login.$error.required ? 'register-error' : ''">
-                        <span class="input-label">Логин *</span>
-                        <input ng-model="userInfo.login" required name="login" type="text" placeholder="Логин *">
+                    <label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.login.$error.required ? 'register-error' : ''">
+                        <span class="input-label">{{'up_login' | translate}} *</span>
+                        <input ng-model="userInfo.login" required name="login" type="text" placeholder="{{'up_login' | translate}} *">
                     </label>
-					<label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.password.$error.required ? 'register-error' : ''">
-                        <span class="input-label">Пароль</span>
-                        <input ng-model="userInfo.password" name="password" type="text" placeholder="Пароль">
+                    <label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.password.$error.required ? 'register-error' : ''">
+                        <span class="input-label">{{'up_password' | translate}}</span>
+                        <input ng-model="userInfo.password" name="password" type="text" placeholder="{{'up_password' | translate}}">
                     </label>
-					<label class="item item-input item-floating-label" style="width:100%">
-                        <span class="input-label">Фото</span>
-                       <!-- <input ng-model="user.photo" type="file" placeholder="Photo">-->
-                         <input type="file" ngf-select ng-model="userInfo.photo" name="file"    
+                    <label class="item item-input item-floating-label" style="width:100%">
+                        <input accept="image/*" name="file" ng-value="fileToUpload"
+                         value="{{fileToUpload}}" file-model="fileToUpload"
+                        set-file-data="fileToUpload = value;" 
+                        type="file" id="my_file"  ngf-max-size="2048" accept=".png, .jpg, .jpeg" style="display:none"/>
+                        <button style="margin: 10px;" id="my_photo" ng-click="openFile()">{{'up_addphoto' | translate}}</button>
+                        {{fileToUpload.name}}
+                        <p style="color:red" ng-if="fileToUpload.size / 1024 > 2048">{{'up_addphoto-error' | translate}}</p>
+                       <!--<input type="file" data-bind-file="" data-ng-model="theFile"/>-->
+                        <!-- <input type="file" ngf-select ng-model="picFile" name="file"    
              accept="image/*" ngf-max-size="2MB" required
-             ngf-model-invalid="errorFile">
+             ngf-model-invalid="errorFile" id="pf_image">-->
+                        
                     </label>
-				</div>
-				<div class="apply-filter-button">
-					<button ng-click="uploadPic(user.photo)">Применить</button>
-					<button ng-click="updateUser(updateForm.$valid, userInfo)">Применить изменения</button>
-					<button ng-click="toggleMenu()">Закрыть</button>
-				</div>
-			</form>
-		</div>
-		<div class="ma-menu">
-			<div class="ma-menu-profile">
-				<img width="70" height="70" src="http://www1.pictures.zimbio.com/gi/Odil+Akhmedov+South+Korea+v+Uzbekistan+AMTp5LiMw9Rl.jpg" />
-				<div class="ma-profile-info">
-					<div class="profile-name">{{userInfo.name}}</div>
-					<div class="profile-info button button-light" ng-if="userInfo.birth_date.length">{{currentAge}} лет</div>
-				</div>
-				<div class="sign-out-btn" ng-click="signOut()">
-					<a>Выйти из профиля <i class="flaticon-logout"></i></a>
-				</div>
-			</div>
-			<div class="ma-menu-list">
-				<ul>
-					<li><a ui-sref="app.mainPage"><i class="flaticon-search"></i><span class="menu-li">Поиск лекарств</span></a></li>
-					<li><a ui-sref="app.mainPage"><i class="flaticon-medical"></i><span class="menu-li">Медицинские учреждения</span></a></li>
-					<li><a ui-sref="app.myOrders"><i class="flaticon-list"></i><span class="menu-li">Мои покупки</span></a></li>
-					<li><a><i class="flaticon-settings"></i><span class="menu-li" ng-click="toggleEdit()">Настройки приложения</span></a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="about-app">
-			Информация о приложении
-		</div>
+                </div>
+                <div class="apply-filter-button">
+                    <!--<button ng-click="uploadPic(picFile)">Применить изменения</button>-->
+                    <button ng-click="updateUser(updateForm.$valid, userInfo, fileToUpload)" ng-disabled="fileToUpload.size / 1024 > 2048">{{'up_accept' | translate}}</button>
+                    <button ng-click="toggleMenu()">{{'up_close' | translate}}</button>
+                </div>
+            </form>
+        </div>
+        <div class="ma-menu">
+            <div class="ma-menu-profile">
+                <img width="70" height="70" ng-src="{{'http://medappteka.uz'+userInfo.photo}}" onerror="this.src='img/img1.png'" />
+                <div class="ma-profile-info">
+                    <div class="profile-name">{{userInfo.name}}</div>
+                    <div class="profile-info button button-light" ng-hide="userInfo.birth_date == '' || userInfo.birth_date == null">{{ currentAge }}  {{ 'pr_age' | translate}}</div>
+                </div>
+            </div>
+            <div class="ma-menu-list">
+                <ul>
+                    <li><a ui-sref="app.mainPage"><i class="flaticon-search"></i><span class="menu-li">{{'pr_search' | translate}}</span></a></li>
+                    <li><a ui-sref="app.myOrders"><i class="flaticon-list"></i><span class="menu-li">{{'pr_my_orders' | translate}}</span></a></li>
+                    <li><a><i class="flaticon-settings"></i><span class="menu-li" ng-click="toggleEdit()">{{'pr_settings' | translate}}</span></a><div class="lang-div">
+            <span class=" header-right-button  header-item">
+             <select class=" header-right-button" ng-model="language" ng-options="lang.key as lang.value for lang in langOptions" ng-change="updateLang(language)"></select>
+        </span>
+        </div></li>
+                    <li class="sign-out-btn" ng-click="signOut()"><a><i class="flaticon-logout"></i>
+                        <span class="menu-li">{{'pr_sign_out' | translate}} </span></a></li>
+                    <li ng-click="exitApp()"><a><i class="flaticon-cancel"></i><span class="menu-li">{{'pr_exit' | translate}}</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="about-app">
+            <div class="absolute-bottom">
+                <div class="social-icons">
+                <img width="40" height="40" src="img/facebook.png" />
+                <img width="40" height="40" src="img/instagram.png" />
+                <img width="40" height="40" src="img/telegram.png" />
+            </div>
+            <div class="contact-info">
+                <div class="contact-num">3713836</div>
+                <span>{{'pr_service_phone' | translate}}</span>
+            </div>
+            {{'pr_info_app' | translate}}
+            </div>
+            
+        </div>
 
-	</ion-content>
+    </ion-content>
 </ion-view>

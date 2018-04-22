@@ -1,6 +1,6 @@
 controllers
 
-    .controller('ClinicCtrl', function ($scope, $state, $stateParams, $ionicLoading, $rootScope, $http, $ionicModal, $rootScope, $ionicPlatform, $ionicScrollDelegate) {
+    .controller('ClinicCtrl', function ($scope, $state, $stateParams, $ionicLoading, $rootScope, $http, $ionicModal, $rootScope, $ionicPlatform, $ionicScrollDelegate, $cordovaGeolocation) {
 
         /*$scope.clinicLoading = true;
         $http.get("http://medappteka.uz/api/inst").success(function (data) {
@@ -11,10 +11,19 @@ controllers
         	return err;
         });*/
 
+        var options = {
+            timeout: 10000,
+            enableHighAccuracy: false
+        };
+
         $scope.go = function (param) {
             $state.go('app.singleClinic', {
                 id: param
             })
+        }
+
+        $scope.callClinic = function (cli) {
+            window.location.href = 'tel:' + cli.contacts;
         }
 
         $scope.filterOpen = false;
@@ -65,6 +74,18 @@ controllers
                 $scope.cliMapPresent = false;
                 $('.medicineMapView').removeClass('medicineMapPresent');
             } else {
+                $cordovaGeolocation
+                    .getCurrentPosition(options)
+                    .then(function (position) {
+                        $scope.lat = position.coords.latitude
+                        $scope.long = position.coords.longitude
+                    }, function (err) {
+                        $ionicLoading.show({
+                            template: "{{'gps_off' | translate}}",
+                            noBackdrop: true,
+                            duration: 2000
+                        });
+                    });
                 $ionicScrollDelegate.scrollTop();
                 $scope.singlePosition = cli.lat + ',' + cli.lng;
                 $scope.cliMapPresent = true;
@@ -78,6 +99,18 @@ controllers
                 $scope.cliMapPresent = false;
                 $('.medicineMapView').removeClass('medicineMapPresent');
             } else {
+                $cordovaGeolocation
+                    .getCurrentPosition(options)
+                    .then(function (position) {
+                        $scope.lat = position.coords.latitude
+                        $scope.long = position.coords.longitude
+                    }, function (err) {
+                        $ionicLoading.show({
+                            template: "{{'gps_off' | translate}}",
+                            noBackdrop: true,
+                            duration: 2000
+                        });
+                    });
                 //$scope.singlePosition = med.lang + ',' + med.long;
                 $scope.cliMapPresent = true;
                 $('.medicineMapView').addClass('medicineMapPresent');

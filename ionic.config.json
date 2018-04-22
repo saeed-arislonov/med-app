@@ -1,10 +1,10 @@
 {
-  "name": "medapp",
+  "name": "MEDAPPTEKA",
   "app_id": "733ef45a",
   "type": "ionic1",
   "integrations": {
-    "gulp": {},
-    "cordova": {}
+    "cordova": {},
+    "gulp": {}
   },
   "watchPatterns": [
     "scss/**/*",

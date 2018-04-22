@@ -1,284 +1,442 @@
 controllers
-	.controller('FirstTimeCtrl', function ($scope, $state, $http, sessionService, Auth, $rootScope, $ionicLoading) {
+    .controller('FirstTimeCtrl', function ($scope, $state, $http, sessionService, Auth, $rootScope, $ionicLoading) {
 
-		$scope.userExists = false;
+        $scope.userExists = false;
+       // console.log($rootScope.forgotPassword)
+        //localStorage.removeItem("registerInfoCompleted")
 
-		$scope.submitNumber = function (theForm) {
-			$ionicLoading.show({
-				template: '<ion-spinner></ion-spinner>'
-			});
-			localStorage.removeItem("registerInfo");
-			if (theForm) {
-				// $('.verification-pane').css('left', '0');
-		
-				var user_phone = '998' + $scope.user.phone;
-				Auth.userInfo.phone = user_phone;
+        $scope.submitNumber = function (theForm) {
+            localStorage.removeItem("registerInfo");
+            if (theForm) {
+                $ionicLoading.show({
+                    template: '<ion-spinner></ion-spinner>'
+                });
+                // $('.verification-pane').css('left', '0');
 
-				$http({
-					method: 'POST',
-					url: 'http://medappteka.uz/api/user/send-phone',
-					data: Object.toparams({
-						"phone": user_phone
-					}),
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-					}
-				}).then(function (response, a, b, c) {
-						$ionicLoading.hide();
-						$scope.verification_pass = response.data.code;
-						sessionService.set('vcode', response.data.code);
-						sessionService.set('userId', response.data.user_id);
-						$('.verification-pane').css('left', '0');
-					},
-					function (response) { // optional
-						$ionicLoading.hide();
-						console.log("FAIL ", response);
-					});
-			} else {
-				$scope.submitted = false;
-			}
-		}
+                var user_phone = '998' + $scope.user.phone;
+                Auth.userInfo.phone = user_phone;
 
-		$scope.backToLogin = function () {
-			$state.go('login', {}, {
-				reload: true
-			});
-		}
+                $http({
+                    method: 'POST',
+                    url: 'http://medappteka.uz/api/user/send-phone',
+                    data: Object.toparams({
+                        "phone": user_phone
+                    }),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function (response, a, b, c) {
+                        $ionicLoading.hide();
+                    console.log(response)
+                        $scope.verification_pass = response.data.code;
+                        sessionService.set('vcode', response.data.code);
+                        sessionService.set('userId', response.data.user_id);
+                        $('.verification-pane').css('left', '0');
+                    },
+                    function (response) { // optional
+                        $ionicLoading.hide();
+                        $ionicLoading.show({
+                            template: "{{'slow_internet' | translate}}",
+                            noBackdrop: true,
+                            duration: 2000
+                        });
+                    });
+            } else {
+                $scope.submitted = false;
+            }
+        }
 
-		$scope.reSendCode = function () {
-			$('.verification-pane').css('left', '100%');
-			$scope.user.phone = '';
-			$scope.submitted = false;
-		}
+        $scope.backToLogin = function () {
+            $state.go('login', {}, {
+                reload: true
+            });
+        }
 
-		$scope.submitted = false;
+        $scope.reSendCode = function () {
+            $('.verification-pane').css('left', '100%');
+            $scope.user.phone = '';
+            $scope.submitted = false;
+        }
 
-		$scope.user = {};
+        $scope.submitted = false;
 
-		$scope.submitVerification = function () {
-			$scope.submitted = true;
-			console.log($scope.verification_pass, '$scope.verification_pass')
-			if ($scope.verification_pass == $scope.user.vcode) {
-				$ionicLoading.show({
-					template: '<ion-spinner></ion-spinner>'
-				});
-				$scope.verify_user = {
-					user_id: sessionService.get('userId'),
-					phone_code: sessionService.get('vcode'),
-				}
+        $scope.user = {};
 
-				$http({
-					method: 'POST',
-					url: 'http://medappteka.uz/api/user/send-code',
-					data: Object.toparams($scope.verify_user),
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-					}
-				}).then(function (response) {
-						console.log(response)
-						$ionicLoading.hide();
-						if (response.data.hasOwnProperty('token')) {
-							console.log(response);
-							Auth.userInfo.phone = response.data.phone;
-							sessionService.set('registerToken', response.data.token);
-							sessionService.set('user_idd', response.data.user_id);
-							localStorage.setItem("registerInfo", JSON.stringify(response.data));
-							console.log(localStorage.getItem("registerInfo"));
-							$state.go('register');
-						} else {
-							$scope.userExists = true;
-						}
-					},
-					function (response) { // optional
-						$scope.loggingIn = false;
-						console.log("FAIL ", response);
-					});
-			} else {
-				console.log("Wrong Verification");
-				$ionicLoading.hide();
-				$scope.submitted = true;
-			}
-		}
-	})
-	.controller('LoginCtrl', function ($scope, $http, $state, Auth, $ionicLoading, $rootScope) {
+        $scope.submitVerification = function () {
+            $scope.submitted = true;
+            //console.log($scope.verification_pass, '$scope.verification_pass')
+            if ($scope.verification_pass == $scope.user.vcode) {
+                $ionicLoading.show({
+                    template: '<ion-spinner></ion-spinner>'
+                });
+                $scope.verify_user = {
+                    user_id: sessionService.get('userId'),
+                    phone_code: sessionService.get('vcode'),
+                }
 
-		$state.go($state.current, {}, {
-			reload: true
-		});
+                $http({
+                    method: 'POST',
+                    url: 'http://medappteka.uz/api/user/send-code',
+                    data: Object.toparams($scope.verify_user),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function (response) {
+                        console.log(response)
+                        $ionicLoading.hide();
+                        if (response.data.hasOwnProperty('token')) {
+                            //console.log(response);
+                            Auth.setUser(response.data.token);
+                            sessionService.set('registerToken', response.data.token);
+                            sessionService.set('user_idd', response.data.user_id);
+                            localStorage.setItem("registerInfo", JSON.stringify(response.data));
+                            //console.log(localStorage.getItem("registerInfo"));
+                            $state.go('register');
+                            if (response.data.login != null) {
+                                $rootScope.forgotPassword = true
+                            }
+                        } else {
+                            $scope.userExists = true;
+                        }
+                    },
+                    function (response) { // optional
+                        $scope.loggingIn = false;
+                        $ionicLoading.show({
+                            template: "{{'slow_internet' | translate}}",
+                            noBackdrop: true,
+                            duration: 2000
+                        });
+                    });
+            } else {
+               // console.log("Wrong Verification");
+                $ionicLoading.hide();
+                $scope.submitted = true;
+            }
+        }
+    })
+    .controller('LoginCtrl', function ($scope, $http, $state, Auth, $ionicLoading, $rootScope, $timeout, $window, $translate) {
 
-		$scope.loggingIn = false;
-		$scope.errorLogIn = false;
-		$scope.signin = {};
-		console.log(Auth.getUser());
-		$scope.submitLogin = function (valid) {
-			$scope.errorClass = false;
-			$scope.errorLogIn = false;
+        $state.go($state.current, {}, {
+            reload: true
+        });
 
-			if (valid) {
-				$ionicLoading.show({
-					template: '<ion-spinner></ion-spinner>'
-				});
+        $scope.langKey = $translate.use();
 
-				$http({
-					method: 'POST',
-					url: 'http://medappteka.uz/api/user/sign-in',
-					data: Object.toparams($scope.signin),
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-					}
-				}).then(function (response) {
-						$ionicLoading.hide();
-						$scope.errorLogIn = false;
-						console.log(response);
-						localStorage.removeItem("registerInfoCompleted");
-						localStorage.setItem("registerInfoCompleted", JSON.stringify(response.data));
-						$rootScope.savedLocalStorage = localStorage.getItem('registerInfoCompleted');
-						$rootScope.userInfo = JSON.parse($rootScope.savedLocalStorage);
-						Auth.setUser(response.data.token);
-						$state.go('app.mainPage');
-					},
-					function (response) { // optional
-						$ionicLoading.hide();
-						$scope.errorLogIn = true;
-						console.log("FAIL ", response);
-					});
-			} else {
-				console.log("login form is FALSE");
-				$scope.errorClass = true;
-			}
+        $scope.langOptions = [
+            {
+                key: "uz",
+                value: "UZ"
+            },
+            {
+                key: "ru",
+                value: "RU"
+            }
+        ];
 
-		}
-		$scope.openAccount = function () {
-			$state.go('firstTimeUser', {}, {
-				reload: true
-			});
-		}
-	})
-	.controller('RegisterCtrl', function ($scope, Upload, $http, Auth, sessionService, ionicDatePicker, $filter, $ionicLoading, postService, $state) {
+        $scope.language = 'ru'
 
-		var ipObj1 = {
-			callback: function (val) { //Mandatory 
-				console.log('Return value from the datepicker popup is : ', new Date(val));
-				//$scope.user.birth_date = 
-				$scope.formattedDate = new Date(val);
-				console.log($scope.formattedDate);
-				$scope.user.birth_date = $filter('date')($scope.formattedDate, "dd/MM/yyyy");
-				console.log($scope.user.birth_date);
-			}
-		}
+        $scope.updateLang = function (key) {
+            $translate.use(key);
+        }
 
-		$scope.openDatePicker = function () {
-			ionicDatePicker.openDatePicker(ipObj1);
-		};
+        $rootScope.forgotPassword = false;
 
-		$scope.user = JSON.parse(localStorage.getItem("registerInfo"));
-		console.log($scope.user)
+        $scope.loggingIn = false;
+        $scope.errorLogIn = false;
+        $scope.signin = {};
+        //console.log(Auth.getUser());
+        $scope.submitLogin = function (valid) {
+            $scope.errorClass = false;
+            $scope.errorLogIn = false;
 
-		console.log(sessionService.get('registerToken'));
-		var config = {}
+            if (valid) {
+                $ionicLoading.show({
+                    template: '<ion-spinner></ion-spinner>'
+                });
 
+                $http({
+                    method: 'POST',
+                    url: 'http://medappteka.uz/api/user/sign-in',
+                    data: Object.toparams($scope.signin),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).then(function (response) {
+                        //$ionicLoading.hide();
+                        $scope.errorLogIn = false;
+                       // console.log(response);
+                        if (localStorage.getItem("registerInfoCompleted") == null) {
+                            localStorage.setItem("registerInfoCompleted", JSON.stringify(response.data));
+                            // $timeout(function () {
+                            $state.go('app.mainPage', {}, {
+                                reload: 'app.mainPage'
+                            });
+                            $ionicLoading.hide();
+                            $window.location.reload()
+                            //  }, 500)
+                        } else {
+                            localStorage.setItem("registerInfoCompleted", JSON.stringify(response.data));
+                            //   $timeout(function () {
+                            $state.go('app.mainPage');
+                            $ionicLoading.hide();
+                            //  }, 500)
+                        }
+                        //$rootScope.savedLocalStorage = localStorage.getItem('registerInfoCompleted');
+                        //$rootScope.userInfo = JSON.parse($rootScope.savedLocalStorage);
+                        $scope.signin = {};
+                        /*$timeout(function () {
+                            $state.go('app.mainPage', {}, {
+                                reload: 'app.mainPage'
+                            });
+                            $window.location.reload()
+                            $ionicLoading.hide();
+                        }, 500)*/
+                        Auth.setUser(response.data.token);
+                    },
+                    function (response) { // optional
+                        $scope.meaninga = response;
+                        //console.log($scope.meaninga)
+                        $ionicLoading.hide();
+                        $scope.errorLogIn = true;
+                        if (response.data == null) {
+                            $ionicLoading.show({
+                                template: "{{'slow_internet' | translate}}",
+                                noBackdrop: true,
+                                duration: 2000
+                            });
+                        }
+                    });
+            } else {
+                //console.log("login form is FALSE");
+                $scope.errorClass = true;
+            }
 
-
-		/*$scope.createUser = function (name, phone, photo, birth_date, email, login, password) {
-			postService.uploadFileToUrl(name, phone, photo, birth_date, email, login, password).then(function (response, a, b, c) {
-				 console.log(response, a, b, c)
-					//$ionicLoading.hide();
-					//$scope.verification_pass = response.data.code;
-				//	sessionService.set('vcode', response.data.code);
-					//sessionService.set('userId', response.data.user_id);
-
-					//Auth.userInfo.user_id = response.data.user_id;
-					//$('.verification-pane').css('left', '0');
-					//console.log(sessionService.get('vcode'));
-					//Auth.setUser(response.data.token);
-					//console.log(Auth.getUser());
-					//$state.go('app.mainPage');
-				},
-				function (response, a, b, c) { // optional
-					$ionicLoading.hide();
-					console.log("FAIL ", response, a, b, c);
-				});
-		};*/
-
-		$scope.createUser = function (valid) {
-
-			if (valid) {
-				$ionicLoading.show({
-					template: '<ion-spinner></ion-spinner>'
-				});
-
-				$http({
-					method: 'POST',
-					url: 'http://medappteka.uz/api/user/sign-up',
-					data: Object.toparams($scope.user),
-					headers: {
-						//'Authorization': 'Bearer ' + sessionService.get('registerToken'),
-						'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-					}
-				}).then(function (response, a, b, c) {
-						//$scope.verification_pass = response.data.code;
-						//sessionService.set('vcode', response.data.code);
-						//sessionService.set('userId', response.data.user_id);
-
-						//Auth.userInfo.user_id = response.data.user_id;
-						//$('.verification-pane').css('left', '0');
-						console.log(response)
-						localStorage.setItem("registerInfoCompleted", JSON.stringify(response.data));
-						console.log(localStorage.getItem("registerInfoCompleted"));
-						//console.log(localStorage.getItem("registerInfo"));
-						$ionicLoading.hide();
-						Auth.setUser(response.data.token);
-						//console.log(Auth.getUser());
-						$state.go('app.mainPage');
-					},
-					function (response) { // optional
-						console.log("FAIL ", response);
-						$ionicLoading.hide();
-					});
-			} else {
-				$scope.submitted = true
-			}
+        }
+        $scope.openAccount = function (bool) {
+            $rootScope.forgotPassword = bool;
+            $state.go('firstTimeUser', {}, {
+                reload: true
+            });
+        }
+    })
+    .controller('RegisterCtrl', function ($scope, Upload, $http, Auth, sessionService, ionicDatePicker, $filter, $ionicLoading, $state, $rootScope, $window, $timeout) {
 
 
-			//$http.defaults.headers.common.Authorization = "Bearer " + sessionService.get('registerToken');
-			/*console.log(sessionService.get('registerToken'))
-			$http({
-				method: 'POST',
-				url: 'http://medappteka.uz/api/user/sign-up',
-				data: Object.toparams({
-					name: 'Saeed'
-				}),
-				headers: {
-					'Authorization': 'Bearer ' + sessionService.get('registerToken'),
-					'Content-Type': 'application/x-www-form-urlencoded'
-				}
-			}).then(function (data, status, headers, config) {
-					console.log(data, status, headers, config)
-					//$state.go('register');
-				},
-				function (data, status, headers, config) { // optional
-					console.log("FAIL ", data);
-					console.log(data, status, headers, config);
-				});*/
+        //console.log($rootScope.forgotPassword)
+        //localStorage.removeItem("registerInfoCompleted");
+       // console.log(localStorage.getItem("registerInfoCompleted"))
+        $scope.openFile = function () {
+            $("#my_pro_file").trigger('click');
+        }
 
-			/*file.upload = Upload.upload({
-			    url: 'http://medappteka.uz/api/user/sign-up',
-			    data: $scope.user,
-			    headers: {
-			        'Authorization': "Bearer " + Auth.getUser(),
-			        'Content-Type': "application/x-www-form-urlencoded"
-			    }
-			});*/
+        var ipObj1 = {
+            callback: function (val) { //Mandatory 
+                //console.log('Return value from the datepicker popup is : ', new Date(val));
+                //$scope.user.birth_date = 
+                $scope.formattedDate = new Date(val);
+               // console.log($scope.formattedDate);
+                $scope.user.birth_date = $filter('date')($scope.formattedDate, "dd/MM/yyyy");
+               // console.log($scope.user.birth_date);
+            },
+            inputDate: new Date(90, 5, 5)
+        }
 
-			/*file.upload.then(function (response) {
-			    $timeout(function () {
-			        console.log(response);
-			        file.result = response.data;
-			    });
-			}, function (response) {
-			    console.log(response);
-			    if (response.status > 0)
-			        $scope.errorMsg = response.status + ': ' + response.data;
-			});*/
-		}
-	});
+        $scope.openDatePicker = function () {
+            ionicDatePicker.openDatePicker(ipObj1);
+        };
+
+        $scope.user = JSON.parse(localStorage.getItem("registerInfo"));
+       // console.log($scope.user)
+
+        //console.log(sessionService.get('registerToken'));
+        var config = {}
+
+
+
+        /*$scope.createUser = function (name, phone, photo, birth_date, email, login, password) {
+        	postService.uploadFileToUrl(name, phone, photo, birth_date, email, login, password).then(function (response, a, b, c) {
+        		 console.log(response, a, b, c)
+        			//$ionicLoading.hide();
+        			//$scope.verification_pass = response.data.code;
+        		//	sessionService.set('vcode', response.data.code);
+        			//sessionService.set('userId', response.data.user_id);
+
+        			//Auth.userInfo.user_id = response.data.user_id;
+        			//$('.verification-pane').css('left', '0');
+        			//console.log(sessionService.get('vcode'));
+        			//Auth.setUser(response.data.token);
+        			//console.log(Auth.getUser());
+        			//$state.go('app.mainPage');
+        		},
+        		function (response, a, b, c) { // optional
+        			$ionicLoading.hide();
+        			console.log("FAIL ", response, a, b, c);
+        		});
+        };*/
+
+        $scope.createUser = function (valid, fileToUpload) {
+
+            if (valid) {
+                $ionicLoading.show({
+                    template: '<ion-spinner></ion-spinner>'
+                });
+
+                // $scope.user.photo = $scope.userphoto.name
+
+                var dataUpdate = new FormData();
+
+                //if ($scope.user.photo != null || $scope.user.photo != undefined) {
+                dataUpdate.append("photo", fileToUpload);
+                //}
+                if ($scope.user.birth_date != null) {
+                    dataUpdate.append("birth_date", $scope.user.birth_date);
+                }
+                dataUpdate.append("login", $scope.user.login);
+                dataUpdate.append("name", $scope.user.name);
+                dataUpdate.append("user_id", $scope.user.user_id);
+                dataUpdate.append("password", $scope.user.password);
+                dataUpdate.append("phone", $scope.user.phone);
+                if ($scope.user.email != null) {
+                    dataUpdate.append("email", $scope.user.email);
+                }
+
+                for (var key of dataUpdate.entries()) {
+                    console.log(key[0] + ', ' + key[1]);
+                }
+
+                console.log(dataUpdate, $scope.user);
+
+                var updateUrl;
+                if ($rootScope.forgotPassword == true) {
+                    updateUrl = 'update'
+                } else {
+                    updateUrl = 'sign-up'
+                }
+
+                $.ajax({
+                    url: 'http://medappteka.uz/api/user/' + updateUrl,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: dataUpdate,
+                    type: 'POST',
+                    success: function (response) {
+                        //console.log(localStorage.getItem("registerInfoCompleted"));
+                       // console.log(response);
+                        localStorage.setItem("registerInfoCompleted", JSON.stringify(response));
+                        //console.log(localStorage.getItem("registerInfoCompleted"));
+                        $rootScope.savedLocalStorage = localStorage.getItem('registerInfoCompleted');
+                       // console.log($rootScope.savedLocalStorage, '$rootScope.savedLocalStorage')
+                        $rootScope.userInfo = JSON.parse($rootScope.savedLocalStorage);
+                       // console.log($rootScope.userInfo)
+                        //console.log(localStorage.getItem("registerInfo"));
+
+                        //console.log(Auth.getUser());
+                        $scope.$apply()
+                        $timeout(function(){
+                            $state.go('app.mainPage', {}, {
+                                reload: 'app.mainPage'
+                            });
+                           // $state.reload();
+                            $timeout(function(){
+                            $ionicLoading.hide();
+                                $window.location.reload()
+                            },200)
+                        },200);
+                        $state.go('app.mainPage');
+
+                        // var qwe = $rootScope.userInfo.birth_date.slice(-4);
+                        // $scope.currentAge = (new Date()).getFullYear() - parseFloat(qwe);
+                    },
+                    error: function (error) {
+                        //console.log(error);
+                        $ionicLoading.hide();
+                        if (error.readyState == 0) {
+                            $ionicLoading.show({
+                                template: "{{'slow_internet' | translate}}",
+                                noBackdrop: true,
+                                duration: 2000
+                            });
+                        }
+                        if (error.responseJSON.message == "Логин уже занят") {
+                            $ionicLoading.hide();
+                            $ionicLoading.show({
+                                template: "{{'login_taken' | translate}}",
+                                noBackdrop: true,
+                                duration: 2000
+                            });
+                        }
+                        if (error.responseJSON.message == "E-mail уже занят") {
+                            $ionicLoading.hide();
+                            $ionicLoading.show({
+                                template: "{{'email_taken' | translate}}",
+                                noBackdrop: true,
+                                duration: 2000
+                            });
+                        }
+                    }
+                });
+
+
+
+
+                /* $http({
+                    method: 'POST',
+                    url: 'http://medappteka.uz/api/user/sign-up',
+                    data: dataUpdate,
+                }).then(function (response, a, b, c) {
+                        $scope.verification_pass = response.data.code;
+                        sessionService.set('vcode', response.data.code);
+                        sessionService.set('userId', response.data.user_id);
+
+                        Auth.userInfo.user_id = response.data.user_id;
+                        $('.verification-pane').css('left', '0');
+                        console.log(response)
+                        localStorage.setItem("registerInfoCompleted", JSON.stringify(response.data));
+                        console.log(localStorage.getItem("registerInfoCompleted"));
+                        //console.log(localStorage.getItem("registerInfo"));
+                        $ionicLoading.hide();
+                        Auth.setUser(response.data.token);
+                        //console.log(Auth.getUser());
+                        $state.go('app.mainPage');
+                    },
+                    function (response) { // optional
+                        console.log("FAIL ", response);
+                        $ionicLoading.hide();
+                    });*/
+            } else {
+                $scope.submitted = true
+            }
+
+
+            //$http.defaults.headers.common.Authorization = "Bearer " + sessionService.get('registerToken');
+            /*console.log(sessionService.get('registerToken'))
+            $http({
+            	method: 'POST',
+            	url: 'http://medappteka.uz/api/user/sign-up',
+            	data: Object.toparams({
+            		name: 'Saeed'
+            	}),
+            	headers: {
+            		'Authorization': 'Bearer ' + sessionService.get('registerToken'),
+            		'Content-Type': 'application/x-www-form-urlencoded'
+            	}
+            }).then(function (data, status, headers, config) {
+            		console.log(data, status, headers, config)
+            		//$state.go('register');
+            	},
+            	function (data, status, headers, config) { // optional
+            		console.log("FAIL ", data);
+            		console.log(data, status, headers, config);
+            	});*/
+
+            /*file.upload = Upload.upload({
+                url: 'http://medappteka.uz/api/user/sign-up',
+                data: $scope.user,
+                headers: {
+                    'Authorization': "Bearer " + Auth.getUser(),
+                    'Content-Type': "application/x-www-form-urlencoded"
+                }
+            });*/
+        }
+    });
