@@ -1,12 +1,21 @@
 controllers
-    .controller('profileCtrl', function ($scope, Auth, $state, $rootScope, ionicDatePicker, $filter, $ionicLoading, $http, Upload, $timeout) {
+    .controller('profileCtrl', function ($scope, Auth, $state, $rootScope, ionicDatePicker, $filter, $ionicLoading, $http, Upload, $timeout, $translate, sessionService) {
     
     
-    $/*("#my_photo").click(function () {
+    /*("#my_photo").click(function () {
             console.log('asdsa')
             $("#my_file").trigger('click');
         });
     */
+    
+    $scope.langKey = $translate.use();
+        $scope.language = 'ru'
+
+        $scope.updateLang = function (key) {
+            $translate.use(key);
+            $scope.language = key;
+        }
+    
     $scope.openFile = function(){
          $("#my_file").trigger('click');
     }
@@ -14,23 +23,28 @@ controllers
     
        /* console.log($rootScope.userInfo.birth_date);*/
         $scope.signOut = function () {
-            Auth.logout();
+            //Auth.logout();
             $state.go('login');
+            localStorage.clear();
         }
 
         $scope.exitApp = function () {
             ionic.Platform.exitApp();
         }
+        
 
-        /*console.log($rootScope.userInfo);*/
+        console.log($rootScope.userInfo);
 
-        if ($rootScope.userInfo.birth_date == 'null' || $rootScope.userInfo.birth_date == null) {
+        if ($rootScope.userInfo.birth_date && $rootScope.userInfo.birth_date == 'null' || $rootScope.userInfo.birth_date && $rootScope.userInfo.birth_date == null) {
             $rootScope.userInfo.birth_date = '';
             $scope.newArr = new Date(90, 5, 5)
-        } else {
+        } else if ($rootScope.userInfo.birth_date) {
 
             $scope.splitted = $rootScope.userInfo.birth_date.split('/');
             $scope.newArr = new Date(parseFloat($scope.splitted[2]), parseFloat($scope.splitted[1]), parseFloat($scope.splitted[0]));
+        } else {
+            $rootScope.userInfo.birth_date = '';
+            $scope.newArr = new Date(90, 5, 5)
         }
         if ($rootScope.userInfo.email == 'null') {
             $rootScope.userInfo.email = ''

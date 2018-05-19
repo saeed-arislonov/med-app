@@ -42,7 +42,7 @@
                 </div>
                 <!--end of buyer info-->
 
-                <div class="buyer-info-address">
+                <!--<div class="buyer-info-address">
                     <div class="buyer-info-header" ng-click="toggleAddress()">{{'checkout_address' | translate}}
                         <i ng-class="showAddress ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-detail-address">
@@ -52,7 +52,7 @@
                             </label>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <!--below section is for to get delivery type-->
                 <div class="buyer-info-delivery">
@@ -60,23 +60,23 @@
                         <i ng-class="showDelivery ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-detail-delivery">
                         <ion-list class="del-checkboxes item-input">
-                            <label class="del-radio-wrapper" for="f1">
+                            <!--<label class="del-radio-wrapper" for="f1">
                                 <div class="delivery-radio"><input ng-click="dell=5000" type="radio" id="f1" name="f1" value="1" ng-model="del_type" /></div>
                                      <span class="delivery-text">
                                 {{'checkout_deltype1' | translate}} <span class="bolder-text"> 5.000  {{'sr_sum' | translate}}</span>
 </span>
-                            </label>
-                            <label class="del-radio-wrapper" for="f2">
+                            </label>-->
+                            <!--<label class="del-radio-wrapper" for="f2">
                                 <div class="delivery-radio"><input ng-click="dell=15000" type="radio" id="f2" name="f1" value="2" ng-model="del_type" /></div>
                                      <span class="delivery-text">
                                 {{'checkout_deltype2' | translate}} <span class="bolder-text"> 15.000  {{'sr_sum' | translate}}</span>
 </span>
-                            </label>
+                            </label>-->
                             <label class="del-radio-wrapper" for="f3">
                                 <div class="delivery-radio"><input ng-click="dell=0" type="radio" id="f3" name="f1" value="3" ng-model="del_type" /></div>
                                  <span class="delivery-text">
                                 {{'checkout_deltype3' | translate}}
-</span>
+                                 </span>
                             </label>
                         </ion-list>
                     </div>
@@ -87,7 +87,7 @@
                         <i ng-class="showPayment ? 'ion-minus-round' : 'ion-plus-round'"></i></div>
                     <div class="buyer-info-payment">
                         <ion-list class="del-checkboxes item-input">
-                            <label class="del-radio-wrapper" for="p1">
+                           <!-- <label class="del-radio-wrapper" for="p1">
                                 <span class="delivery-radio">
                                     <input type="radio" id="p1" name="p1" value="1" ng-model="payment_type" />
                                 </span>
@@ -111,7 +111,7 @@
                                     </span>
                                     <input type="number" limit-to="4" value="{{userInfo.phone}}" class="debit-num" placeholder="" />
                                 </div>
-                            </div>
+                            </div>-->
                             <label class="del-radio-wrapper" for="p2">
                                 <span class="delivery-radio">
                                     <input type="radio" id="p2" name="p1" value="2" ng-model="payment_type" />
@@ -131,20 +131,21 @@
                         </ion-list>
                     </div>
                 </div>
-                <div style="display:flex;padding:10px;" class="checkout-sub-total">
+                <!--<div style="display:flex;padding:10px;" class="checkout-sub-total">
                     <div style="flex-grow:1">{{'checkout_delfee' | translate}}:</div>
                     <div>
                         <span ng-if="del_type=='1'">5.000</span>
                         <span ng-if="del_type=='2'">15.000</span>
                         <span ng-if="del_type=='3'">0</span> {{'sr_sum' | translate}}
                     </div>
-                </div>
+                </div>-->
                 <div style="display:flex;padding:10px;" class="checkout-sub-total">
                     <div style="flex-grow:1">{{'checkout_prodfee' | translate}}:</div>
                     <div>{{total | formatPrice}} {{'sr_sum' | translate}}</div>
                 </div>
                 <div class="cart-total">
-                    <div>{{'checkout_totalfee' | translate}}:</div> <span>{{total + dell | formatPrice}}  {{'sr_sum' | translate}}</span></div>
+                    <div>{{'checkout_totalfee' | translate}}:</div> <span>{{total + dell | formatPrice}}  {{'sr_sum' | translate}}</span>
+                </div>
                 <div class="proceed-checkout" ng-click="submitPayment(del_type, payment_type, del_address)">{{'checkout_confirm' | translate}}
                     <i class="flaticon-right-arrow"></i>
                 </div>

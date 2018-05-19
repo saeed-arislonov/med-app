@@ -2,7 +2,7 @@ controllers
     .controller('FirstTimeCtrl', function ($scope, $state, $http, sessionService, Auth, $rootScope, $ionicLoading) {
 
         $scope.userExists = false;
-       // console.log($rootScope.forgotPassword)
+        // console.log($rootScope.forgotPassword)
         //localStorage.removeItem("registerInfoCompleted")
 
         $scope.submitNumber = function (theForm) {
@@ -27,7 +27,8 @@ controllers
                     }
                 }).then(function (response, a, b, c) {
                         $ionicLoading.hide();
-                    console.log(response)
+                        console.log(response)
+                        $scope.user.phone = "";
                         $scope.verification_pass = response.data.code;
                         sessionService.set('vcode', response.data.code);
                         sessionService.set('userId', response.data.user_id);
@@ -86,10 +87,10 @@ controllers
                         $ionicLoading.hide();
                         if (response.data.hasOwnProperty('token')) {
                             //console.log(response);
-                            Auth.setUser(response.data.token);
+                            //Auth.setUser(response.data.token);
                             sessionService.set('registerToken', response.data.token);
-                            sessionService.set('user_idd', response.data.user_id);
-                            localStorage.setItem("registerInfo", JSON.stringify(response.data));
+                            //sessionService.set('user_idd', response.data.user_id);
+                            sessionService.set("registerInfo", response.data);
                             //console.log(localStorage.getItem("registerInfo"));
                             $state.go('register');
                             if (response.data.login != null) {
@@ -108,17 +109,13 @@ controllers
                         });
                     });
             } else {
-               // console.log("Wrong Verification");
+                // console.log("Wrong Verification");
                 $ionicLoading.hide();
                 $scope.submitted = true;
             }
         }
     })
     .controller('LoginCtrl', function ($scope, $http, $state, Auth, $ionicLoading, $rootScope, $timeout, $window, $translate) {
-
-        $state.go($state.current, {}, {
-            reload: true
-        });
 
         $scope.langKey = $translate.use();
 
@@ -137,6 +134,10 @@ controllers
 
         $scope.updateLang = function (key) {
             $translate.use(key);
+        }
+
+        if (localStorage.getItem("session") != null) {
+            $state.go("app.mainPage")
         }
 
         $rootScope.forgotPassword = false;
@@ -161,51 +162,64 @@ controllers
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
-                }).then(function (response) {
-                        //$ionicLoading.hide();
-                        $scope.errorLogIn = false;
-                       // console.log(response);
-                        if (localStorage.getItem("registerInfoCompleted") == null) {
-                            localStorage.setItem("registerInfoCompleted", JSON.stringify(response.data));
-                            // $timeout(function () {
-                            $state.go('app.mainPage', {}, {
-                                reload: 'app.mainPage'
-                            });
-                            $ionicLoading.hide();
-                            $window.location.reload()
-                            //  }, 500)
-                        } else {
-                            localStorage.setItem("registerInfoCompleted", JSON.stringify(response.data));
-                            //   $timeout(function () {
-                            $state.go('app.mainPage');
-                            $ionicLoading.hide();
-                            //  }, 500)
-                        }
-                        //$rootScope.savedLocalStorage = localStorage.getItem('registerInfoCompleted');
-                        //$rootScope.userInfo = JSON.parse($rootScope.savedLocalStorage);
-                        $scope.signin = {};
-                        /*$timeout(function () {
-                            $state.go('app.mainPage', {}, {
-                                reload: 'app.mainPage'
-                            });
-                            $window.location.reload()
-                            $ionicLoading.hide();
-                        }, 500)*/
-                        Auth.setUser(response.data.token);
-                    },
-                    function (response) { // optional
-                        $scope.meaninga = response;
-                        //console.log($scope.meaninga)
+                }).success(function (response, event) {
+                    localStorage.setItem("session", JSON.stringify(response.token));
+                    localStorage.setItem("registerInfoCompleted", JSON.stringify(response));
+                    $rootScope.userInfo = response;
+                    $state.go("app.mainPage");
+
+                    //$window.location.href = "/login";
+
+                    //$state.go('app.mainPage');
+                    //$ionicLoading.hide();
+                    $scope.errorLogIn = false;
+                    // console.log(response);
+                    //  if (localStorage.getItem("registerInfoCompleted") == null) {
+                    $ionicLoading.hide();
+
+
+                    $timeout(function () {
+                        // alert('second');
+                        $state.go("app.mainPage", {}, {
+                            reload: "app.mainPage"
+                        });
+                        // $window.location.reload()
+                        // $ionicLoading.hide();
+                    }, 500);
+                    // }) //else {
+                    //localStorage.setItem("registerInfoCompleted", JSON.stringify(response));
+                    // $timeout(function () {
+                    //    $state.go('app.mainPage');
+                    //   $ionicLoading.hide();
+                    //   }, 500)
+                    // }
+                    //$state.go('app.mainPage');
+                    //$rootScope.savedLocalStorage = localStorage.getItem('registerInfoCompleted');
+                    //$rootScope.userInfo = JSON.parse($rootScope.savedLocalStorage);
+
+                }).error(function (response) { // optional
+                    //$scope.meaninga = response;
+                    //salert(response)
+                    console.log(response)
+                    $ionicLoading.hide();
+                    $scope.errorLogIn = true;
+                    if (response.data == "Не верный логин и/или пароль") {
                         $ionicLoading.hide();
-                        $scope.errorLogIn = true;
-                        if (response.data == null) {
-                            $ionicLoading.show({
-                                template: "{{'slow_internet' | translate}}",
-                                noBackdrop: true,
-                                duration: 2000
-                            });
-                        }
-                    });
+                        $ionicLoading.show({
+                            template: "Не верный логин и/или пароль",
+                            noBackdrop: true,
+                            duration: 2000
+                        });
+                    }
+                    if (response == null) {
+                        $ionicLoading.hide();
+                        $ionicLoading.show({
+                            template: "{{'slow_internet' | translate}}",
+                            noBackdrop: true,
+                            duration: 2000
+                        });
+                    }
+                });
             } else {
                 //console.log("login form is FALSE");
                 $scope.errorClass = true;
@@ -224,7 +238,7 @@ controllers
 
         //console.log($rootScope.forgotPassword)
         //localStorage.removeItem("registerInfoCompleted");
-       // console.log(localStorage.getItem("registerInfoCompleted"))
+        // console.log(localStorage.getItem("registerInfoCompleted"))
         $scope.openFile = function () {
             $("#my_pro_file").trigger('click');
         }
@@ -234,9 +248,9 @@ controllers
                 //console.log('Return value from the datepicker popup is : ', new Date(val));
                 //$scope.user.birth_date = 
                 $scope.formattedDate = new Date(val);
-               // console.log($scope.formattedDate);
+                // console.log($scope.formattedDate);
                 $scope.user.birth_date = $filter('date')($scope.formattedDate, "dd/MM/yyyy");
-               // console.log($scope.user.birth_date);
+                // console.log($scope.user.birth_date);
             },
             inputDate: new Date(90, 5, 5)
         }
@@ -246,7 +260,7 @@ controllers
         };
 
         $scope.user = JSON.parse(localStorage.getItem("registerInfo"));
-       // console.log($scope.user)
+        // console.log($scope.user)
 
         //console.log(sessionService.get('registerToken'));
         var config = {}
@@ -274,6 +288,8 @@ controllers
         		});
         };*/
 
+        console.log($scope.user.user_id)
+        
         $scope.createUser = function (valid, fileToUpload) {
 
             if (valid) {
@@ -284,7 +300,9 @@ controllers
                 // $scope.user.photo = $scope.userphoto.name
 
                 var dataUpdate = new FormData();
-
+                
+                console.log($scope.user.user_id)
+                
                 //if ($scope.user.photo != null || $scope.user.photo != undefined) {
                 dataUpdate.append("photo", fileToUpload);
                 //}
@@ -312,6 +330,8 @@ controllers
                 } else {
                     updateUrl = 'sign-up'
                 }
+                
+                console.log(updateUrl)
 
                 $.ajax({
                     url: 'http://medappteka.uz/api/user/' + updateUrl,
@@ -322,34 +342,33 @@ controllers
                     type: 'POST',
                     success: function (response) {
                         //console.log(localStorage.getItem("registerInfoCompleted"));
-                       // console.log(response);
-                        localStorage.setItem("registerInfoCompleted", JSON.stringify(response));
+                        // console.log(response);
+                        sessionService.set("registerInfoCompleted", response);
                         //console.log(localStorage.getItem("registerInfoCompleted"));
-                        $rootScope.savedLocalStorage = localStorage.getItem('registerInfoCompleted');
-                       // console.log($rootScope.savedLocalStorage, '$rootScope.savedLocalStorage')
-                        $rootScope.userInfo = JSON.parse($rootScope.savedLocalStorage);
-                       // console.log($rootScope.userInfo)
+                       // $rootScope.savedLocalStorage = localStorage.getItem('registerInfoCompleted');
+                        // console.log($rootScope.savedLocalStorage, '$rootScope.savedLocalStorage')
+                        $rootScope.userInfo = sessionService.get("registerInfoCompleted")
+                        // console.log($rootScope.userInfo)
                         //console.log(localStorage.getItem("registerInfo"));
 
                         //console.log(Auth.getUser());
-                        $scope.$apply()
-                        $timeout(function(){
-                            $state.go('app.mainPage', {}, {
-                                reload: 'app.mainPage'
+                        //$scope.$apply()
+
+                        $ionicLoading.hide();
+                        $timeout(function () {
+                            // alert('second');
+                            $state.go("app.mainPage", {}, {
+                                reload: "app.mainPage"
                             });
-                           // $state.reload();
-                            $timeout(function(){
-                            $ionicLoading.hide();
-                                $window.location.reload()
-                            },200)
-                        },200);
-                        $state.go('app.mainPage');
+                            // $window.location.reload()
+                            // $ionicLoading.hide();
+                        }, 500);
 
                         // var qwe = $rootScope.userInfo.birth_date.slice(-4);
                         // $scope.currentAge = (new Date()).getFullYear() - parseFloat(qwe);
                     },
                     error: function (error) {
-                        //console.log(error);
+                        console.log(error);
                         $ionicLoading.hide();
                         if (error.readyState == 0) {
                             $ionicLoading.show({

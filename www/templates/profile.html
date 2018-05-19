@@ -8,6 +8,11 @@
         <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i>
             <span class="order-count"><span>{{shoppingCart.length}}</span></span>
         </button>
+        <!--<div class="lang-div">
+            <span class=" header-right-button  header-item">
+             <select class=" header-right-button" ng-model="language" ng-options="lang.key as lang.value for lang in langOptions" ng-change="updateLang(language)"></select>
+        </span>
+        </div>-->
 
 
     </ion-header-bar>
@@ -71,38 +76,37 @@
                 <img width="70" height="70" ng-src="{{'http://medappteka.uz'+userInfo.photo}}" onerror="this.src='img/img1.png'" />
                 <div class="ma-profile-info">
                     <div class="profile-name">{{userInfo.name}}</div>
-                    <div class="profile-info button button-light" ng-hide="userInfo.birth_date == '' || userInfo.birth_date == null">{{ currentAge }}  {{ 'pr_age' | translate}}</div>
+                    <div class="profile-info button button-light" ng-hide="userInfo.birth_date == '' || userInfo.birth_date == null">{{ currentAge }} {{ 'pr_age' | translate}}</div>
                 </div>
             </div>
             <div class="ma-menu-list">
                 <ul>
                     <li><a ui-sref="app.mainPage"><i class="flaticon-search"></i><span class="menu-li">{{'pr_search' | translate}}</span></a></li>
                     <li><a ui-sref="app.myOrders"><i class="flaticon-list"></i><span class="menu-li">{{'pr_my_orders' | translate}}</span></a></li>
-                    <li><a><i class="flaticon-settings"></i><span class="menu-li" ng-click="toggleEdit()">{{'pr_settings' | translate}}</span></a><div class="lang-div">
-            <span class=" header-right-button  header-item">
-             <select class=" header-right-button" ng-model="language" ng-options="lang.key as lang.value for lang in langOptions" ng-change="updateLang(language)"></select>
-        </span>
-        </div></li>
-                    <li class="sign-out-btn" ng-click="signOut()"><a><i class="flaticon-logout"></i>
-                        <span class="menu-li">{{'pr_sign_out' | translate}} </span></a></li>
+                    <li ng-click="toggleEdit()"><a><i class="flaticon-settings"></i><span class="menu-li" >{{'pr_settings' | translate}}</span></a></li>
+                    <li><a><i class="flaticon-chat"></i><span class="menu-li" ng-click="updateLang('uz')" ng-class="language == 'uz' ? 'redd' : ''">O`zbekcha</span>
+                        <span class="menu-li" ng-click="updateLang('ru')" ng-class="language == 'ru' ? 'redd' : ''">Pусский</span>
+                   </a></li>
+                    <li class="sign-out-btn" ng-click="signOut()"><a><i class="flaticon-logout"></i><span class="menu-li">{{'pr_sign_out' | translate}} </span></a></li>
                     <li ng-click="exitApp()"><a><i class="flaticon-cancel"></i><span class="menu-li">{{'pr_exit' | translate}}</span></a></li>
+
                 </ul>
             </div>
         </div>
         <div class="about-app">
             <div class="absolute-bottom">
                 <div class="social-icons">
-                <img width="40" height="40" src="img/facebook.png" />
-                <img width="40" height="40" src="img/instagram.png" />
-                <img width="40" height="40" src="img/telegram.png" />
+                    <img width="40" height="40" src="img/facebook.png" />
+                    <img width="40" height="40" src="img/instagram.png" />
+                    <img width="40" height="40" src="img/telegram.png" />
+                </div>
+                <div class="contact-info">
+                    <div class="contact-num">3713836</div>
+                    <span>{{'pr_service_phone' | translate}}</span>
+                </div>
+               <!--  {{'pr_info_app' | translate}} -->
             </div>
-            <div class="contact-info">
-                <div class="contact-num">3713836</div>
-                <span>{{'pr_service_phone' | translate}}</span>
-            </div>
-            {{'pr_info_app' | translate}}
-            </div>
-            
+
         </div>
 
     </ion-content>

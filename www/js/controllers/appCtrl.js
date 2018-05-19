@@ -1,10 +1,14 @@
 controllers
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $cordovaGeolocation, $ionicLoading, $cordovaNetwork, $timeout) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $cordovaGeolocation, $ionicLoading, $cordovaNetwork, $timeout, $state) {
 
         var posOptions = {
             timeout: 10000,
             enableHighAccuracy: false
         };
+    
+    if(localStorage.getItem("session") == null){
+        $state.go("login")
+    }
 
 
     //$timeout(function(){
@@ -65,8 +69,11 @@ controllers
 
 
         //localStorage.removeItem('shoppingCart');
+    if ($rootScope.userInfo == null) {
         $rootScope.savedLocalStorage = localStorage.getItem('registerInfoCompleted');
         $rootScope.userInfo = JSON.parse($rootScope.savedLocalStorage);
+    }
+        
         /*console.log($rootScope.userInfo);*/
 
         $rootScope.savedCart = localStorage.getItem('shoppingCart');

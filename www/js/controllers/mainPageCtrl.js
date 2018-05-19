@@ -1,8 +1,27 @@
 controllers
-    .controller('MainPageCtrl', function ($scope, $http, $rootScope, $state, $ionicLoading, $timeout, $location, $ionicPlatform, $translate, $ionicPopup) {
+    .controller('MainPageCtrl', function ($scope, $http, $rootScope, $state, $ionicLoading, $timeout, $location, $ionicPlatform, $translate, $ionicPopup, $cordovaGeolocation) {
 
+        var options = {
+            timeout: 10000,
+            enableHighAccuracy: true
+        };
 
-        $scope.langKey = $translate.use();
+        $cordovaGeolocation
+            .getCurrentPosition(options)
+            .then(function (position) {
+                $scope.lat = position.coords.latitude
+                $scope.long = position.coords.longitude
+                console.log('22222222222', $scope.lat);
+            }, function (err) {
+                console.log(err)
+                console.log('NO MAP')
+                $ionicLoading.show({
+                    template: "{{'gps_off' | translate}}", //'Местоположение отключено',
+                    noBackdrop: true,
+                    duration: 2000
+                });
+            });
+
 
         $scope.langOptions = [
             {
@@ -15,11 +34,7 @@ controllers
             }
         ];
 
-        $scope.language = 'ru'
 
-        $scope.updateLang = function (key) {
-            $translate.use(key);
-        }
 
         console.log($state.current.name);
 
@@ -88,6 +103,59 @@ controllers
             $scope.districts = data.data;
             /*console.log($scope.districts)*/
         }).error(function (err) {
+            $ionicLoading.show({
+                template: 'Ошибка сети',
+                noBackdrop: true,
+                duration: 2000
+            });
+        });
+
+    $scope.data = {};
+  $scope.data.bgColors = [];
+  $scope.data.currentPage = 0;
+
+         var setupSlider = function() {
+    //some options to pass to our slider
+    $scope.data.sliderOptions = {
+      initialSlide: 0,
+      direction: 'horizontal', //or vertical
+      speed: 300 //0.3s transition
+    };
+
+    //create delegate reference to link with slider
+    $scope.data.sliderDelegate = null;
+
+    //watch our sliderDelegate reference, and use it when it becomes available
+    $scope.$watch('data.sliderDelegate', function(newVal, oldVal) {
+      if (newVal != null) {
+        $scope.data.sliderDelegate.on('slideChangeEnd', function() {
+          $scope.data.currentPage = $scope.data.sliderDelegate.activeIndex;
+          //use $scope.$apply() to refresh any content external to the slider
+          $scope.$apply();
+        });
+      }
+    });
+  };
+
+  
+
+
+        $scope.gettingBanners = true;
+        $http({
+            method: 'GET',
+            url: 'http://medappteka.uz/api/banner'
+        }).success(function (data) {
+            $scope.banners = data.data;
+            console.log($scope.banners);
+            $scope.gettingBanners = false;
+            $timeout(function () {
+                
+                setupSlider();
+               // $(".banners-getting").css('opacity', '1')
+            }, 1000)
+
+        }).error(function (err) {
+            $scope.gettingBanners = false;
             $ionicLoading.show({
                 template: 'Ошибка сети',
                 noBackdrop: true,

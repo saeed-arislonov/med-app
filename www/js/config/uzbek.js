@@ -9,7 +9,7 @@ med_app.config(['$translateProvider', function ($translateProvider) {
         'what_ts_med': 'Dori',
         'what_ts_cli': 'Muassasa',
         'what_ts_med_find': 'QIDIRMOQ',
-        'main_page_title': 'Dori Izlash',
+        'main_page_title': 'Qidiruv',
         'pr_search': 'Qidiruv bo`limi',
         'pr_my_orders': 'Mening buyurtmalarim',
         'pr_settings': 'Ilova sozlamalari',

@@ -120,7 +120,7 @@ controllers
         $scope.medMapPresent = false;
         //$scope.getLocation = function () {
         var options = {
-            timeout: 1000,
+            timeout: 10000,
             enableHighAccuracy: false
         };
 
@@ -138,8 +138,9 @@ controllers
                     .then(function (position) {
                         $scope.lat = position.coords.latitude
                         $scope.long = position.coords.longitude
-                        //   console.log('22222222222',$scope.lat);
+                       console.log('22222222222', $scope.lat);
                     }, function (err) {
+                    console.log('NO MAP')
                         $ionicLoading.show({
                             template: "{{'gps_off' | translate}}",//'Местоположение отключено',
                             noBackdrop: true,

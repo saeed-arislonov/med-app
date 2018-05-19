@@ -1,18 +1,20 @@
 <div class="bar-stable">
-    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+    <ion-header-bar class="bar-stable bar bar-header main-page-titlee" align-title="center">
+        <div></div> <br>
         <div class="buttons buttons-left header-item">
             <span class="left-buttons">
         <button class="button button-icon button-clear ion-navicon" ui-sref="app.profile">
         </button>
       </span>
         </div>
-        <div class="title title-center header-item"> {{'main_page_title' |translate}}
+        <div class="header-img-class"> <img width="200" src="img/logo_medd.png">
+            <!--{{'main_page_title' | translate}}  title title-center header-item-->
         </div>
-        <div class="lang-div">
-            <span class=" header-right-button  header-item">
-             <select class=" header-right-button" ng-model="language" ng-options="lang.key as lang.value for lang in langOptions" ng-change="updateLang(language)"></select>
-        </span>
-        </div>
+
+        <!--<select class=" header-right-button" ng-model="language"  ng-change="updateLang(language)">
+                 <option value="uz">UZ</option>
+                 <option value="ru">RU</option>
+             </select>-->
 
     </ion-header-bar>
 </div>
@@ -23,10 +25,35 @@
             <!--
             <button ng-click="updateLang('ru')">Rus</button>
 -->
-            <img src="img/logo_medd.png">
+            <!--<img src="img/logo_medd.png">-->
             <!--
             <button ng-click="updateLang('uz')">Uz</button>
 -->
+            <img src="css/fonts/fa/ajax-loader.gif" style="width: 100px;" alt="" ng-show="gettingBanners">
+            <div class="fade" style="margin-bottom:35px;max-height:210px;height:230px" >
+
+                <ion-slides options="sliderOptions" slider="data.sliderDelegate">
+                    <ion-slide-page ng-repeat="banner in banners">
+                        <!--<div class="box">
+                            {{banner.name}}
+                        </div>-->
+                        <a href="{{banner.name}}">
+                            <img ng-src="{{'http://medappteka.uz'+banner.photo}}" alt="">
+                        </a>
+                        
+                    </ion-slide-page>
+                </ion-slides>
+
+
+                <!--<div class="banners-getting"   ng-repeat="banner in banners" ng-show="!gettingBanners">
+             <a href="{{banner.name}}">
+                 <img ng-src="{{'http://medappteka.uz'+banner.photo}}" alt="">
+             </a>
+         </div>-->
+
+            </div>
+
+
         </div>
 
         <form>
@@ -69,7 +96,7 @@
                         </div>
                         <!--ng-class="{'button-positive': isActive('clinic')}" -->
                         <div class="list input-item">
-                            <div class="ma-typeahead-input" ng-style="isActive('clinic') ? { 'margin':'0 10px'} : { 'margin':'0 30px'}">
+                            <div class="ma-typeahead-input" ng-style="isActive('clinic') ? { 'margin':'0 10px'} : { 'margin':'0 10px'}">
                                 <div ng-if="isActive('medicine')" class="what-to-search">
                                     <input type="text" placeholder="{{'what_ts_pl1' | translate}}" required ng-model="selectedMedicine" uib-typeahead="med as med.name for med in fetchdata($viewValue)" typeahead-focus-first="true" typeahead-on-select="setMedicine(selectedMedicine);" ng-required="isActive('medicine')" />
                                     <i class="ion-android-close" ng-click="selectedMedicine='';setMedicine('')"></i>
@@ -77,7 +104,7 @@
                                 <!-- typeahead-wait-ms="1000"-->
 
                                 <div ng-if="isActive('clinic')" class="what-to-search">
-                                    <input type="text" placeholder="{{'what_ts_pl2' | translate}}" required ng-model="selectedClinic" uib-typeahead="cli as cli.name for cli in specializations | filter:$viewValue" typeahead-focus-first="true" typeahead-on-select="setClinic(selectedClinic);" ng-required="isActive('clinic')" /> <i class="ion-android-close" ng-click="selectedClinic='';setClinic('')"></i>
+                                    <input type="text" placeholder="{{'what_ts_pl2' | translate}}" required ng-model="selectedClinic" uib-typeahead="cli as cli.name for cli in specializations | filter:$viewValue | limitTo:10" typeahead-focus-first="true" typeahead-on-select="setClinic(selectedClinic);" ng-required="isActive('clinic')" /> <i class="ion-android-close" ng-click="selectedClinic='';setClinic('')"></i>
                                 </div>
                             </div>
                             <!--<pre>{{medicines | json}}</pre>-->

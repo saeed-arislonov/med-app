@@ -95,7 +95,7 @@
                             <img src="img/map-icon.png" width="40" height="40" />
                         </div>
                     </custom-marker>
-                    <!--<info-window id="bar" max-width="200">
+                    <info-window id="bar" max-width="200">
                         <div ng-non-bindable>
                             <div id="siteNotice"></div>
                             <div id="bodyContent">
@@ -104,7 +104,7 @@
                                 </p>
                             </div>
                         </div>
-                    </info-window>-->
+                    </info-window>
                 </ng-map>
 
                 <!--  MAP DIV TO SHOW ALL PHARMACIES BY MAP  -->
@@ -158,8 +158,9 @@
                     </div>
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-light map-button" ng-click="showMapMed(med)"><i class="flaticon-placeholder" style="bottom:3px"></i> {{'sr_map' | translate}}</li>
-                            <li class="button button-positive call-button" ng-click="callTel(med)"><i class="flaticon-call-answer" style="bottom:3px"></i> {{'sr_call' | translate}} </li>
+                            <li class="button button-light map-button" ng-click="showMapMed(med)"><i class="flaticon-placeholder" style="bottom:3px"></i> 
+                            <span class="hide-on-small">{{'sr_map' | translate}}</span></li> <!--ng-click="callTel(med)"-->
+                            <li class="button button-positive call-button" ><a ng-href="tel:{{med.pharmacy.contacts}}" ion-stop-event="click"><i class="flaticon-call-answer" style="bottom:3px"></i> <span class="hide-on-small">{{'sr_call' | translate}}</span></a></li>
                             <li class="button button-energized price-button" ng-if="!med.added_to_cart" ng-click="addToCart($index, med)">
                                 <i class="flaticon-shopping-cart"></i> {{med.price | formatPrice}} <span class="sum"> {{'sr_sum' | translate}}</span>
                             </li>

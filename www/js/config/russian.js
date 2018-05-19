@@ -9,7 +9,7 @@ med_app.config(['$translateProvider', function ($translateProvider) {
         'what_ts_med': 'Лекарство',
         'what_ts_cli': 'Учреждение',
         'what_ts_med_find': 'НАЙТИ',
-        'main_page_title': 'Поисковик лекарств',
+        'main_page_title': 'Поисковик',
         'pr_search': 'Поисковик',
         'pr_my_orders': 'Мои покупки',
         'pr_settings': 'Настройки приложения',

@@ -7,6 +7,8 @@
                 <span class="previous-title hide"></span>
             </span>
         </button>
+       <!-- <div class="header-img-class"> <img  width="200" src="img/logo_medd.png">{{'main_page_title' | translate}}  title title-center header-item
+        </div>-->
 
         <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{shoppingCart.length}}</span></span>
         </button>
@@ -72,8 +74,8 @@
                     </div>                    
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-light map-button" ng-click="showMapMed(cart)"><i class="flaticon-placeholder" style="bottom:3px"></i> {{'sr_map' | translate}}</li>
-                            <li class="button button-positive call-button" ng-click="callFromCart(cart)"><i class="flaticon-call-answer" style="bottom:3px"></i> {{'sr_call' | translate}} </li>
+                            <li class="button button-light map-button" ng-click="showMapMed(cart)"><i class="flaticon-placeholder" style="bottom:3px"></i>  <span class="hide-on-small">{{'sr_map' | translate}}</span></li>
+                            <li class="button button-positive call-button" ng-click="callFromCart(cart)"><i class="flaticon-call-answer" style="bottom:3px"></i>  <span class="hide-on-small">{{'sr_call' | translate}} </span> </li>
                             <li class="button button-energized price-button">
                                 {{cart.med_price | formatPrice}} <span class="sum">{{'sr_sum' | translate}}</span></li>
                         </ul>
@@ -95,7 +97,7 @@
                     </div>
                 </div>
                 
-                <div ng-if="shoppingCart.length" class="cart-total">{{'cart_total' | translate}}: <span> {{getTotal()}} {{ 'sr_sum' | translate}}</span></div>
+                <div ng-if="shoppingCart.length" class="cart-total">{{'cart_total' | translate}}: <br> <span> {{getTotal()}} {{ 'sr_sum' | translate}}</span></div>
                 <button ng-if="shoppingCart.length" class="proceed-checkout" ui-sref="app.checkout">{{'cart_checkout' | translate}} 
                     <i class="flaticon-right-arrow"></i>
                 </button>

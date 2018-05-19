@@ -9613,10 +9613,10 @@ a.button {
     margin-top: env(safe-area-inset-top); }
 
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header {
-  padding-left: calc( constant(safe-area-inset-left) + 5px);
+  padding-left: calc( constant(safe-area-inset-left) + 5px);
   padding-left: calc(env(safe-area-inset-left) + 5px);
-  padding-right: calc( constant(safe-area-inset-right) + 5px);
-  padding-right: calc( env(safe-area-inset-right) + 5px); }
+  padding-right: calc( constant(safe-area-inset-right) + 5px);
+  padding-right: calc( env(safe-area-inset-right) + 5px); }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header .buttons:last-child {
     right: calc(constant(safe-area-inset-right) + 5px);
     right: calc(env(safe-area-inset-right) + 5px); }
@@ -9891,6 +9891,13 @@ a.button {
   font-weight: 500;
   src: url("fonts/gotham/500/GothamProRegular.ttf") format("truetype"); }
 
+.bar-header.bar-stable {
+  padding-top: 10px !important;
+  height: 60px !important; }
+
+.bar-header.bar-stable .title {
+  position: relative; }
+
 @font-face {
   font-family: 'Gotham';
   font-style: normal;
@@ -9912,12 +9919,20 @@ select {
   float: right; }
 
 ion-content {
-  top: 44px !important; }
+  top: 90px !important; }
 
 .bar {
   height: 50px; }
 
+div.bar-stable {
+  height: 70px !important;
+  background: #2da5e1 !important;
+  z-index: 99999 !important;
+  position: absolute !important;
+  width: 100% !important; }
+
 .bar-header.bar-stable {
+  margin-top: 25px !important;
   background-color: #2da5e1; }
   .bar-header.bar-stable .filterOpen {
     border-radius: 50%;
@@ -9952,12 +9967,12 @@ ion-content {
     font-size: 22px;
     letter-spacing: 0;
     line-height: 34px;
-    color: white;
+    color: #fff;
     text-align: center;
     font-weight: 300; }
   .bar-header.bar-stable .header-right-button-1 {
     position: absolute;
-    top: 5px;
+    top: 10px;
     right: 45px;
     bottom: 5px;
     padding: 11px 7px; }
@@ -9965,7 +9980,7 @@ ion-content {
       color: #fff;
       font-size: 24px;
       position: relative;
-      top: -6px; }
+      top: -10px; }
   .bar-header.bar-stable .header-right-button {
     padding: 11px; }
     .bar-header.bar-stable .header-right-button i {
@@ -9973,6 +9988,23 @@ ion-content {
       font-size: 24px;
       position: relative;
       top: -6px; }
+
+.slick-slide img {
+  width: 100% !important;
+  height: 210px; }
+
+.banners-getting {
+  opacity: 0; }
+
+.redd {
+  color: red !important;
+  font-weight: 700 !important; }
+
+.main-page-titlee .button-clear {
+  color: #2da5e1 !important; }
+
+.main-page-titlee.bar-header.bar-stable {
+  background-color: #fff !important; }
 
 .ma-main-title {
   font-size: 28px;
@@ -9984,7 +10016,7 @@ ion-content {
   padding-bottom: 3px;
   padding-top: 0; }
   .ma-main-title img {
-    width: 80%; }
+    width: 100%; }
 
 input {
   line-height: 100% !important; }
@@ -10039,6 +10071,57 @@ input {
     border: 1px solid #2da5e1;
     border-radius: 5px;
     padding-bottom: 0; }
+
+.header-img-class {
+  width: 100%;
+  text-align: center; }
+  .header-img-class img {
+    position: relative;
+    left: -30px;
+    top: -15px; }
+
+@media only screen and (max-width: 330px) {
+  .button,
+  .input-item input {
+    font-size: 14px !important; }
+  .ma-menu .ma-profile-info .profile-name {
+    font-weight: 600 !important;
+    font-size: 18px !important; }
+  .ma-results .result-header-wrapper .ma-search-name.ma-search-name-left {
+    font-size: 18px !important;
+    font-weight: 600 !important; }
+  .bar-header.bar-stable .title {
+    left: 0 !important; }
+  .ma-menu .ma-menu-list li {
+    padding: 10px 0 !important; }
+    .ma-menu .ma-menu-list li i {
+      font-size: 20px !important; }
+    .ma-menu .ma-menu-list li .menu-li {
+      font-size: 14px !important; }
+  .hide-on-small {
+    display: none !important; }
+  .ma-search-where legend,
+  .ma-search-what legend {
+    font-weight: 600 !important; }
+  .ma-results .result-header-wrapper .ma-search-name {
+    font-size: 16px !important;
+    font-weight: 600 !important; }
+  .ma-search-button .search-button {
+    padding: 10px !important; }
+    .ma-search-button .search-button a {
+      font-size: 16px !important;
+      font-weight: 600 !important; }
+  .ma-my-cart .med-quantity .list .item-input .input-label {
+    white-space: normal !important;
+    width: 100% !important; }
+  .ma-my-checkout .buyer-info .buyer-info-header {
+    font-size: 16px !important; }
+  .ma-results .ma-results-wrapper .mr-bottom .button.call-button {
+    width: auto !important;
+    padding: 0 !important; }
+  .ma-results .ma-results-wrapper .mr-bottom li.map-button {
+    width: auto !important;
+    padding: 0 !important; } }
 
 .ma-search-what {
   margin: 10px; }
@@ -10205,6 +10288,14 @@ input {
   padding-top: 0;
   padding-bottom: 0;
   padding-left: 5px; }
+  .ma-typeahead-input strong {
+    font-weight: 600 !important; }
+  .ma-typeahead-input .uib-typeahead-match {
+    font-size: 12px; }
+  .ma-typeahead-input .dropdown-menu li {
+    padding: 5px !important; }
+    .ma-typeahead-input .dropdown-menu li a {
+      padding: 6px 5px !important; }
 
 .scroll {
   height: 100%; }
@@ -10217,20 +10308,22 @@ input {
   background-color: transparent; }
 
 .lang-div {
-  position: absolute;
-  right: 5px;
-  top: 11px; }
-  .lang-div select {
+  position: relative;
+  /* right: 110px; */
+  top: -64px !important; }
+
+/*select {
     background: transparent;
     color: #fff;
     line-height: 100%;
     font-size: 16px;
     border-color: #fff;
     border-radius: 5px;
-    padding: 2px !important; }
-    .lang-div select option {
-      color: #ddd; }
-
+    padding: 2px !important;
+    option {
+        color: #ddd;
+    }
+}*/
 .back-text,
 .ion-ios-arrow-back {
   color: #fff; }
@@ -10758,7 +10851,7 @@ input {
     flex-grow: 0; }
 
 .myOrderInfo {
-  font-size: 17px;
+  font-size: 14px;
   margin: 5px 0; }
 
 @media (min-width: 500px) {
@@ -11123,7 +11216,7 @@ input {
   position: fixed;
   width: 100%;
   z-index: 9999;
-  top: 100px;
+  top: 80px;
   left: 100%;
   transition: .5s;
   background-color: #fff; }
@@ -11154,7 +11247,7 @@ input {
   .ma-register-page .list .item-floating-label {
     margin-bottom: 0; }
   .ma-register-page .list input {
-    font-size: 16px;
+    font-size: 14px;
     height: 100%; }
 
 .ma-register-page .register-error {
