@@ -115,11 +115,11 @@ controllers
                 }
                 if (user.password != null || user.password != undefined) {
                     dataUpdate.append("password", user.password);
-                }
+                };
 
-                for (var key of dataUpdate.entries()) {
-                    console.log(key[0] + ', ' + key[1]);
-                }
+                /*for (var key of dataUpdate.entries()) {
+                    //console.log(key[0] + ', ' + key[1]);
+                }*/
 
                 /*console.log(dataUpdate)*/
                 $.ajax({

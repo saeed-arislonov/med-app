@@ -1,3 +1,6 @@
+.login-button[disabled="disabled"] {
+        opacity: .3 !important;
+      }
 .ma-login-page {
     .item-input {
         margin-bottom: 10px !important;
@@ -6,6 +9,7 @@
         margin: 10px;
         border-radius: 5px;
         text-align: center;
+      
         .login-button {
             border-radius: 5px;
             height: 45px;
@@ -92,7 +96,8 @@
         position: fixed;
         width: 100%;
         z-index: 9999;
-        top: 80px;
+        top: 0;
+        height: 100%;
         left: 100%;
         transition: .5s;
         background-color: #fff;

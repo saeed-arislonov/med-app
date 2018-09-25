@@ -88,13 +88,13 @@ med_app.config(['$translateProvider', function ($translateProvider) {
         'checkout_delfee': 'Сумма доставки',
         'checkout_prodfee': 'Сумма препаратов',
         'checkout_totalfee': 'Итого заказ на сумму',
-        'checkout_confirm': 'Подтверждаю',
+        'checkout_confirm': 'Забронировать заказ',
         'confirm_maintitle': 'Заказ оформлен',
         'confirm_title': 'Статус оформления заказа',
         'confirm_text1': 'Ваш',
         'confirm_text1-uz': '',
         'confirm_text1-ru': 'Заказ',
-        'confirm_text2': 'успешно оформлен и отправлен в обработку',
+        'confirm_text2': 'успешно оформлен и отправлен в обработку. Выбранные товары будут забронирован за вами в течение трех часов, по истечению трех часов бронь будет снята',
         //'confirm_text3': 'Оплата Вашего заказа успешно обработана, ожидайте курьера.',
         'confirm_phone': 'Телефон для справок',
         'confirm_backtomain': 'Вернуться на Главную',
@@ -106,7 +106,7 @@ med_app.config(['$translateProvider', function ($translateProvider) {
         'clinic_more': 'О центре',
         'clinic_clinic_ru': 'Клиника',
         'clinic_clinic_uz': '',
-        'clinic_allcontacts': 'Посмотрет все контакты',
+        'clinic_allcontacts': 'Посмотреть все контакты',
         'clinic_today': 'Сегодня',
         'session_signin' : 'Авторизоваться',
         'session_login' : 'Логин',
@@ -132,7 +132,9 @@ med_app.config(['$translateProvider', function ($translateProvider) {
         'account_updated' : 'Аккаунт обновлен.',
         'exit_app' : 'Выйти из приложения?',
         'exit_yes' : 'Да',
-        'exit_no' : 'Отмена'
+        'exit_no' : 'Отмена',
+        'telegram_bot' : 'Телеграм бот',
+        'privacy_policy' : ' '
     });
    // $translateProvider.preferredLanguage('uz');
  }]);

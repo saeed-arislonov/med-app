@@ -3,7 +3,7 @@
         <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
       <span class="back-text"><span class="default-title"></span><span class="previous-title hide"></span></span></button>
 
-        <div class="title title-center header-item">{{'pr_menu' | translate}} </div>
+        <div class="title title-center header-item" style="margin:0"><!--{{'pr_menu' | translate}}--> </div>
 
         <button class="button header-right-button buttons button-clear header-item" ui-sref="app.myCart"><i class="flaticon-shopping-cart"></i>
             <span class="order-count"><span>{{shoppingCart.length}}</span></span>
@@ -47,7 +47,7 @@
                     </label>
                     <label class="item item-input item-floating-label half-size" ng-class="submitted && registerForm.password.$error.required ? 'register-error' : ''">
                         <span class="input-label">{{'up_password' | translate}}</span>
-                        <input ng-model="userInfo.password" name="password" type="text" placeholder="{{'up_password' | translate}}">
+                        <input ng-model="userInfo.password" name="password" type="password" placeholder="{{'up_password' | translate}}">
                     </label>
                     <label class="item item-input item-floating-label" style="width:100%">
                         <input accept="image/*" name="file" ng-value="fileToUpload"
@@ -88,22 +88,22 @@
                         <span class="menu-li" ng-click="updateLang('ru')" ng-class="language == 'ru' ? 'redd' : ''">Pусский</span>
                    </a></li>
                     <li class="sign-out-btn" ng-click="signOut()"><a><i class="flaticon-logout"></i><span class="menu-li">{{'pr_sign_out' | translate}} </span></a></li>
-                    <li ng-click="exitApp()"><a><i class="flaticon-cancel"></i><span class="menu-li">{{'pr_exit' | translate}}</span></a></li>
+                    <!--<li ng-click="exitApp()"><a><i class="flaticon-cancel"></i><span class="menu-li">{{'pr_exit' | translate}}</span></a></li>-->
 
                 </ul>
             </div>
         </div>
         <div class="about-app">
             <div class="absolute-bottom">
-                <div class="social-icons">
+                <!--<div class="social-icons">
                     <img width="40" height="40" src="img/facebook.png" />
                     <img width="40" height="40" src="img/instagram.png" />
                     <img width="40" height="40" src="img/telegram.png" />
-                </div>
-                <div class="contact-info">
+                </div>-->
+                <!--<div class="contact-info">
                     <div class="contact-num">3713836</div>
                     <span>{{'pr_service_phone' | translate}}</span>
-                </div>
+                </div>-->
                <!--  {{'pr_info_app' | translate}} -->
             </div>
 

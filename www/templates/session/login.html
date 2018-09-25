@@ -1,75 +1,75 @@
 <div class="bar-stable">
-    <ion-header-bar class="bar-stable bar bar-header" align-title="center">
-        <div class="buttons buttons-left header-item">
-        </div>
-        <div class="title title-center header-item"> {{'main_page_title' | translate}}
-        </div>
-        <div class="lang-div">
+  <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+    <div class="buttons buttons-left header-item">
+    </div>
+    <div class="title title-center header-item"> {{'main_page_title' | translate}}
+    </div>
+    <!--<div class="lang-div">
             <span class=" header-right-button  header-item">
              <select class=" header-right-button" ng-model="language" ng-options="lang.key as lang.value for lang in langOptions" ng-change="updateLang(language)"></select>
         </span>
-        </div>
-    </ion-header-bar>
+        </div>-->
+  </ion-header-bar>
 </div>
 <ion-view view-title="Поисковик лекарств" animation="no-animation" class="ma-login-page">
-    <ion-content>
+  <ion-content>
 
-        <div class="ma-main-title">
-            <img src="img/logo_medd.png">
-        </div>
+    <div class="ma-main-title">
+      <img src="img/logo_medd.png">
+    </div>
 
-        <form name="loginForm">
+    <form name="loginForm">
 
-            <ion-toolbar>
-                <div class="ma-search-where">
-                    <div></div>
+      <ion-toolbar>
+        <div class="ma-search-where">
+          <div></div>
 
-                    <fieldset>
-                        <legend class="ma-search-title">{{'session_signin' | translate}}</legend>
-                        <div class="list input-item">
-                            
-                            <label class="item item-input" >
+          <fieldset>
+            <legend class="ma-search-title">{{'session_signin' | translate}}</legend>
+            <div class="list input-item">
+
+              <label class="item item-input">
                                 <input type="text" name="login" placeholder="{{'session_login' | translate}}" ng-model="signin.login" required />
                             </label>
-                            <!-- <pre>{{medicines}}</pre>-->
-                            <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
+              <!-- <pre>{{medicines}}</pre>-->
+              <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
 
-                        </div>
-                        
-                        <div class="list input-item">
-                            <label class="item item-input" ng-class="(errorClass && !signin.password.length) ? 'errorClass' : ''">
+            </div>
+
+            <div class="list input-item">
+              <label class="item item-input" ng-class="(errorClass && !signin.password.length) ? 'errorClass' : ''">
                                 <input type="password" name="password" placeholder="{{'session_password' | translate}}" ng-model="signin.password" required/>
                             </label>
-                                          <!--  <pre> {{userInfo | json}} </pre>-->
-                            <!-- <pre>{{medicines}}</pre>-->
-                            <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
+              <!--  <pre> {{userInfo | json}} </pre>-->
+              <!-- <pre>{{medicines}}</pre>-->
+              <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
 
-                        </div>
+            </div>
 
-                    </fieldset>
-                </div>
-                <!--<pre>{{loginForm.$valid}}</pre>-->
-                <div class="error-message" ng-show="errorLogIn">{{'session_wrong_cr' | translate}}</div>
-                <div class="error-message" ng-show="errorClass">{{'session_login_required' | translate}}</div>
+          </fieldset>
+        </div>
+        <!--<pre>{{loginForm.$valid}}</pre>-->
+        <div class="error-message" ng-show="errorLogIn">{{'session_wrong_cr' | translate}}</div>
+        <div class="error-message" ng-show="errorClass">{{'session_login_required' | translate}}</div>
 
-                <!--<ion-list>
+        <!--<ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
         {{playlist.title}}
       </ion-item>
     </ion-list> -->
-                <div class="login-button-wrapper">
-                <button class="login-button" ng-click="submitLogin(loginForm.$valid)" ng-disabled="loggingIn">
+        <div class="login-button-wrapper">
+          <button class="login-button" ng-click="submitLogin(loginForm.$valid)" ng-disabled="loggingIn">
                         <a class="login-button-a">{{'session_login_button' | translate}}</a>
                     </button>
-                    <button id="hiddenLogin" ui-sref="app.mainPage" style="display:none">hidden</button>
-                    
-                    <a ng-click="openAccount(false)">{{'session_no_account' | translate}} </a>
-                    <div style="margin-top:10px;">
-                        <a ng-click="openAccount(true)">{{'session_forgot_password' | translate}}</a>
-                    </div>
-                </div>
-            </ion-toolbar>
-        </form>
+          <button id="hiddenLogin" ui-sref="app.mainPage" style="display:none">hidden</button>
 
-    </ion-content>
+          <a ng-click="openAccount(false)">{{'session_no_account' | translate}} </a>
+          <div style="margin-top:10px;">
+            <a ng-click="openAccount(true)">{{'session_forgot_password' | translate}}</a>
+          </div>
+        </div>
+      </ion-toolbar>
+    </form>
+
+  </ion-content>
 </ion-view>

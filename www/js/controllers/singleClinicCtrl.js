@@ -1,10 +1,16 @@
 controllers
-    .controller('singleClinicCtrl', function ($stateParams, $scope, $http, orderCount, $ionicModal, $ionicPopup, IonicClosePopupService, NgMap, $rootScope, $state, singleMap, $ionicScrollDelegate, $cordovaGeolocation) {
+    .controller('singleClinicCtrl', function ($stateParams, $scope, $http, orderCount, $ionicModal, $ionicPopup, IonicClosePopupService, NgMap, $rootScope, $state, singleMap, $ionicScrollDelegate, $cordovaGeolocation, $ionicLoading) {
 
+  $ionicLoading.show({
+                template: '<ion-spinner></ion-spinner>'
+            });
+  
         $http.get("http://medappteka.uz/api/inst/view?id=" + $stateParams.id).success(function (data) {
             $scope.singleClinic = data;
-            console.log($scope.singleClinic)
+            console.log($scope.singleClinic);
+          $ionicLoading.hide();
         }).error(function (err) {
+          $ionicLoading.hide();
             $ionicLoading.show({
                 template: "{{'slow_internet' | translate}}",
                 noBackdrop: true,
@@ -13,7 +19,8 @@ controllers
         });
 
         $scope.callClinic = function (cli) {
-            window.location.href = 'tel:' + cli.contacts;
+            window.location.href = 'tel:' + cli;
+         // console.log(cli)
         }
 
         var d = new Date();
@@ -27,7 +34,7 @@ controllers
         $scope.cliMapPresent = false;
         $scope.showMapMed = function (cli) {
             if ($scope.cliMapPresent) {
-                console.log('true')
+               // console.log('true')
                 $scope.cliMapPresent = false;
                 $('.medicineMapView').removeClass('medicineMapPresent');
             } else {
@@ -44,7 +51,7 @@ controllers
                         });
                     });
                 $ionicScrollDelegate.scrollTop();
-                console.log('false')
+                //console.log('false')
                 $scope.singlePosition = cli.lat + ',' + cli.lng;
                 $scope.cliMapPresent = true;
                 $('.medicineMapView').addClass('medicineMapPresent');
@@ -63,8 +70,10 @@ controllers
 
             // Custom popup
             var contactsPopup = $ionicPopup.show({
-                template: '<div style="text-align:center" ng-click="callClinic(singleClinic)">' +
-                    '{{singleClinic.contacts}}</div>',
+                template: '<div style="text-align:center;padding-bottom:10px;border-bottom:1px solid #eee" ng-click="callClinic(singleClinic.contacts)">' +
+                    '{{singleClinic.contacts}}</div>' +
+                    '<div ng-if="singleClinic.contacts_two" style="text-align:center;padding-bottom:10px;padding-top:10px;border-bottom:1px solid #eee" ng-click="callClinic(singleClinic.contacts_two)">{{singleClinic.contacts_two}}</div>' +
+                    '<div ng-if="singleClinic.contacts_third" style="text-align:center;padding-bottom:10px;padding-top:10px;border-bottom:1px solid #eee" ng-click="callClinic(singleClinic.contacts_third)">{{singleClinic.contacts_third}}</div>',
                 title: 'Bсе контакты',
                 scope: $scope,
                 backdropClickToClose: true

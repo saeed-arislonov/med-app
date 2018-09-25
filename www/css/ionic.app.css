@@ -9892,8 +9892,7 @@ a.button {
   src: url("fonts/gotham/500/GothamProRegular.ttf") format("truetype"); }
 
 .bar-header.bar-stable {
-  padding-top: 10px !important;
-  height: 60px !important; }
+  height: 90px !important; }
 
 .bar-header.bar-stable .title {
   position: relative; }
@@ -9919,20 +9918,23 @@ select {
   float: right; }
 
 ion-content {
-  top: 90px !important; }
+  top: 70px !important; }
 
 .bar {
   height: 50px; }
 
 div.bar-stable {
-  height: 70px !important;
+  /*height: 80px !important;*/
   background: #2da5e1 !important;
   z-index: 99999 !important;
   position: absolute !important;
   width: 100% !important; }
 
 .bar-header.bar-stable {
-  margin-top: 25px !important;
+  padding-top: 5px !important;
+  margin-top: 0px !important;
+  margin-bottom: 5px !important;
+  height: 70px !important;
   background-color: #2da5e1; }
   .bar-header.bar-stable .filterOpen {
     border-radius: 50%;
@@ -9954,13 +9956,13 @@ div.bar-stable {
       top: -8px; }
   .bar-header.bar-stable .title {
     color: #fff;
-    font-size: 18px;
+    font-size: 24px;
     line-height: 34px;
     color: white;
     font-weight: 400;
     text-align: center;
     padding: 6px 0;
-    margin: 0; }
+    margin: 0 auto; }
   .bar-header.bar-stable .button.button-icon {
     color: #fff; }
   .bar-header.bar-stable .button.button-clear {
@@ -9989,9 +9991,22 @@ div.bar-stable {
       position: relative;
       top: -6px; }
 
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .bar-header.bar-stable {
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
+    height: 90px !important; }
+  ion-content {
+    top: 90px !important; } }
+
 .slick-slide img {
   width: 100% !important;
   height: 210px; }
+
+.slick-next,
+.slick-prev {
+  display: none !important; }
 
 .banners-getting {
   opacity: 0; }
@@ -10117,8 +10132,9 @@ input {
   .ma-my-checkout .buyer-info .buyer-info-header {
     font-size: 16px !important; }
   .ma-results .ma-results-wrapper .mr-bottom .button.call-button {
-    width: auto !important;
-    padding: 0 !important; }
+    width: 100% !important;
+    padding: 0 !important;
+    height: 100%; }
   .ma-results .ma-results-wrapper .mr-bottom li.map-button {
     width: auto !important;
     padding: 0 !important; } }
@@ -10312,6 +10328,12 @@ input {
   /* right: 110px; */
   top: -64px !important; }
 
+.popup-container .popup {
+  width: 95% !important; }
+
+.scroll-content {
+  background-color: #F1F1F6; }
+
 /*select {
     background: transparent;
     color: #fff;
@@ -10468,8 +10490,7 @@ input {
       .ma-results .ma-results-wrapper .mr-bottom .button.button-positive {
         background-color: #2da5e1; }
       .ma-results .ma-results-wrapper .mr-bottom .button.call-button {
-        width: 115px;
-        max-width: 125px;
+        width: 100%;
         padding: 4px;
         padding-left: 20px; }
         .ma-results .ma-results-wrapper .mr-bottom .button.call-button a {
@@ -10641,13 +10662,15 @@ input {
       padding-bottom: 0;
       margin: 10px;
       background-color: #fafbfd;
-      padding-top: 0; }
+      padding-top: 0;
+      line-height: 100% !important; }
       .ma-my-checkout .buyer-info .list .item-input input {
         color: #444;
         height: 100%;
         font-size: 16px;
         padding: 7px;
-        padding-left: 0; }
+        padding-left: 0;
+        line-height: 100% !important; }
 
 .ma-my-checkout .buyer-info-address,
 .ma-my-checkout .buyer-info-payment-type,
@@ -10965,6 +10988,10 @@ input {
     padding-bottom: 5px;
     color: #28ba23; }
 
+@media only screen and (max-width: 340px) {
+  .ma-profile-info {
+    margin: 10px 0 !important; } }
+
 .social-icons img {
   margin: 0 10px; }
 
@@ -10995,7 +11022,6 @@ input {
   .ma-menu .ma-profile-info {
     float: left;
     margin: 10px;
-    margin-left: 20px;
     margin-bottom: 0px; }
     .ma-menu .ma-profile-info .profile-info {
       padding: 0;
@@ -11005,7 +11031,7 @@ input {
       font-weight: bold;
       font-size: 20px;
       margin-bottom: 0;
-      margin: 10px;
+      margin: 5px;
       margin-left: 0; }
   .ma-menu .ma-menu-list {
     clear: both;
@@ -11135,6 +11161,98 @@ input {
   .my-orders .canceled-button i {
     color: #d10a14; }
 
+/* slick css*/
+/* Slider */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent; }
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0; }
+
+.slick-list:focus {
+  outline: none; }
+
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand; }
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.slick-track:before,
+.slick-track:after {
+  display: table;
+  content: ''; }
+
+.slick-track:after {
+  clear: both; }
+
+.slick-loading .slick-track {
+  visibility: hidden; }
+
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px; }
+
+[dir='rtl'] .slick-slide {
+  float: right; }
+
+.slick-slide img {
+  display: block; }
+
+.slick-slide.slick-loading img {
+  display: none; }
+
+.slick-slide.dragging img {
+  pointer-events: none; }
+
+.slick-initialized .slick-slide {
+  display: block; }
+
+.slick-loading .slick-slide {
+  visibility: hidden; }
+
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent; }
+
+.slick-arrow.slick-hidden {
+  display: none; }
+
+.login-button[disabled="disabled"] {
+  opacity: .3 !important; }
+
 .ma-login-page .item-input {
   margin-bottom: 10px !important; }
 
@@ -11216,7 +11334,8 @@ input {
   position: fixed;
   width: 100%;
   z-index: 9999;
-  top: 80px;
+  top: 0;
+  height: 100%;
   left: 100%;
   transition: .5s;
   background-color: #fff; }

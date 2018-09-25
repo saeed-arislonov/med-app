@@ -1,124 +1,144 @@
 <div class="bar-stable">
-    <ion-header-bar class="bar-stable bar bar-header main-page-titlee" align-title="center">
-        <div></div> <br>
-        <div class="buttons buttons-left header-item">
-            <span class="left-buttons">
+  <ion-header-bar class="bar-stable bar bar-header main-page-titlee" align-title="center">
+    <div></div> <br>
+    <div class="buttons buttons-left header-item">
+      <span class="left-buttons">
         <button class="button button-icon button-clear ion-navicon" ui-sref="app.profile">
         </button>
       </span>
-        </div>
-        <div class="header-img-class"> <img width="200" src="img/logo_medd.png">
-            <!--{{'main_page_title' | translate}}  title title-center header-item-->
-        </div>
+    </div>
+    <div class="header-img-class"> <img width="200" src="img/logo_medd.png">
+      <!--{{'main_page_title' | translate}}  title title-center header-item-->
+    </div>
 
-        <!--<select class=" header-right-button" ng-model="language"  ng-change="updateLang(language)">
+    <!--<select class=" header-right-button" ng-model="language"  ng-change="updateLang(language)">
                  <option value="uz">UZ</option>
                  <option value="ru">RU</option>
              </select>-->
 
-    </ion-header-bar>
+  </ion-header-bar>
 </div>
 <ion-view view-title="Поисковик лекарств" animation="no-animation">
-    <ion-content>
+  <ion-content>
 
-        <div class="ma-main-title">
-            <!--
+    <div class="ma-main-title">
+      <!--
             <button ng-click="updateLang('ru')">Rus</button>
 -->
-            <!--<img src="img/logo_medd.png">-->
-            <!--
+      <!--<img src="img/logo_medd.png">-->
+      <!--
             <button ng-click="updateLang('uz')">Uz</button>
 -->
-            <img src="css/fonts/fa/ajax-loader.gif" style="width: 100px;" alt="" ng-show="gettingBanners">
-            <div class="fade" style="margin-bottom:35px;max-height:210px;height:230px" >
+      <img src="css/fonts/fa/ajax-loader.gif" style="width: 100px;" alt="" ng-show="gettingBanners">
+      <div class="fade" style="margin-bottom:35px;">
 
-                <ion-slides options="sliderOptions" slider="data.sliderDelegate">
-                    <ion-slide-page ng-repeat="banner in banners">
-                        <!--<div class="box">
+        <!--<div class="box">slider="data.sliderDelegate" autoplay="2000" loop="true"
                             {{banner.name}}
                         </div>-->
-                        <a href="{{banner.name}}">
+        <!-- <div class="banner-class">
+          <a ng-repeat="banner in banners" href="{{banner.name}}" style="display: block;height: 100%;">
                             <img ng-src="{{'http://medappteka.uz'+banner.photo}}" alt="">
                         </a>
-                        
-                    </ion-slide-page>
-                </ion-slides>
+        </div>-->
+        <slick infinite="true" autoplay="true" slides-to-show="1" slides-to-scroll="1" settings="slickConfig" data="images" ng-if="images.length" style="margin-top: 20px;">
+          <div class="slick-item" ng-repeat="image in images">
+            <a href="{{image.name}}" style="display: block;height: 100%;">
+              <img ng-src="{{'http://medappteka.uz'+image.photo}}" alt="">
+            </a>
+          </div>
+        </slick>
+
+        <!--<slick data="banners" ng-if="banners.length" >
+          <a ng-repeat="banner in banners" href="{{banner.name}}" >
+                            <img ng-src="{{'http://medappteka.uz'+banner.photo}}" alt="">
+                        </a>
+        </slick>-->
+
+        <!--<div class="clearfix" data="banners" slick-slider="{dots: false,
+                   arrows: true,
+                   draggable: false,
+                   slidesToShow:3,
+                   infinite:false}">
+          <div class="my-slide" ng-repeat="slide in banners">
+            <a href="{{slide.name}}"> <img ng-src="{{'http://medappteka.uz'+slide.photo}}" alt=""></a>
+          </div>
+        </div>-->
 
 
-                <!--<div class="banners-getting"   ng-repeat="banner in banners" ng-show="!gettingBanners">
+        <!--<div class="banners-getting"   ng-repeat="banner in banners" ng-show="!gettingBanners">
              <a href="{{banner.name}}">
                  <img ng-src="{{'http://medappteka.uz'+banner.photo}}" alt="">
              </a>
          </div>-->
 
+      </div>
+
+
+    </div>
+
+    <form>
+
+      <ion-toolbar>
+        <div class="ma-search-where">
+          <div>
+            <h4 class="ma-search-title">{{'where_ts' | translate}}</h4>
+            <div class="list input-item">
+              <div class="search-div">
+                <input type="text" placeholder="{{'where_ts_pl' | translate}}" ng-model="searchPlace" uib-typeahead="dist as dist.name for dist in districts | filter:$viewValue" typeahead-focus-first="true" style="width:100%" />
+                <i class="ion-android-close" ng-click="searchPlace=''"></i>
+              </div>
+              <!-- <pre>{{medicines}}</pre>-->
+              <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
+
             </div>
-
-
-        </div>
-
-        <form>
-
-            <ion-toolbar>
-                <div class="ma-search-where">
-                    <fieldset>
-                        <legend class="ma-search-title">{{'where_ts' | translate}}</legend>
-                        <div class="list input-item">
-                            <div class="search-div">
-                                <input type="text" placeholder="{{'where_ts_pl' | translate}}" ng-model="searchPlace" uib-typeahead="dist as dist.name for dist in districts | filter:$viewValue" typeahead-focus-first="true" style="width:100%" />
-                                <i class="ion-android-close" ng-click="searchPlace=''"></i>
-                            </div>
-                            <!-- <pre>{{medicines}}</pre>-->
-                            <!--<span ng-repeat="med in medicines">{{med.price}}</span>-->
-
-                        </div>
-                        <!--<div class="list">
+            <!--<div class="list">
                             <ion-checkbox ng-model="filter.red">Поиск поблизости</ion-checkbox>
                             <label></label>
                         </div>-->
-                    </fieldset>
-                </div>
-                <!--<ion-list>
+          </div>
+        </div>
+        <!--<ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
         {{playlist.title}}
       </ion-item>
     </ion-list> -->
 
 
-                <div class="ma-search-what">
+        <div class="ma-search-what">
 
-                    <fieldset>
-                        <legend class="ma-search-title">{{'what_ts' | translate}}</legend>
+          <fieldset>
+            <legend class="ma-search-title">{{'what_ts' | translate}}</legend>
 
-                        <div class="button-bar">
-                            <div class="button-blue-active" ng-class="{'button-blue-clinic': isActive('clinic')}"></div>
-                            <button type="button" ng-class="{'button-positive': isActive('medicine')}" class="button button-first" ng-click="setActive('medicine')">{{'what_ts_med' | translate}} </button>
-                            <button type="button" ng-class="{'button-positive': isActive('clinic')}" class="button" ng-click="setActive('clinic')">{{'what_ts_cli' | translate}} </button>
-                        </div>
-                        <!--ng-class="{'button-positive': isActive('clinic')}" -->
-                        <div class="list input-item">
-                            <div class="ma-typeahead-input" ng-style="isActive('clinic') ? { 'margin':'0 10px'} : { 'margin':'0 10px'}">
-                                <div ng-if="isActive('medicine')" class="what-to-search">
-                                    <input type="text" placeholder="{{'what_ts_pl1' | translate}}" required ng-model="selectedMedicine" uib-typeahead="med as med.name for med in fetchdata($viewValue)" typeahead-focus-first="true" typeahead-on-select="setMedicine(selectedMedicine);" ng-required="isActive('medicine')" />
-                                    <i class="ion-android-close" ng-click="selectedMedicine='';setMedicine('')"></i>
-                                </div>
-                                <!-- typeahead-wait-ms="1000"-->
-
-                                <div ng-if="isActive('clinic')" class="what-to-search">
-                                    <input type="text" placeholder="{{'what_ts_pl2' | translate}}" required ng-model="selectedClinic" uib-typeahead="cli as cli.name for cli in specializations | filter:$viewValue | limitTo:10" typeahead-focus-first="true" typeahead-on-select="setClinic(selectedClinic);" ng-required="isActive('clinic')" /> <i class="ion-android-close" ng-click="selectedClinic='';setClinic('')"></i>
-                                </div>
-                            </div>
-                            <!--<pre>{{medicines | json}}</pre>-->
-
-                        </div>
-                    </fieldset>
+            <div class="button-bar">
+              <div class="button-blue-active" ng-class="{'button-blue-clinic': isActive('clinic')}"></div>
+              <button type="button" ng-class="{'button-positive': isActive('medicine')}" class="button button-first" ng-click="setActive('medicine')">{{'what_ts_med' | translate}} </button>
+              <button type="button" ng-class="{'button-positive': isActive('clinic')}" class="button" ng-click="setActive('clinic')">{{'what_ts_cli' | translate}} </button>
+            </div>
+            <!--ng-class="{'button-positive': isActive('clinic')}" -->
+            <div class="list input-item">
+              <div class="ma-typeahead-input" ng-style="isActive('clinic') ? { 'margin':'0 10px'} : { 'margin':'0 10px'}">
+                <div ng-if="isActive('medicine')" class="what-to-search">
+                  <input type="text" placeholder="{{'what_ts_pl1' | translate}}" required ng-model="selectedMedicine" uib-typeahead="med as med.name for med in fetchdata($viewValue)" typeahead-focus-first="true" typeahead-on-select="setMedicine(selectedMedicine);" ng-required="isActive('medicine')" />
+                  <i class="ion-android-close" ng-click="selectedMedicine='';setMedicine('')"></i>
                 </div>
-                <div class="ma-search-button">
-                    <button class="search-button" ng-click="submitSearch(searchPlace)" ng-disabled="!selectedMedicine && !selectedClinic">
+                <!-- typeahead-wait-ms="1000"-->
+
+                <div ng-if="isActive('clinic')" class="what-to-search">
+                  <input type="text" placeholder="{{'what_ts_pl2' | translate}}" required ng-model="selectedClinic" uib-typeahead="cli as cli.name for cli in specializations | filter:$viewValue | limitTo:10" typeahead-focus-first="true" typeahead-on-select="setClinic(selectedClinic);" ng-required="isActive('clinic')" /> <i class="ion-android-close" ng-click="selectedClinic='';setClinic('')"></i>
+                </div>
+              </div>
+              <!--<pre>{{medicines | json}}</pre>-->
+
+            </div>
+          </fieldset>
+        </div>
+        <div class="ma-search-button">
+          <button class="search-button" ng-click="submitSearch(searchPlace)" ng-disabled="!selectedMedicine && !selectedClinic">
                         <a class="search-button">{{'what_ts_med_find' | translate}}</a>
                     </button>
-                </div>
-            </ion-toolbar>
-        </form>
+        </div>
+      </ion-toolbar>
+    </form>
 
-    </ion-content>
+  </ion-content>
 </ion-view>

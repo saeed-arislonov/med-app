@@ -94,7 +94,7 @@ med_app.config(['$translateProvider', function ($translateProvider) {
         'confirm_text1': 'Sizning',
         'confirm_text1-uz': 'buyurtmangiz',
         'confirm_text1-ru': '',
-        'confirm_text2': 'muvaffaqiyatli bajarildi va ishlovga yuborildi',
+        'confirm_text2': 'muvaffaqiyatli bajarildi va ishlovga yuborildi. Buyurtmangizdagi mahsulotlar dorixona tomonidan 3 soat davomida siz uchun saqlab turiladi.',
        // 'confirm_text3': 'Оплата Вашего заказа успешно обработана, ожидайте курьера.',
         'confirm_phone': 'Ma`lumot uchun telefon',
         'confirm_backtomain': 'Asosiy sahifaga qaytish',
@@ -132,7 +132,9 @@ med_app.config(['$translateProvider', function ($translateProvider) {
         'account_updated' : 'Akkaunt yangilandi',
         'exit_app' : 'Dasturni tark etasizmi?',
         'exit_yes' : 'Ha',
-        'exit_no' : 'Yo`q'
+        'exit_no' : 'Yo`q',
+        'telegram_bot' : 'Telegram bot',
+        'privacy_policy' : 'Ilovadan foydalanish shartlari bilan tanishib chiqdim va roziman.'
     });
     $translateProvider.preferredLanguage('ru');
  }]);

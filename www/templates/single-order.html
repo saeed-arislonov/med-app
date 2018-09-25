@@ -8,8 +8,8 @@
 </div>
 <ion-view view-title="Search" animation="no-animation">
     <ion-content class="no-header">
-      <!-- <pre>{{singleOrder | json}}</pre> -->
-        
+        <!-- <pre>{{singleOrder | json}}</pre> -->
+
         <div class="ma-results clinic-results single-order">
             <div class="ma-results-wrapper">
                 <div class="medicine-result" ng-repeat="ord in singleOrder.orderGoods" style="padding-bottom: 15px;">
@@ -25,7 +25,9 @@
                     </div>
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-positive call-button" ng-click="callPharmacy(ord)" style="padding:10px !important;padding-left: 24px  !important;"><i class="flaticon-call-answer" style="bottom:10px"></i> {{'sr_call' | translate}} </li>
+                            <li style="display: inline-block;width: 44.3%">
+                                <a ng-href="tel:{{ord.medicine.pharmacy.contacts}}" class="button button-positive call-button"> <i class="flaticon-call-answer"></i> {{'sr_call' | translate}}</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -170,8 +170,8 @@
                     background-color: $primary-blue;
                 }
                 &.call-button {
-                    width: 115px;
-                    max-width: 125px;
+                    width: 100%;
+                    //max-width: 125px;
                     padding: 4px;
                     padding-left: 20px;
                     a {
@@ -383,12 +383,14 @@
                 margin: 10px;
                 background-color: #fafbfd;
                 padding-top: 0;
+               line-height: 100% !important;
                 input {
                     color: #444; //min-height: 36px;
                     height: 100%;
                     font-size: 16px;
                     padding: 7px;
                     padding-left: 0;
+                   line-height: 100% !important;
                 }
             }
         }
