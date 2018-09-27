@@ -9925,7 +9925,7 @@ ion-content {
 
 div.bar-stable {
   /*height: 80px !important;*/
-  background: #2da5e1 !important;
+  background: #4267B2 !important;
   z-index: 99999 !important;
   position: absolute !important;
   width: 100% !important; }
@@ -9935,12 +9935,12 @@ div.bar-stable {
   margin-top: 0px !important;
   margin-bottom: 5px !important;
   height: 70px !important;
-  background-color: #2da5e1; }
+  background-color: #4267B2; }
   .bar-header.bar-stable .filterOpen {
     border-radius: 50%;
     background-color: #fff; }
     .bar-header.bar-stable .filterOpen i {
-      color: #2da5e1 !important; }
+      color: #4267B2 !important; }
   .bar-header.bar-stable .order-count {
     height: 18px;
     width: 18px;
@@ -10016,17 +10016,16 @@ div.bar-stable {
   font-weight: 700 !important; }
 
 .main-page-titlee .button-clear {
-  color: #2da5e1 !important; }
+  color: #4267B2 !important; }
 
 .main-page-titlee.bar-header.bar-stable {
   background-color: #fff !important; }
 
 .ma-main-title {
   font-size: 28px;
-  color: #2da5e1;
+  color: #4267B2;
   text-align: center;
-  padding: 15px;
-  margin: 0;
+  margin: 0 10px;
   margin-bottom: 0;
   padding-bottom: 3px;
   padding-top: 0; }
@@ -10037,32 +10036,37 @@ input {
   line-height: 100% !important; }
 
 .ma-search-where {
-  margin: 10px;
-  margin-top: -10px; }
+  margin: 0 10px;
+  background-color: #fff;
+  padding: 20px 0;
+  border-radius: 2px;
+  margin-bottom: 10px; }
   .ma-search-where .input-item {
     margin-bottom: 10px;
     margin-top: -15px; }
     .ma-search-where .input-item input {
       font-size: 16px;
       color: #303030;
+      background-color: transparent;
+      border-bottom: 1px solid #4267B2;
       margin-right: 0; }
     .ma-search-where .input-item .search-div {
       border: none;
-      border-bottom: 1px solid #2da5e1;
       margin: 0 30px;
-      padding: 0 10px;
+      padding: 0;
       position: relative; }
       .ma-search-where .input-item .search-div .ion-android-close {
+        font-weight: lighter;
         padding: 0 5px;
         font-size: 26px;
         position: absolute;
-        right: -5px;
+        right: -3px;
         color: #878787;
-        top: 5px; }
+        top: 35px; }
   .ma-search-where .item-input .checkbox input:before,
   .ma-search-where .checkbox-icon:before {
     border-radius: 3px;
-    border-color: #2da5e1 !important; }
+    border-color: #4267B2 !important; }
   .ma-search-where .checkbox-icon {
     width: 30px;
     height: 30px;
@@ -10083,7 +10087,7 @@ input {
     position: relative;
     font-size: 18px; }
   .ma-search-where fieldset {
-    border: 1px solid #2da5e1;
+    border: 1px solid #4267B2;
     border-radius: 5px;
     padding-bottom: 0; }
 
@@ -10140,12 +10144,21 @@ input {
     padding: 0 !important; } }
 
 .ma-search-what {
-  margin: 10px; }
+  margin: 0 10px;
+  background-color: #fff;
+  padding: 20px 0;
+  border-radius: 2px; }
+  .ma-search-what .search-div {
+    border: none;
+    margin: 0 30px;
+    padding: 0;
+    position: relative; }
   .ma-search-what input {
     width: 100%;
     font-size: 16px;
     color: #303030;
-    z-index: 9999999; }
+    z-index: 9999999;
+    border-bottom: 1px solid #44e03e; }
   .ma-search-what legend {
     border: none;
     font-weight: 700;
@@ -10170,9 +10183,8 @@ input {
       color: #878787;
       background-color: #fff; }
   .ma-search-what .button-bar {
-    margin: 0 30px;
     width: inherit;
-    border: 1px solid #2da5e1;
+    border: 1px solid #4267B2;
     border-radius: 5px;
     padding: 1px;
     margin-bottom: 25px;
@@ -10216,11 +10228,12 @@ input {
       font-size: 17px;
       line-height: 22px;
       font-weight: 400;
-      color: #2da5e1; }
+      color: #4267B2; }
       .ma-search-what .button-bar .button:focus {
         border: none; }
     .ma-search-what .button-bar .button-positive {
-      color: #fff !important; }
+      color: #fff !important;
+      background-color: #4267B2 !important; }
     .ma-search-what .button-bar .activated {
       border: none !important; }
   .ma-search-what .item-input.item {
@@ -10283,7 +10296,7 @@ input {
 .dropdown-menu > .active > a:hover {
   color: #fff;
   text-decoration: none;
-  background-color: #2da5e1;
+  background-color: #4267B2;
   outline: 0; }
 
 .dropdown-menu li a {
@@ -10298,12 +10311,9 @@ input {
 
 .ma-typeahead-input {
   border: none;
-  border-bottom: 1px solid #44e03e;
-  margin: 0 30px;
   margin-bottom: 20px;
   padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 5px; }
+  padding-bottom: 0; }
   .ma-typeahead-input strong {
     font-weight: 600 !important; }
   .ma-typeahead-input .uib-typeahead-match {
@@ -10373,19 +10383,19 @@ input {
 
 .ma-results .result-header-wrapper {
   margin: 0;
-  padding: 15px;
+  background-color: #fff;
+  padding: 10px;
   border-bottom: 1px solid #e3e0e5;
   display: block;
   padding-bottom: 10px;
-  clear: both;
-  min-height: 75px; }
+  clear: both; }
   .ma-results .result-header-wrapper .ion-ios-search-strong {
     float: left;
     font-size: 24px; }
   .ma-results .result-header-wrapper .ma-search-name {
     text-align: center;
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 18px;
     line-height: 20px;
     color: #303030; }
     .ma-results .result-header-wrapper .ma-search-name.ma-search-name-left {
@@ -10395,9 +10405,9 @@ input {
   .ma-results .result-header-wrapper .search-by-map {
     display: inline-block;
     border: 1px solid #e3e0e5;
-    border-radius: 5px;
+    border-radius: 2px;
     float: right;
-    padding: 3px 6px; }
+    padding: 1px 6px; }
 
 .ma-results .ma-filters {
   display: none; }
@@ -10405,7 +10415,7 @@ input {
     margin: 15px 0; }
     .ma-results .ma-filters .filter-panes .filter-titles {
       background-color: #fff;
-      border-radius: 5px;
+      border-radius: 2px;
       font-weight: 500;
       z-index: 20; }
       .ma-results .ma-filters .filter-panes .filter-titles i {
@@ -10438,17 +10448,18 @@ input {
     /* z-index: 20; */
     text-align: center;
     padding: 16px;
-    background: #2da5e1;
+    background: #4267B2;
     color: #fff;
     margin: 0 10px;
     flex-grow: 1; }
 
 .ma-results .ma-results-wrapper {
-  margin: 0 10px; }
+  margin: 0 5px; }
   .ma-results .ma-results-wrapper .medicine-result {
     border: 1px solid #e3e0e5;
-    border-radius: 5px;
-    margin: 10px 0; }
+    border-radius: 2px;
+    margin: 10px 0;
+    background-color: #fff; }
     .ma-results .ma-results-wrapper .medicine-result .product-photo {
       float: left;
       margin: 5px;
@@ -10463,7 +10474,7 @@ input {
           font-weight: 600; }
   .ma-results .ma-results-wrapper .mr-bottom {
     clear: both;
-    margin: 3px;
+    margin: 5px;
     padding-top: 10px; }
     .ma-results .ma-results-wrapper .mr-bottom ul {
       width: 100%;
@@ -10476,23 +10487,22 @@ input {
       .ma-results .ma-results-wrapper .mr-bottom li.map-button {
         width: 75px;
         max-width: 80px;
-        padding: 4px 8px;
+        padding: 5px 8px;
         margin-left: 0;
         font-weight: 500;
-        font-size: 15px;
-        padding-left: 22px; }
+        font-size: 15px; }
     .ma-results .ma-results-wrapper .mr-bottom .button {
       min-width: auto;
       min-height: auto;
       line-height: 100%;
-      border-radius: 5px;
+      border-radius: 2px;
       padding: 4px 16px; }
       .ma-results .ma-results-wrapper .mr-bottom .button.button-positive {
-        background-color: #2da5e1; }
+        background-color: #4267B2; }
       .ma-results .ma-results-wrapper .mr-bottom .button.call-button {
         width: 100%;
-        padding: 4px;
-        padding-left: 20px; }
+        padding: 5px;
+        /*padding-left: 20px;*/ }
         .ma-results .ma-results-wrapper .mr-bottom .button.call-button a {
           color: #fff;
           text-decoration: none; }
@@ -10500,6 +10510,7 @@ input {
         font-weight: 600;
         font-size: 14px;
         text-align: center;
+        padding-top: 6px;
         padding-right: 4px;
         margin-right: 0; }
         .ma-results .ma-results-wrapper .mr-bottom .button.price-button .sum {
@@ -10510,7 +10521,7 @@ input {
         position: absolute;
         font-size: 16px;
         left: 5px;
-        bottom: 5px; }
+        bottom: 7px; }
     .ma-results .ma-results-wrapper .mr-bottom .button-light {
       border: 1px solid #e3e0e5; }
 
@@ -10554,7 +10565,7 @@ input {
     padding-left: 0;
     padding-right: 32px;
     border: 1px solid #e3e0e5;
-    border-radius: 5px; }
+    border-radius: 2px; }
 
 .ma-my-cart .med-quantity .item {
   padding: 5px; }
@@ -10564,7 +10575,7 @@ input {
   margin: 10px;
   margin-right: 0;
   padding: 8px;
-  border-radius: 5px;
+  border-radius: 2px;
   background-color: red;
   color: #fff;
   font-weight: 400; }
@@ -10572,12 +10583,11 @@ input {
 .ma-my-cart .cart-total {
   text-align: center;
   padding: 10px;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 16px;
   margin: 20px 8px; }
   .ma-my-cart .cart-total span {
-    font-weight: 400;
-    color: #444; }
+    font-weight: 500; }
 
 .ma-my-cart .proceed-checkout {
   background-color: #27ae60;
@@ -10586,7 +10596,7 @@ input {
   font-size: 18px;
   padding: 12px;
   font-weight: 600;
-  border-radius: 5px;
+  border-radius: 2px;
   position: relative;
   margin-bottom: 25px;
   width: 100%;
@@ -10643,7 +10653,7 @@ input {
   border-radius: 5px; }
   .ma-my-checkout .buyer-info .buyer-info-header {
     padding-left: 13px;
-    color: #2da5e1;
+    color: #4267B2;
     font-size: 18px;
     font-weight: 600;
     padding-bottom: 10px;
@@ -10699,7 +10709,7 @@ input {
   .ma-my-checkout .buyer-info-delivery .buyer-info-header,
   .ma-my-checkout .buyer-info-delivery .buyer-info-header-payment {
     padding-left: 13px;
-    color: #2da5e1;
+    color: #4267B2;
     font-size: 18px;
     font-weight: 600;
     padding-bottom: 10px;
@@ -10716,7 +10726,7 @@ input {
   .ma-my-checkout .buyer-info-address .debit-card,
   .ma-my-checkout .buyer-info-payment-type .debit-card,
   .ma-my-checkout .buyer-info-delivery .debit-card {
-    background-color: #2da5e1;
+    background-color: #4267B2;
     padding: 10px;
     border-radius: 5px; }
     .ma-my-checkout .buyer-info-address .debit-card .debit-card-top,
@@ -10798,7 +10808,7 @@ input {
   .ma-my-checkout .buyer-info-payment-type .buyer-info-payment .list input[type="radio"]:checked,
   .ma-my-checkout .buyer-info-delivery .buyer-info-detail-delivery .list input[type="radio"]:checked,
   .ma-my-checkout .buyer-info-delivery .buyer-info-payment .list input[type="radio"]:checked {
-    background-color: #2da5e1; }
+    background-color: #4267B2; }
   .ma-my-checkout .buyer-info-address .buyer-info-detail-delivery .list .delivery-radio,
   .ma-my-checkout .buyer-info-address .buyer-info-payment .list .delivery-radio,
   .ma-my-checkout .buyer-info-payment-type .buyer-info-detail-delivery .list .delivery-radio,
@@ -10806,7 +10816,7 @@ input {
   .ma-my-checkout .buyer-info-delivery .buyer-info-detail-delivery .list .delivery-radio,
   .ma-my-checkout .buyer-info-delivery .buyer-info-payment .list .delivery-radio {
     padding: 2px;
-    border: 1px solid #2da5e1;
+    border: 1px solid #4267B2;
     border-radius: 50%;
     position: relative;
     width: 21px;
@@ -11018,7 +11028,7 @@ input {
       padding: 0;
       position: relative;
       top: 5px;
-      color: #2da5e1; }
+      color: #4267B2; }
   .ma-menu .ma-profile-info {
     float: left;
     margin: 10px;
@@ -11044,7 +11054,7 @@ input {
         text-decoration: none; }
       .ma-menu .ma-menu-list li i {
         font-size: 24px;
-        color: #2da5e1; }
+        color: #4267B2; }
       .ma-menu .ma-menu-list li .menu-li {
         font-size: 18px;
         color: #444;
@@ -11056,7 +11066,7 @@ input {
 .ionic_datepicker_popup .popup-body .selected_date_full,
 .ionic_datepicker_popup .popup-buttons button,
 .ionic_datepicker_popup .selected_date {
-  background-color: #2da5e1 !important; }
+  background-color: #4267B2 !important; }
 
 .ma-profile-edit .item-input {
   padding-left: 5px; }
@@ -11074,7 +11084,7 @@ input {
     color: #fff;
     border: none;
     border-radius: 5px;
-    background-color: #2da5e1;
+    background-color: #4267B2;
     font-size: 16px; }
 
 .about-app {
@@ -11114,7 +11124,7 @@ input {
     margin-top: 5px;
     border-radius: 3px; }
   .single-clinic .singleClinic-result {
-    background-color: #f7f7f7;
+    background-color: #fff;
     top: -10px;
     position: relative;
     padding: 15px; }
@@ -11124,7 +11134,8 @@ input {
   .single-clinic .singleClinic-info {
     padding: 3px; }
   .single-clinic .singleClinic-about {
-    padding: 15px; }
+    padding: 15px;
+    background-color: #fff; }
   .single-clinic .see-all-contacts {
     text-align: center;
     margin-bottom: 15px; }
@@ -11132,7 +11143,7 @@ input {
     background-color: #ffc12f;
     padding: 3px;
     margin-left: 0 !important;
-    border-bottom-left-radius: 5px; }
+    border-radius: 2px; }
   .single-clinic .second-button {
     height: 26px;
     transform: translateY(42%);
@@ -11141,7 +11152,9 @@ input {
       color: #fff;
       text-decoration: none; }
   .single-clinic .mr-bottom {
-    margin: 0 !important; }
+    margin: 10px 0 0 0 !important;
+    background-color: #fff;
+    padding: 0 15px; }
 
 .my-orders .completed-button {
   color: #27ae60;

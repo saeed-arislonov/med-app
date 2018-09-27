@@ -1,6 +1,6 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center" ng-if="!medMapPresent">
-        <button ui-sref="app.medicines" class="button back-button buttons button-clear header-item">
+        <button ng-click="go_back_1()" class="button back-button buttons button-clear header-item">
             <i class="flaticon-left-arrow"></i> 
             <span class="back-text">
                 <div class="default-title medicine-search-title">{{'sr_title' | translate}}</div>
@@ -62,7 +62,7 @@
             <!-- END OF MAP SHOW   -->
 
             <div class="ma-results-wrapper">
-                <div class="medicine-result" ng-repeat="cart in shoppingCart track by $index">
+                <div class="medicine-result" ng-repeat="cart in shoppingCart track by $index" style="transition: none">
                     <div class="mr-top">
                         <img width="60" height="60" class="product-photo" ng-src="{{'http://medappteka.uz'+cart.med_photo}}" />
                         <div class="product-info">
@@ -73,10 +73,12 @@
                     </div>
                     <div class="mr-bottom">
                         <ul>
-                            <li class="button button-light map-button" ng-click="showMapMed(cart)"><i class="flaticon-placeholder" style="bottom:3px"></i> <span class="hide-on-small">{{'sr_map' | translate}}</span></li>
+                            <li class="button button-light map-button" ng-click="showMapMed(cart)">
+                           <!-- <i class="flaticon-placeholder" style="bottom:3px"></i>-->
+                             <span class="hide-on-small">{{'sr_map' | translate}}</span></li>
                             <li class=""> 
                                 <a ng-href="tel:{{cart.pharmacy_phone}}" class="button button-positive call-button">
-                                    <i class="flaticon-call-answer" style="bottom:3px"></i>  
+                                    <!--<i class="flaticon-call-answer" style="bottom:3px"></i> --> 
                                     <span class="hide-on-small">{{'sr_call' | translate}} </span>
                                 </a>
                             </li>

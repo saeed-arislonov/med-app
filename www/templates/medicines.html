@@ -1,6 +1,6 @@
 <div class="bar-stable">
   <ion-header-bar class="bar-stable bar bar-header" align-title="center" ng-if="!medMapPresent">
-    <button ui-sref="app.mainPage" class="button back-button buttons button-clear header-item">
+    <button ng-click="go_back_1()" class="button back-button buttons button-clear header-item">
             <i class="flaticon-left-arrow"></i> 
             <span class="back-text">
                 <div class="default-title medicine-search-title">{{'sr_title' | translate}}</div>
@@ -158,12 +158,13 @@
           </div>
           <div class="mr-bottom">
             <ul>
-              <li class="button button-light map-button" ng-click="showMapMed(med)"><i class="flaticon-placeholder" style="bottom:3px"></i>
+              <li class="button button-light map-button" ng-click="showMapMed(med)">
+              <!-- <i class="flaticon-placeholder" style="bottom:3px"></i>-->
                 <span class="hide-on-small">{{'sr_map' | translate}}</span></li>
               <!--ng-click="callTel(med)"-->
               <li class="">
                 <a class="button button-positive call-button" ng-href="tel:{{med.pharmacy.contacts}}">
-                                    <i class="flaticon-call-answer" style="bottom:3px"></i> 
+                                   <!-- <i class="flaticon-call-answer" style="bottom:3px"></i> -->
                                     <span class="hide-on-small">{{'sr_call' | translate}}</span>
                                 </a>
               </li>

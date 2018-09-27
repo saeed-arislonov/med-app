@@ -179,7 +179,7 @@
         border-radius: 3px;
     }
     .singleClinic-result {
-        background-color: #f7f7f7;
+        background-color: #fff;
         top: -10px;
         position: relative;
         padding: 15px;
@@ -193,6 +193,7 @@
     }
     .singleClinic-about {
         padding: 15px;
+        background-color: #fff;
     }
     .see-all-contacts {
         text-align: center;
@@ -202,7 +203,7 @@
         background-color: $primary-orange;
         padding: 3px;
         margin-left: 0 !important;
-        border-bottom-left-radius: 5px;
+      border-radius: 2px;
     }
     .second-button {
         height: 26px;
@@ -214,7 +215,9 @@
         }
     }
     .mr-bottom {
-        margin: 0 !important;
+        margin: 10px 0 0 0 !important;
+      background-color: #fff;
+      padding: 0 15px;
     }
 }
 

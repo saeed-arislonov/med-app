@@ -1,6 +1,6 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center" ng-if="!cliMapPresent">
-        <button ui-sref="app.clinics" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
+        <button ng-click="go_back_1()" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-back"></i> 
       <span class="back-text"><span class="previous-title hide"></span></span></button>
 
         <div class="text-white title-center header-item" style="font-size:20px;color: #fff;
@@ -70,7 +70,7 @@
 
                 </div>
                 <div class="singleClinic-about">
-                    <h2>{{'clinic_spec' | translate}}</h2>
+                    <h4>{{'clinic_spec' | translate}}</h4>
                     <p>{{singleClinic.description}}</p>
                 </div>
                 <div>
@@ -81,10 +81,10 @@
                         <div class="first-button"><!--{{'clinic_today' | translate}}, {{todaysDate}}.<i ng-if="todaysMonth<10">0</i>{{todaysMonth}} <br />--> {{singleClinic.working_hours}}</div>
                         <ul style="padding:0; display: flex">
                             
-                            <li class="button button-light second-button mmap-button" ng-click="showMapMed(singleClinic)" style="width:100px;max-width:100px"><i class="flaticon-placeholder"></i> {{'sr_map' | translate}}</li>
-                            <li class="">
-                <a ng-href="tel:{{singleClinic.contacts}}" style="display:block" class="button button-positive second-button ccall-button">
-                           <i class="flaticon-call-answer"></i> {{'sr_call' | translate}} 
+                            <li class="button button-light second-button mmap-button" ng-click="showMapMed(singleClinic)" style="width:100px;max-width:100px;margin-left:0"><!--<i class="flaticon-placeholder"></i>--> {{'sr_map' | translate}}</li>
+                            <li class="" style="margin-right:0">
+                <a ng-href="tel:{{singleClinic.contacts}}" style="display:block;margin-right:0" class="button button-positive second-button ccall-button">
+                           <!--<i class="flaticon-call-answer"></i>--> {{'sr_call' | translate}} 
                         </a>
               </li>
                         </ul>

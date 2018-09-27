@@ -32,12 +32,12 @@
 .ma-results {
     .result-header-wrapper {
         margin: 0;
-        padding: 15px;
+      background-color: #fff;
+        padding: 10px;
         border-bottom: 1px solid $primary-grey;
         display: block;
         padding-bottom: 10px;
         clear: both;
-        min-height: 75px;
         .ion-ios-search-strong {
             float: left;
             font-size: 24px;
@@ -45,8 +45,8 @@
         .ma-search-name {
             text-align: center; //font-size: 18px;
             //display: inline-block;
-            font-weight: bold;
-            font-size: 20px;
+            font-weight: 600;
+            font-size: 18px;
             line-height: 20px;
             color: rgb(48, 48, 48); //font-family: "Gotham Pro";
             &.ma-search-name-left {
@@ -58,9 +58,9 @@
         .search-by-map {
             display: inline-block;
             border: 1px solid #e3e0e5;
-            border-radius: 5px;
+            border-radius: 2px;
             float: right;
-            padding: 3px 6px;
+            padding: 1px 6px;
         }
     }
     .ma-filters {
@@ -69,7 +69,7 @@
             margin: 15px 0;
             .filter-titles {
                 background-color: #fff;
-                border-radius: 5px; //font-family: "Gotham";
+                border-radius: 2px; //font-family: "Gotham";
                 font-weight: 500;
                 z-index: 20;
                 i {
@@ -115,11 +115,12 @@
         }
     }
     .ma-results-wrapper {
-        margin: 0 10px;
+        margin: 0 5px;
         .medicine-result {
             border: 1px solid $primary-grey;
-            border-radius: 5px;
+            border-radius: 2px;
             margin: 10px 0;
+          background-color: #fff;
             .product-photo {
                 float: left;
                 margin: 5px;
@@ -139,7 +140,7 @@
         }
         .mr-bottom {
             clear: both;
-            margin: 3px;
+            margin: 5px;
             padding-top: 10px;
             ul {
                 width: 100%;
@@ -153,18 +154,18 @@
                 &.map-button {
                     width: 75px;
                     max-width: 80px;
-                    padding: 4px 8px;
+                    padding: 5px 8px;
                     margin-left: 0;
                     font-weight: 500;
                     font-size: 15px;
-                    padding-left: 22px;
+                   // padding-left: 22px;
                 }
             }
             .button {
                 min-width: auto;
                 min-height: auto;
                 line-height: 100%;
-                border-radius: 5px;
+                border-radius: 2px;
                 padding: 4px 16px;
                 &.button-positive {
                     background-color: $primary-blue;
@@ -172,8 +173,8 @@
                 &.call-button {
                     width: 100%;
                     //max-width: 125px;
-                    padding: 4px;
-                    padding-left: 20px;
+                    padding: 5px;
+                    /*padding-left: 20px;*/
                     a {
                         color: #fff;
                         text-decoration: none;
@@ -183,6 +184,7 @@
                     font-weight: 600;
                     font-size: 14px;
                     text-align: center;
+                  padding-top: 6px;
                     padding-right: 4px;
                     margin-right: 0;
                     .sum {
@@ -195,7 +197,7 @@
                     position: absolute;
                     font-size: 16px;
                     left: 5px;
-                    bottom: 5px;
+                    bottom: 7px;
                 }
             }
             .button-light {
@@ -253,7 +255,7 @@
                 padding-left: 0;
                 padding-right: 32px;
                 border: 1px solid $primary-grey;
-                border-radius: 5px;
+                border-radius: 2px;
             }
         }
         .item {
@@ -265,7 +267,7 @@
         margin: 10px;
         margin-right: 0;
         padding: 8px;
-        border-radius: 5px;
+        border-radius: 2px;
         background-color: red;
         color: #fff;
         font-weight: 400;
@@ -273,12 +275,11 @@
     .cart-total {
         text-align: center;
         padding: 10px;
-        font-weight: 700;
+        font-weight: 500;
         font-size: 16px; //font-family: "Gotham";
         margin: 20px 8px;
         span {
-            font-weight: 400;
-            color: #444;
+            font-weight: 500;
         }
     }
     .proceed-checkout {
@@ -288,7 +289,7 @@
         font-size: 18px;
         padding: 12px; //font-family: "Gotham";
         font-weight: 600;
-        border-radius: 5px;
+        border-radius: 2px;
         position: relative;
         margin-bottom: 25px;
         width: 100%;

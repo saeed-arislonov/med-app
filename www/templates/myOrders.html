@@ -1,8 +1,8 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
-        <button ui-sref="app.profile" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
+        <button ng-click="go_back_1()" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
       <span class="back-text"><div class="default-title medicine-search-title"></div><span class="previous-title hide"></span></span></button>
-        <div class="title title-center header-item"> {{'mo_title' | translate}}
+        <div class="titled title-center header-item"  style="font-size: 22px;letter-spacing: 0;line-height: 34px;color: #fff;text-align: center;font-weight: 300;width:100%"> {{'mo_title' | translate}}
         </div>
 
         <button ui-sref="app.myCart" class="button header-right-button buttons button-clear header-item"><i class="flaticon-shopping-cart"></i> <span class="order-count"><span>{{shoppingCart.length}}</span></span>
@@ -15,11 +15,11 @@
     <ion-content class="no-header">
         <div class="ma-results ma-my-cart my-orders">
 
-            <div class="ma-results-wrapper">
+            <div class="ma-results-wrapper" >
                 <div class="refreshOrder">
                     <button ng-click="getOrders()" class="button button-positive">{{'mo_refresh' | translate}} <i class="flaticon-reuse"></i></button>
                 </div>
-                <div class="medicine-result" ng-repeat="order in myOrderHistory">
+                <div class="medicine-result" ng-repeat="order in myOrderHistory" style="transition: none" >
                     <div class="mr-top">
                         <!--<img width="60" height="60" class="product-photo" ng-src="{{'http://medappteka.uz'+order.orderGoods[0].medicine.photo}}" onerror="this.src='img/med.png'"/>-->
                         <div class="product-info" style="margin-left: 10px;">
@@ -51,7 +51,7 @@
                             
                             <!--<li class="button button-energized price-button" style="padding: 4px 4px;">
                                 {{order.totalPrice}} <span class="sum">сум</span></li>-->
-                            <li class="button button-positive call-button" style="padding:5px !important;" ng-click="orderDetail(order)"><a>{{'clinic_about' | translate}}</a> </li>
+                            <li class="button button-positive call-button" style="padding:5px !important;width:auto" ng-click="orderDetail(order)"><a>{{'clinic_about' | translate}}</a> </li>
                         </ul>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <div class="bar-stable">
     <ion-header-bar class="bar-stable bar bar-header" align-title="center">
-        <button ui-sref="app.myCart" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
+        <button ng-click="go_back_1()" class="button back-button buttons button-clear header-item"><i class="icon ion-ios-arrow-left"></i> 
       <span class="back-text"><div class="default-title medicine-search-title">{{'cart_main_title' | translate}}</div><span class="previous-title hide"></span></span></button>
 
         <!-- <button class="button header-right-button-1 buttons button-clear header-item" ng-click="openFilter()" ng-class="filterOpen ? 'filterOpen' : ''"><i class="fa fa-filter"></i> 
@@ -139,10 +139,10 @@
                         <span ng-if="del_type=='3'">0</span> {{'sr_sum' | translate}}
                     </div>
                 </div>-->
-                <div style="display:flex;padding:10px;" class="checkout-sub-total">
+                <!--<div style="display:flex;padding:10px;" class="checkout-sub-total">
                     <div style="flex-grow:1">{{'checkout_prodfee' | translate}}:</div>
                     <div>{{total | formatPrice}} {{'sr_sum' | translate}}</div>
-                </div>
+                </div>-->
                 <div class="cart-total">
                     <div>{{'checkout_totalfee' | translate}}:</div> <span>{{total + dell | formatPrice}}  {{'sr_sum' | translate}}</span>
                 </div>

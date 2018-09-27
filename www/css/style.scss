@@ -1,6 +1,6 @@
 /* Empty. Add your own CSS if you like */
 
-$primary-blue: #2da5e1;
+$primary-blue: #4267B2;
 $primary-green: #44e03e;
 $primary-orange: #ffc12f;
 $secondary-green: #28ba23;
@@ -179,7 +179,7 @@ div.bar-stable {
 
 .slick-next,
 .slick-prev {
-   display: none !important;
+  display: none !important;
 }
 
 .banners-getting {
@@ -193,7 +193,7 @@ div.bar-stable {
 
 .main-page-titlee {
   .button-clear {
-    color: #2da5e1 !important;
+    color: #4267B2 !important;
   }
   &.bar-header.bar-stable {
     background-color: #fff !important;
@@ -204,8 +204,7 @@ div.bar-stable {
   font-size: 28px;
   color: $primary-blue;
   text-align: center;
-  padding: 15px;
-  margin: 0;
+  margin: 0 10px;
   margin-bottom: 0;
   padding-bottom: 3px;
   padding-top: 0;
@@ -219,31 +218,36 @@ input {
 }
 
 .ma-search-where {
-  margin: 10px;
-  margin-top: -10px;
+  margin: 0 10px;
+  background-color: #fff;
+  padding: 20px 0;
+  border-radius: 2px;
+  margin-bottom: 10px;
   .input-item {
     margin-bottom: 10px;
     margin-top: -15px;
     input {
       font-size: 16px; //line-height: 21px;
       color: rgb(48, 48, 48);
+      background-color: transparent;
+      border-bottom: 1px solid $primary-blue;
       margin-right: 0; //z-index: 999999; // padding-top: 0 !important;
       // border: 1px solid red;
       // padding: 2px;
     }
     .search-div {
       border: none;
-      border-bottom: 1px solid $primary-blue;
       margin: 0 30px;
-      padding: 0 10px;
+      padding: 0;
       position: relative;
       .ion-android-close {
+        font-weight: lighter;
         padding: 0 5px;
         font-size: 26px;
         position: absolute;
-        right: -5px;
-        color: $secondary-grey;
-        top: 5px;
+        right: -3px;
+        color: #878787;
+        top: 35px;
       } // padding-top: 0 !important;
       //padding-bottom: 0;
       // padding-left:  5px;
@@ -370,13 +374,23 @@ input {
 }
 
 .ma-search-what {
-  margin: 10px;
+
+  margin: 0 10px;
+  background-color: #fff;
+  padding: 20px 0;
+  border-radius: 2px;
+  .search-div {
+    border: none;
+    margin: 0 30px;
+    padding: 0;
+    position: relative;
+  }
   input {
     width: 100%;
     font-size: 16px; //line-height: 21px;
     color: rgb(48, 48, 48);
     z-index: 9999999; //padding: 2px;
-    // height: 36px !important;
+    border-bottom: 1px solid $primary-green; // height: 36px !important;
     //font-family: "Gotham Pro";
   }
   legend {
@@ -407,7 +421,6 @@ input {
     }
   }
   .button-bar {
-    margin: 0 30px;
     width: inherit;
     border: 1px solid $primary-blue;
     border-radius: 5px;
@@ -464,6 +477,7 @@ input {
     }
     .button-positive {
       color: #fff !important;
+      background-color: $primary-blue !important;
     }
     .activated {
       border: none !important;
@@ -554,12 +568,12 @@ input {
 
 .ma-typeahead-input {
   border: none;
-  border-bottom: 1px solid $primary-green;
-  margin: 0 30px;
+  //border-bottom: 1px solid $primary-green;
+ // margin: 0 30px;
   margin-bottom: 20px;
   padding-top: 0;
   padding-bottom: 0;
-  padding-left: 5px;
+  //padding-left: 5px;
   strong {
     font-weight: 600 !important;
   }
